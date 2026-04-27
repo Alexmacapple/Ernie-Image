@@ -101,10 +101,37 @@ def test_hidden_elements_are_really_hidden():
 def test_main_headings_are_semantic():
     index = _read("frontend/index.html")
 
-    assert '<h1 class="fr-h2 fr-mb-4w">Générer une image avec ERNIE-Image Turbo</h1>' in index
+    assert '<h1 class="fr-h2 fr-mb-4w">Générer une image</h1>' in index
+    assert "Générer une image avec ERNIE-Image Turbo" not in index
     assert '<h2 class="fr-accordion__title">' in index
     assert "Aide à la structure du prompt" in index
     assert '<h3 class="fr-h4 fr-mb-3w" id="gallery-title">Historique</h3>' in index
+
+
+def test_footer_uses_dsfr_component_structure_with_existing_links_only():
+    index = _read("frontend/index.html")
+    css = _read("frontend/css/app.css")
+
+    assert '<footer role="contentinfo" class="fr-footer fr-mt-4w status-footer">' in index
+    assert "fr-footer--slim" not in index
+    assert "fr-footer__body" in index
+    assert "fr-footer__brand fr-enlarge-link" in index
+    assert "fr-footer__content" in index
+    assert "fr-footer__content-desc" in index
+    assert "fr-footer__bottom" in index
+    assert "fr-footer__bottom-list" in index
+    assert "footer-health-btn" in index
+    assert index.count("fr-footer__bottom-item") == 3
+    assert index.count("fr-footer__bottom-link") == 3
+    assert "/api/health" in index
+    assert "/api/status" in index
+    assert "info.gouv.fr" not in index
+    assert "service-public.gouv.fr" not in index
+    assert "legifrance.gouv.fr" not in index
+    assert "data.gouv.fr" not in index
+    assert "status-footer-row" not in index
+    assert ".status-footer-row" not in css
+    assert ".status-footer-links" not in css
 
 
 def test_prompt_templates_are_not_exposed_in_frontend():

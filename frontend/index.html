@@ -92,7 +92,7 @@
 
         <section id="app-screen" aria-label="Application Ernie Studio" hidden>
 
-        <h1 class="fr-h2 fr-mb-4w">Générer une image avec ERNIE-Image Turbo</h1>
+        <h1 class="fr-h2 fr-mb-4w">Générer une image</h1>
 
         <!-- Bandeau : pipeline en chargement -->
         <div id="banner-loading" class="fr-alert fr-alert--info fr-mb-4w" hidden>
@@ -268,15 +268,24 @@
     </div>
 </main>
 
-<!-- Footer statut -->
-<footer role="contentinfo" class="fr-footer fr-footer--slim fr-mt-4w status-footer">
+<footer role="contentinfo" class="fr-footer fr-mt-4w status-footer">
     <div class="fr-container">
-        <div class="fr-footer__bottom status-footer-row">
-            <div class="status-footer-line">
-                <span id="footer-status-badge" class="fr-badge fr-badge--sm fr-badge--info">Chargement</span>
-                <span id="footer-status-label" class="fr-text--mention">Pipeline en initialisation…</span>
+        <div class="fr-footer__body">
+            <div class="fr-footer__brand fr-enlarge-link">
+                <a href="/" title="Retour à l'accueil - Ernie Studio - République Française">
+                    <p class="fr-logo">République<br>Française</p>
+                </a>
             </div>
-            <ul class="fr-footer__bottom-list status-footer-links">
+            <div class="fr-footer__content">
+                <p class="fr-footer__content-desc">Ernie Studio - génération d'images ERNIE-Image Turbo.</p>
+                <p class="status-footer-line" aria-live="polite">
+                    <span id="footer-status-badge" class="fr-badge fr-badge--sm fr-badge--info">Chargement</span>
+                    <span id="footer-status-label" class="fr-text--mention">Pipeline en initialisation…</span>
+                </p>
+            </div>
+        </div>
+        <div class="fr-footer__bottom">
+            <ul class="fr-footer__bottom-list">
                 <li class="fr-footer__bottom-item">
                     <button class="fr-footer__bottom-link" aria-controls="health-modal"
                         data-fr-opened="false" id="footer-health-btn" title="Afficher le statut complet">
