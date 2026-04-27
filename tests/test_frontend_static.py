@@ -100,12 +100,29 @@ def test_hidden_elements_are_really_hidden():
 
 def test_main_headings_are_semantic():
     index = _read("frontend/index.html")
+    css = _read("frontend/css/app.css")
+    app = _read("frontend/js/app.js")
+    prompt_accordion = _read("frontend/js/prompt-accordion.js")
 
     assert '<h1 class="fr-h2 fr-mb-4w">Générer une image</h1>' in index
     assert "Générer une image avec ERNIE-Image Turbo" not in index
+    assert 'class="fr-accordions-group fr-mb-3w" data-fr-group="false"' in index
+    assert '<section class="fr-accordion">' in index
     assert '<h2 class="fr-accordion__title">' in index
+    assert 'id="prompt-structure-button"' in index
+    assert 'aria-expanded="false" aria-controls="prompt-structure-panel"' in index
+    assert 'data-ernie-accordion-fallback' in index
+    assert 'id="prompt-structure-panel" role="region"' in index
+    assert 'aria-labelledby="prompt-structure-button"' in index
     assert "Aide à la structure du prompt" in index
     assert '<h3 class="fr-h4 fr-mb-3w" id="gallery-title">Historique</h3>' in index
+    assert "initPromptAccordionFallback" in app
+    assert "fr-collapse--expanded" in prompt_accordion
+    assert "aria-expanded" in prompt_accordion
+    assert "isExpanded !== wasExpanded" in prompt_accordion
+    assert "#prompt-structure-panel.fr-collapse--expanded" in css
+    assert "max-height: none;" in css
+    assert "overflow: visible;" in css
 
 
 def test_footer_uses_dsfr_component_structure_with_existing_links_only():

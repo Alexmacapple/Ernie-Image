@@ -112,26 +112,30 @@
                 <div class="fr-card__content">
                     <form id="generate-form" novalidate>
 
-                        <div class="fr-accordion fr-mb-3w">
-                            <h2 class="fr-accordion__title">
-                                <button type="button" class="fr-accordion__btn" aria-expanded="false"
-                                    aria-controls="prompt-structure-panel">
-                                    Aide à la structure du prompt
-                                </button>
-                            </h2>
-                            <div class="fr-collapse" id="prompt-structure-panel">
-                                <div class="fr-text--sm prompt-structure-content">
-                                    <p class="fr-mb-1w">Structure recommandée pour ERNIE-Image :</p>
-                                    <ol class="fr-pl-3w fr-mb-0">
-                                        <li><strong>Type</strong> - photo, poster, comic panel, illustration éditoriale…</li>
-                                        <li><strong>Sujet</strong> - personnage, objet, scène et action principale</li>
-                                        <li><strong>Composition</strong> - cadrage, angle, position, profondeur</li>
-                                        <li><strong>Lumière</strong> - source, heure, ambiance (golden hour, backlight…)</li>
-                                        <li><strong>Texture</strong> - matières, détails visuels, finition</li>
-                                        <li><strong>Texte</strong> - libellé exact entre guillemets, emplacement, style typo</li>
-                                    </ol>
+                        <div class="fr-accordions-group fr-mb-3w" data-fr-group="false">
+                            <section class="fr-accordion">
+                                <h2 class="fr-accordion__title">
+                                    <button id="prompt-structure-button" type="button" class="fr-accordion__btn"
+                                        aria-expanded="false" aria-controls="prompt-structure-panel"
+                                        data-ernie-accordion-fallback>
+                                        Aide à la structure du prompt
+                                    </button>
+                                </h2>
+                                <div class="fr-collapse" id="prompt-structure-panel" role="region"
+                                    aria-labelledby="prompt-structure-button">
+                                    <div class="fr-text--sm prompt-structure-content">
+                                        <p class="fr-mb-1w">Structure recommandée pour ERNIE-Image :</p>
+                                        <ol class="fr-pl-3w fr-mb-0">
+                                            <li><strong>Type</strong> - photo, poster, comic panel, illustration éditoriale…</li>
+                                            <li><strong>Sujet</strong> - personnage, objet, scène et action principale</li>
+                                            <li><strong>Composition</strong> - cadrage, angle, position, profondeur</li>
+                                            <li><strong>Lumière</strong> - source, heure, ambiance (golden hour, backlight…)</li>
+                                            <li><strong>Texture</strong> - matières, détails visuels, finition</li>
+                                            <li><strong>Texte</strong> - libellé exact entre guillemets, emplacement, style typo</li>
+                                        </ol>
+                                    </div>
                                 </div>
-                            </div>
+                            </section>
                         </div>
 
                         <div class="fr-input-group fr-mb-1w" id="prompt-group">

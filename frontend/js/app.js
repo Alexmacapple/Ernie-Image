@@ -4,6 +4,7 @@ import { loadPresets, enableForm, disableForm } from './generator.js?v=20260427-
 import { refresh as refreshGallery } from './gallery.js?v=20260427-prd112-113';
 import { updateFooter } from './status-footer.js?v=20260427-prd112-113';
 import { initSeedWorkflow } from './seed-workflow.js?v=20260427-prd112-113';
+import { initPromptAccordionFallback } from './prompt-accordion.js?v=20260427-prd112-113';
 
 const loginScreen = document.getElementById('login-screen');
 const appScreen = document.getElementById('app-screen');
@@ -83,6 +84,7 @@ async function _showApp() {
 
 async function _initApp() {
     disableForm();
+    initPromptAccordionFallback();
     initSeedWorkflow();
     await loadPresets();
     await refreshGallery();
