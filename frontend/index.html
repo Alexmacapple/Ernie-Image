@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="fr" data-fr-theme>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Ernie Studio</title>
+    <link rel="stylesheet" href="./dsfr/dsfr/dsfr.min.css">
+    <link rel="stylesheet" href="./dsfr/utility/utility.min.css">
+    <link rel="stylesheet" href="./css/app.css">
+</head>
+<body>
+
+<div class="fr-skiplinks">
+    <nav role="navigation" aria-label="Accès rapide">
+        <ul class="fr-skiplinks__list">
+            <li><a class="fr-link" href="#main-content">Contenu</a></li>
+        </ul>
+    </nav>
+</div>
+
+<header role="banner" class="fr-header">
+    <div class="fr-header__body">
+        <div class="fr-container">
+            <div class="fr-header__body-row">
+                <div class="fr-header__brand">
+                    <div class="fr-header__brand-top">
+                        <div class="fr-header__logo">
+                            <p class="fr-logo">République<br>Française</p>
+                        </div>
+                    </div>
+                    <div class="fr-header__service">
+                        <a href="/" title="Accueil - Ernie Studio" class="fr-header__service-title">
+                            Ernie Studio
+                        </a>
+                        <p class="fr-header__service-tagline">Génération d'images ERNIE-Image Turbo · MLX · Mac Studio</p>
+                    </div>
+                </div>
+                <div class="fr-header__tools">
+                    <div class="header-actions">
+                        <ul class="fr-btns-group">
+                            <li>
+                                <button id="logout-btn" type="button"
+                                    class="fr-btn fr-btn--sm fr-btn--tertiary-no-outline fr-icon-logout-box-r-line"
+                                    title="Se déconnecter" hidden>
+                                    Se déconnecter
+                                </button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main role="main" id="main-content">
+    <div class="fr-container fr-py-6w">
+
+        <section id="login-screen" class="login-screen" aria-labelledby="login-title">
+            <div class="login-card fr-p-4w">
+                <div class="fr-mb-3w">
+                    <p class="fr-logo">République<br>Française</p>
+                </div>
+                <h1 id="login-title" class="fr-h3 fr-mb-2w">Ernie Studio</h1>
+                <p class="fr-text--sm fr-mb-3w">Génération d'images ERNIE-Image Turbo.</p>
+
+                <form id="login-form" novalidate>
+                    <div class="fr-input-group">
+                        <label class="fr-label" for="username-input">Identifiant</label>
+                        <input class="fr-input" type="text" id="username-input" name="username"
+                            autocomplete="username" required>
+                    </div>
+
+                    <div class="fr-input-group fr-mt-2w">
+                        <label class="fr-label" for="password-input">Mot de passe</label>
+                        <input class="fr-input" type="password" id="password-input" name="password"
+                            autocomplete="current-password" required>
+                    </div>
+
+                    <p id="login-error" class="fr-error-text fr-mt-1w" role="alert"
+                        aria-live="assertive" hidden></p>
+
+                    <div class="fr-mt-3w">
+                        <button type="submit" class="fr-btn fr-btn--lg login-submit"
+                            title="Se connecter à Ernie Studio">
+                            Se connecter
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+        <section id="app-screen" aria-label="Application Ernie Studio" hidden>
+
+        <h1 class="fr-h2 fr-mb-4w">Générer une image avec ERNIE-Image Turbo</h1>
+
+        <!-- Bandeau : pipeline en chargement -->
+        <div id="banner-loading" class="fr-alert fr-alert--info fr-mb-4w" hidden>
+            <p class="fr-alert__title">Pipeline en cours de chargement</p>
+            <p id="banner-loading-detail">Initialisation du modèle ERNIE-Image Turbo (~20-30s)…</p>
+        </div>
+
+        <!-- Bandeau : erreur pipeline -->
+        <div id="banner-error" class="fr-alert fr-alert--error fr-mb-4w" hidden>
+            <p class="fr-alert__title">Erreur de chargement du pipeline</p>
+            <p id="banner-error-detail"></p>
+        </div>
+
+        <!-- Formulaire -->
+        <div class="fr-card fr-mb-4w">
+            <div class="fr-card__body">
+                <div class="fr-card__content">
+                    <form id="generate-form" novalidate>
+
+                        <div class="fr-accordion fr-mb-3w">
+                            <h2 class="fr-accordion__title">
+                                <button type="button" class="fr-accordion__btn" aria-expanded="false"
+                                    aria-controls="prompt-structure-panel">
+                                    Aide à la structure du prompt
+                                </button>
+                            </h2>
+                            <div class="fr-collapse" id="prompt-structure-panel">
+                                <div class="fr-text--sm prompt-structure-content">
+                                    <p class="fr-mb-1w">Structure recommandée pour ERNIE-Image :</p>
+                                    <ol class="fr-pl-3w fr-mb-0">
+                                        <li><strong>Type</strong> - photo, poster, comic panel, illustration éditoriale…</li>
+                                        <li><strong>Sujet</strong> - personnage, objet, scène et action principale</li>
+                                        <li><strong>Composition</strong> - cadrage, angle, position, profondeur</li>
+                                        <li><strong>Lumière</strong> - source, heure, ambiance (golden hour, backlight…)</li>
+                                        <li><strong>Texture</strong> - matières, détails visuels, finition</li>
+                                        <li><strong>Texte</strong> - libellé exact entre guillemets, emplacement, style typo</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fr-input-group fr-mb-1w" id="prompt-group">
+                            <label class="fr-label" for="prompt">
+                                Prompt
+                                <span class="fr-hint-text">Décrivez l'image de préférence en anglais pour de meilleurs résultats</span>
+                            </label>
+                            <textarea class="fr-input" id="prompt" name="prompt" rows="4"
+                                placeholder="[Type] ... [Sujet] ... [Composition] ... [Lumière] ... [Texture] ... [Texte] ..."
+                                aria-required="true" aria-describedby="prompt-counter"
+                                maxlength="8000"></textarea>
+                        </div>
+                        <div class="fr-mb-1w prompt-counter-row">
+                            <span id="prompt-counter" class="prompt-counter prompt-counter--short"
+                                aria-live="polite">0 car. sur 8000 - court</span>
+                        </div>
+
+                        <div class="fr-grid-row fr-grid-row--gutters fr-mb-3w generator-controls">
+                            <div class="fr-col-12 fr-col-md-4 generator-control">
+                                <div class="fr-select-group">
+                                    <label class="fr-label" for="ratio">Format</label>
+                                    <select class="fr-select" id="ratio" name="ratio" disabled>
+                                        <option value="" selected>Chargement…</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="fr-col-12 fr-col-md-4 generator-control">
+                                <div class="fr-select-group">
+                                    <label class="fr-label" for="steps">
+                                        Étapes
+                                        <span class="fr-hint-text">Plus = qualité, mais plus lent</span>
+                                    </label>
+                                    <select class="fr-select" id="steps" name="steps">
+                                        <option value="4">4 - très rapide</option>
+                                        <option value="6">6 - rapide</option>
+                                        <option value="8" selected>8 - recommandé</option>
+                                        <option value="12">12</option>
+                                        <option value="20">20 - lent</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="fr-col-12 fr-col-md-4 generator-control">
+                                <div class="fr-input-group">
+                                    <label class="fr-label" for="seed">
+                                        Seed
+                                        <span class="fr-hint-text">Laisser vide pour un résultat aléatoire</span>
+                                    </label>
+                                    <div class="seed-field-row">
+                                        <input class="fr-input" type="number" id="seed" name="seed"
+                                            placeholder="aléatoire" min="0" max="2147483647">
+                                        <span id="seed-mode-badge"
+                                            class="fr-badge fr-badge--sm fr-badge--info seed-mode-badge">
+                                            Seed aléatoire
+                                        </span>
+                                    </div>
+                                    <button type="button" id="seed-unlock-btn"
+                                        class="fr-btn fr-btn--sm fr-btn--tertiary fr-mt-1w" hidden>
+                                        Libérer la seed
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="fr-btns-group">
+                            <button type="submit" class="fr-btn"
+                                id="generate-btn" aria-describedby="generate-hint" title="Générer une image">
+                                Générer une image
+                            </button>
+                        </div>
+                        <p class="fr-hint-text fr-mt-1w" id="generate-hint">Durée estimée : ~40s selon le nombre d'étapes</p>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- Progression -->
+        <div id="progress-section" class="fr-mb-4w" hidden>
+            <div class="fr-card fr-card--no-arrow progress-card">
+                <div class="fr-card__body">
+                    <div class="fr-card__content">
+                        <p id="progress-label" class="fr-text--sm fr-mb-2w fr-text--bold">
+                            Génération en cours…
+                        </p>
+                        <div class="progress-track" role="progressbar"
+                            aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
+                            id="progress-track">
+                            <div id="progress-fill" class="progress-fill"></div>
+                        </div>
+                        <p id="progress-detail" class="fr-text--xs fr-mt-1w fr-text--mention"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Résultat -->
+        <div id="result-section" class="fr-mb-3w result-section-compact" hidden>
+            <h2 class="fr-h5 fr-mb-2w">Dernière génération</h2>
+            <div class="result-wrapper">
+                <button id="result-open" type="button" class="result-open"
+                    title="Afficher la dernière génération" aria-label="Afficher la dernière génération">
+                    <img id="result-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="Image générée" class="result-image">
+                </button>
+                <div class="result-meta fr-mt-2w">
+                    <p id="result-meta-text" class="fr-text--sm fr-text--mention fr-mb-2w"></p>
+                    <a id="result-download" href="#" download class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-download-line"
+                        title="Télécharger l'image">
+                        Télécharger l'image
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Galerie -->
+        <section id="gallery-section" aria-labelledby="gallery-title">
+            <h3 class="fr-h4 fr-mb-3w" id="gallery-title">Historique</h3>
+            <p id="gallery-summary" class="fr-text--sm fr-text--mention fr-mb-2w" aria-live="polite"></p>
+            <div id="gallery-error" class="fr-alert fr-alert--error fr-mb-3w" hidden>
+                <p class="fr-alert__title">Historique indisponible</p>
+                <p id="gallery-error-detail">Impossible de charger les images générées.</p>
+            </div>
+            <div id="gallery-grid" class="gallery-grid" aria-live="polite" aria-busy="true">
+                <p id="gallery-loading" class="fr-text--sm fr-text--mention">Chargement de la galerie…</p>
+                <p id="gallery-empty" class="fr-text--sm fr-text--mention" hidden>Aucune image générée pour l'instant.</p>
+            </div>
+            <nav id="gallery-pagination" class="fr-pagination fr-mt-3w" role="navigation"
+                aria-label="Pagination de l'historique" hidden>
+                <ul class="fr-pagination__list"></ul>
+            </nav>
+        </section>
+
+        </section>
+
+    </div>
+</main>
+
+<!-- Footer statut -->
+<footer role="contentinfo" class="fr-footer fr-footer--slim fr-mt-4w status-footer">
+    <div class="fr-container">
+        <div class="fr-footer__bottom status-footer-row">
+            <div class="status-footer-line">
+                <span id="footer-status-badge" class="fr-badge fr-badge--sm fr-badge--info">Chargement</span>
+                <span id="footer-status-label" class="fr-text--mention">Pipeline en initialisation…</span>
+            </div>
+            <ul class="fr-footer__bottom-list status-footer-links">
+                <li class="fr-footer__bottom-item">
+                    <button class="fr-footer__bottom-link" aria-controls="health-modal"
+                        data-fr-opened="false" id="footer-health-btn" title="Afficher le statut complet">
+                        Statut complet
+                    </button>
+                </li>
+                <li class="fr-footer__bottom-item">
+                    <a class="fr-footer__bottom-link" href="/api/health" target="_blank" rel="noopener noreferrer">/api/health</a>
+                </li>
+                <li class="fr-footer__bottom-item">
+                    <a class="fr-footer__bottom-link" href="/api/status" target="_blank" rel="noopener noreferrer">/api/status</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+<!-- Modale santé pipeline (DSFR) -->
+<dialog id="health-modal" class="fr-modal" aria-labelledby="health-modal-title">
+    <div class="fr-container fr-container--fluid fr-container-md">
+        <div class="fr-grid-row fr-grid-row--center">
+            <div class="fr-col-12 fr-col-md-8 fr-col-lg-6">
+                <div class="fr-modal__body">
+                    <div class="fr-modal__header">
+                        <button class="fr-btn--close fr-btn" aria-controls="health-modal" title="Fermer la fenêtre de statut">Fermer</button>
+                    </div>
+                    <div class="fr-modal__content">
+                        <h1 id="health-modal-title" class="fr-modal__title fr-icon-heart-pulse-fill fr-icon--sm">
+                            Statut du service
+                        </h1>
+                        <div id="health-modal-body">
+                            <dl class="fr-mt-2w health-dl">
+                                <div class="health-row">
+                                    <dt>Pipeline</dt>
+                                    <dd id="hm-loaded">-</dd>
+                                </div>
+                                <div class="health-row">
+                                    <dt>Chargement</dt>
+                                    <dd id="hm-elapsed">-</dd>
+                                </div>
+                                <div class="health-row">
+                                    <dt>Génération en cours</dt>
+                                    <dd id="hm-generating">-</dd>
+                                </div>
+                                <div class="health-row">
+                                    <dt>Endpoint health</dt>
+                                    <dd><a href="/api/health" target="_blank" class="fr-link">/api/health</a></dd>
+                                </div>
+                                <div class="health-row">
+                                    <dt>Endpoint status</dt>
+                                    <dd><a href="/api/status" target="_blank" class="fr-link">/api/status</a></dd>
+                                </div>
+                            </dl>
+                            <p id="hm-error" class="fr-text--sm fr-text--error fr-mt-2w" hidden></p>
+                        </div>
+                    </div>
+                    <div class="fr-modal__footer">
+                        <div class="fr-btns-group fr-btns-group--right fr-btns-group--inline">
+                            <button class="fr-btn fr-btn--secondary" aria-controls="health-modal" title="Fermer la fenêtre de statut">Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</dialog>
+
+<!-- Lightbox -->
+<div id="lightbox" class="lightbox" hidden role="dialog" aria-modal="true" aria-label="Image agrandie">
+    <button id="lightbox-close" class="lightbox-close fr-btn fr-btn--tertiary-no-outline fr-btn--icon-left fr-icon-close-line"
+        aria-label="Fermer" title="Fermer l'image agrandie">Fermer</button>
+    <img id="lightbox-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="" class="lightbox-image">
+    <div class="lightbox-meta">
+        <p id="lightbox-caption" class="lightbox-caption"></p>
+        <p id="lightbox-prompt" class="lightbox-prompt"></p>
+        <dl class="lightbox-params">
+            <div class="lightbox-param"><dt>Seed</dt><dd id="lb-seed">-</dd></div>
+            <div class="lightbox-param"><dt>Étapes</dt><dd id="lb-steps">-</dd></div>
+            <div class="lightbox-param"><dt>Format</dt><dd id="lb-dims">-</dd></div>
+        </dl>
+    </div>
+    <div class="lightbox-actions">
+        <button id="lightbox-seed-paste" type="button" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-clipboard-line lightbox-seed"
+            title="Coller le seed dans le formulaire">
+            Coller le seed
+        </button>
+        <a id="lightbox-download" href="#" download class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-download-line lightbox-download"
+            title="Télécharger l'image">
+            Télécharger l'image
+        </a>
+        <button id="lightbox-delete" type="button" class="fr-btn fr-btn--tertiary fr-btn--icon-left fr-icon-delete-bin-line lightbox-delete"
+            title="Supprimer l'image">
+            Supprimer
+        </button>
+    </div>
+</div>
+
+<script type="module" src="./dsfr/dsfr/dsfr.module.min.js"></script>
+<script nomodule src="./dsfr/dsfr/dsfr.nomodule.min.js"></script>
+<script type="module" src="./js/app.js?v=20260427-prd112-113"></script>
+
+</body>
+</html>

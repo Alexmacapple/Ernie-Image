@@ -1,0 +1,484 @@
+/* ──────────────────────────────────────────
+   Ernie Studio - styles custom
+   ──────────────────────────────────��─────── */
+
+/* Barre de progression */
+.progress-track {
+    background: var(--border-default-grey);
+    border-radius: 4px;
+    height: 8px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.progress-fill {
+    background: var(--background-action-high-blue-france);
+    border-radius: 4px;
+    height: 100%;
+    width: 0%;
+    transition: width 0.6s ease;
+}
+
+/* Card progression sans ombre/flèche DSFR */
+.progress-card {
+    background: var(--background-alt-grey);
+    border: 1px solid var(--border-default-grey);
+}
+
+/* Formulaire */
+[hidden] {
+    display: none !important;
+}
+
+.login-screen {
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-card {
+    width: 100%;
+    max-width: 26rem;
+}
+
+.login-submit {
+    width: 100%;
+    justify-content: center;
+}
+
+.generator-controls {
+    align-items: stretch;
+}
+
+.generator-control > .fr-select-group,
+.generator-control > .fr-input-group {
+    height: 100%;
+    margin-bottom: 0;
+}
+
+.generator-control .fr-label {
+    min-height: 3.75rem;
+}
+
+/* Image résultat */
+.result-section-compact {
+    border-top: 1px solid var(--border-default-grey);
+    padding-top: 1rem;
+}
+
+.result-wrapper {
+    align-items: flex-start;
+    display: flex;
+    gap: 1rem;
+    max-width: 620px;
+}
+
+.result-image {
+    display: block;
+    height: 100%;
+    object-fit: cover;
+    width: 100%;
+}
+
+.result-open {
+    aspect-ratio: 1;
+    background: var(--background-alt-grey);
+    border: 1px solid var(--border-default-grey);
+    border-radius: 4px;
+    cursor: pointer;
+    display: block;
+    flex: 0 0 240px;
+    overflow: hidden;
+    padding: 0;
+    width: 240px;
+}
+
+.result-open:focus-visible {
+    outline: 2px solid var(--background-action-high-blue-france);
+    outline-offset: 4px;
+}
+
+.result-meta {
+    min-width: 0;
+}
+
+/* Galerie */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+}
+
+@media (min-width: 62em) {
+    .gallery-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+}
+
+.gallery-item {
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid var(--border-default-grey);
+    transition: border-color 0.2s ease, transform 0.15s ease;
+    background: var(--background-alt-grey);
+    display: flex;
+    flex-direction: column;
+}
+
+.gallery-item:hover,
+.gallery-item:focus-within {
+    border-color: var(--background-action-high-blue-france);
+    transform: translateY(-2px);
+}
+
+.gallery-open {
+    background: transparent;
+    border: 0;
+    color: inherit;
+    cursor: pointer;
+    display: block;
+    font: inherit;
+    padding: 0;
+    text-align: left;
+    width: 100%;
+}
+
+.gallery-open:focus-visible {
+    outline: 2px solid var(--background-action-high-blue-france);
+    outline-offset: -2px;
+}
+
+.gallery-open img {
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+    display: block;
+}
+
+.gallery-item-meta {
+    padding: 0.5rem;
+    font-size: 0.7rem;
+    color: var(--text-mention-grey);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+}
+
+.gallery-actions {
+    display: flex;
+    gap: 0.25rem;
+    justify-content: flex-end;
+    padding: 0 0.5rem 0.5rem;
+}
+
+.gallery-action {
+    height: 2rem;
+    min-height: 2rem;
+    min-width: 2rem;
+    padding: 0;
+    width: 2rem;
+}
+
+#gallery-pagination .fr-pagination__list {
+    justify-content: center;
+}
+
+/* Lightbox */
+.lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.88);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.lightbox[hidden] {
+    display: none;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: var(--background-default-grey) !important;
+    border: 1px solid var(--border-default-grey) !important;
+    color: var(--text-action-high-blue-france) !important;
+}
+
+.lightbox-close:hover,
+.lightbox-close:focus-visible {
+    background: var(--background-alt-blue-france) !important;
+    color: var(--text-action-high-blue-france) !important;
+}
+
+.lightbox-close:active {
+    background: var(--background-contrast-blue-france) !important;
+    color: var(--text-action-high-blue-france) !important;
+}
+
+.lightbox-close::before {
+    filter: none;
+}
+
+.lightbox-image {
+    max-width: 100%;
+    max-height: 70vh;
+    border-radius: 4px;
+    object-fit: contain;
+}
+
+.lightbox-caption {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.8rem;
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.lightbox-meta {
+    margin-top: 1rem;
+    text-align: center;
+    max-width: 720px;
+}
+
+.lightbox-prompt {
+    color: white;
+    font-size: 0.9rem;
+    font-style: italic;
+    margin: 0 0 0.5rem;
+    line-height: 1.5;
+}
+
+.lightbox-params {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+.lightbox-param {
+    display: flex;
+    gap: 0.35rem;
+    align-items: baseline;
+}
+
+.lightbox-param dt {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.lightbox-param dd {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin: 0;
+    font-weight: 500;
+}
+
+.lightbox-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.lightbox-seed,
+.lightbox-download,
+.lightbox-delete {
+    background: var(--background-default-grey) !important;
+    border: 1px solid var(--border-default-grey) !important;
+    color: var(--text-action-high-blue-france) !important;
+}
+
+.lightbox-seed:hover,
+.lightbox-seed:focus-visible,
+.lightbox-download:hover,
+.lightbox-download:focus-visible {
+    background: var(--background-alt-blue-france) !important;
+    border-color: var(--border-action-high-blue-france) !important;
+    color: var(--text-action-high-blue-france) !important;
+}
+
+.lightbox-seed:active,
+.lightbox-download:active {
+    background: var(--background-contrast-blue-france) !important;
+}
+
+.lightbox-delete {
+    color: var(--text-default-error) !important;
+}
+
+.lightbox-delete::before {
+    color: var(--text-default-error) !important;
+}
+
+.lightbox-delete:hover,
+.lightbox-delete:focus-visible {
+    background: var(--background-alt-red-marianne) !important;
+    border-color: var(--border-default-error) !important;
+    color: var(--text-default-error) !important;
+}
+
+.lightbox-delete:active {
+    background: var(--background-contrast-red-marianne) !important;
+}
+
+/* Footer statut */
+.status-footer {
+    border-top: 1px solid var(--border-default-grey);
+}
+
+.status-footer-row {
+    align-items: center;
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+    padding: 0.75rem 0;
+}
+
+.status-footer-line {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+}
+
+#footer-status-label {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.status-footer-links {
+    align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    margin: 0;
+}
+
+/* Modale santé - liste définition */
+.health-dl {
+    margin: 0;
+}
+
+.health-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--border-default-grey);
+    gap: 1rem;
+}
+
+.health-row:last-child {
+    border-bottom: none;
+}
+
+.health-row dt {
+    font-size: 0.875rem;
+    color: var(--text-mention-grey);
+    flex-shrink: 0;
+}
+
+.health-row dd {
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin: 0;
+    text-align: right;
+}
+
+/* État désactivé du formulaire pendant génération */
+.form-disabled fieldset,
+.form-disabled textarea,
+.form-disabled select,
+.form-disabled input {
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+@media (max-width: 48em) {
+    .result-wrapper {
+        display: block;
+        max-width: 280px;
+    }
+
+    .result-image {
+        max-width: none;
+    }
+
+    .result-open {
+        flex: none;
+        max-width: 280px;
+        width: 100%;
+    }
+
+    .generator-control .fr-label {
+        min-height: auto;
+    }
+
+    .status-footer-row {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    #footer-status-label {
+        white-space: normal;
+    }
+
+    .status-footer-links {
+        justify-content: flex-start;
+    }
+}
+
+/* PRD-113 : compteur de caractères */
+
+.prompt-counter-row {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.prompt-counter {
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+    color: var(--text-mention-grey);
+}
+
+.prompt-counter--short      { color: var(--text-default-error); }
+.prompt-counter--ok         { color: var(--text-default-warning); }
+.prompt-counter--structured { color: var(--text-default-success); }
+
+/* PRD-113 : champ seed avec badge */
+
+.seed-field-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.seed-field-row .fr-input {
+    flex: 1;
+    min-width: 0;
+}
+
+.seed-mode-badge {
+    flex-shrink: 0;
+    white-space: nowrap;
+}
+
+/* ── PRD-113 : aide à la structure ───────────────────────────────── */
+
+.prompt-structure-content {
+    padding: 0.75rem 0;
+}
+
+.prompt-structure-content ol {
+    line-height: 1.6;
+}

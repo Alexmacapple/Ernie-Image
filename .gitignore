@@ -1,0 +1,21 @@
+# Modèles (~20 Go, téléchargés via HuggingFace au premier démarrage)
+models/
+
+# Images générées
+outputs/
+
+# Environnement Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+
+# Dépendance externe (cloner via : git clone --depth 1 https://github.com/treadon/mlx-ernie-image.git vendor/mlx-ernie-image)
+vendor/
+
+# macOS
+.DS_Store
+
+# Claude Code (config locale, non pertinente pour le projet)
+.claude/
