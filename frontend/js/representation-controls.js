@@ -5,43 +5,43 @@ const DEFAULT_VISUAL_ANCHOR_TEXT = 'coherent visible traits when characters are 
 export const VISUAL_ANCHOR_PRESETS = [
     {
         id: 'portrait-mediterranean',
-        label: 'Portrait méditerranéen contemporain',
-        text: 'contemporary Mediterranean European portrait, warm olive skin tones, natural facial features, modern Spanish or French clothing, soft editorial daylight, realistic photography',
+        label: 'Portrait méditerranéen ibérique contemporain',
+        text: 'contemporary Iberian Mediterranean portrait, Spanish or southern French adult, olive to warm light skin tone, dark brown wavy hair, hazel or brown eyes, oval face, straight or softly arched nose, natural Iberian facial proportions, modern Madrid or Valencia clothing, warm window daylight, realistic editorial photography',
     },
     {
         id: 'portrait-western-european',
-        label: 'Portrait européen occidental éditorial',
-        text: 'Western European editorial portrait, fair to light skin tones when relevant, natural facial structure, contemporary European clothing, neutral studio background, realistic photography',
+        label: 'Portrait européen occidental naturel',
+        text: 'contemporary Western European portrait, fair to light skin tone, light brown or dark blond hair, blue, green or hazel eyes, oval or square face, defined brow, straight nose, natural Western European facial proportions, understated modern European clothing, neutral studio background, realistic photography',
     },
     {
         id: 'portrait-afro-caribbean',
         label: 'Portrait afro-caribéen éditorial',
-        text: 'Afro-Caribbean editorial portrait, deep warm skin tones, natural coiled hair texture, contemporary clothing, soft studio light, realistic photography',
+        text: 'Afro-Caribbean editorial portrait, deep warm brown skin tone, natural coiled or curly hair texture, dark brown eyes, defined cheekbones, full lips, natural facial proportions, contemporary elegant clothing, soft studio light, realistic editorial photography',
     },
     {
         id: 'portrait-latin-american',
-        label: 'Portrait latino-américain contemporain',
-        text: 'contemporary Latin American portrait, warm skin tones, dark hair, expressive natural face, modern urban clothing, editorial daylight, realistic photography',
+        label: 'Portrait latino-méditerranéen contemporain',
+        text: 'contemporary Latin Mediterranean portrait, warm tan skin tone, dark brown hair, brown or hazel eyes, expressive natural face, soft cheekbones, straight or gently curved nose, modern urban clothing, European or Latin city background, soft daylight, realistic photography',
     },
     {
         id: 'setting-european-urban',
-        label: 'Décor urbain européen',
-        text: 'contemporary European urban street, Latin alphabet signage, stone facades, compact storefronts, modern European clothing, natural city light',
+        label: 'Rue européenne en alphabet latin',
+        text: 'contemporary European street scene, Latin alphabet street signs and storefronts, stone or plaster facades, compact sidewalks, European cars and street furniture, modern European clothing, natural city daylight, realistic architecture',
     },
     {
         id: 'setting-iberian-mediterranean',
-        label: 'Décor méditerranéen ibérique',
-        text: 'Iberian Mediterranean setting, Madrid or Valencia architecture, ceramic tiles, saturated red, turquoise and saffron palette, Latin alphabet signs, warm daylight',
+        label: 'Décor ibérique Madrid-Valence',
+        text: 'Iberian Mediterranean setting, Madrid or Valencia architecture, ceramic tiles, wrought iron balconies, painted plaster walls, saturated red, turquoise and saffron palette, Spanish Latin alphabet signs, warm late afternoon daylight',
     },
     {
         id: 'setting-french-public',
-        label: 'Institution publique française',
-        text: 'French public institution interior, Latin alphabet French signage, sober administrative furniture, modern European public service setting, neutral daylight',
+        label: 'Institution publique française contemporaine',
+        text: 'contemporary French public institution interior, French Latin alphabet signage, Marianne-inspired civic colors, sober administrative furniture, glass partitions, waiting area chairs, modern European public service setting, neutral daylight',
     },
     {
         id: 'setting-french-poster',
-        label: 'Affiche française en alphabet latin',
-        text: 'French poster design, exact French text in Latin alphabet, European cinema typography, clean readable lettering, balanced composition, controlled graphic palette',
+        label: 'Affiche française typographie latine',
+        text: 'French poster design, exact French text in Latin alphabet, European cinema typography, clean readable lettering, accents preserved, balanced composition, controlled graphic palette, print poster layout',
     },
 ];
 

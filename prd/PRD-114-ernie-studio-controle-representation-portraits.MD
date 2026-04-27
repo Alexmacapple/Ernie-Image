@@ -186,18 +186,18 @@ Ajouter 8 presets maximum qui injectent des blocs descriptifs positifs :
 
 Presets V1 recommandés :
 
-- Portrait méditerranéen contemporain ;
-- Portrait européen occidental éditorial ;
+- Portrait méditerranéen ibérique contemporain ;
+- Portrait européen occidental naturel ;
 - Portrait afro-caribéen éditorial ;
-- Portrait latino-américain contemporain ;
-- Décor urbain européen ;
-- Décor méditerranéen ibérique ;
-- Institution publique française ;
-- Affiche française en alphabet latin.
+- Portrait latino-méditerranéen contemporain ;
+- Rue européenne en alphabet latin ;
+- Décor ibérique Madrid-Valence ;
+- Institution publique française contemporaine ;
+- Affiche française typographie latine.
 
 Chaque preset doit être formulé en attributs visibles et cohérents. Aucun preset ne doit utiliser une exclusion du type "not Asian", "no pagoda", "avoid calligraphy" ou équivalent. Pour MLX, les termes négatifs sont remplacés par des ancrages positifs : `Madrid urban street`, `French Latin alphabet poster typography`, `contemporary European clothing`, `Mediterranean architecture`, `Iberian saturated palette`.
 
-Libellés UX : éviter les catégories trop abstraites seules comme "Europe occidentale" ou "Maghrébin". Préférer des formulations orientées image, par exemple "Portrait méditerranéen contemporain" ou "Décor urbain européen".
+Libellés UX : éviter les catégories trop abstraites seules comme "Europe occidentale" ou "Maghrébin". Préférer des formulations orientées image, par exemple "Portrait méditerranéen ibérique contemporain" ou "Rue européenne en alphabet latin".
 
 ### 6. Bouton "Ajouter un ancrage visuel en anglais"
 
@@ -458,3 +458,4 @@ Protocole de validation manuelle :
 | 2026-04-27 | Alex + Codex | Validation UX par rapport à l'écran actuel : V1 compacte, 8 presets maximum, un champ libre, protocole seed fixe |
 | 2026-04-27 | Alex + Codex | Implémentation V1 compacte : accordéon, 8 presets, champ libre, injection `Visual anchor:`, tests statiques |
 | 2026-04-27 | Alex + Codex | Correction UX : le bouton d'ancrage ajoute un bloc générique même sans preset sélectionné |
+| 2026-04-27 | Alex + Codex | Renforcement des presets : libellés plus précis et ancrages visuels plus concrets |
