@@ -101,6 +101,7 @@ export function fetchSSE(url, body, { onEvent, onDone, onError } = {}) {
         const reader = res.body.getReader();
         const decoder = new TextDecoder();
         let buffer = '';
+        let terminalEventReceived = false;
 
         try {
             while (true) {
@@ -117,10 +118,14 @@ export function fetchSSE(url, body, { onEvent, onDone, onError } = {}) {
                     try { event = JSON.parse(raw); } catch { continue; }
                     onEvent?.(event);
                     if (event.type === 'done' || event.type === 'error') {
+                        terminalEventReceived = true;
                         onDone?.(event);
                         return;
                     }
                 }
+            }
+            if (!terminalEventReceived) {
+                onError?.(new Error('Connexion interrompue avant la fin du flux.'));
             }
         } catch (err) {
             if (err.name !== 'AbortError') onError?.(err);

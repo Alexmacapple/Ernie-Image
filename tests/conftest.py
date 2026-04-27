@@ -74,7 +74,7 @@ def outputs_with_files(tmp_outputs):
     files = [
         ("20260426T140000_1024x1024_seed333.png", None),
         ("20260426T130000_1376x768_seed222.png",  {"prompt": "a blue ocean at sunset", "steps": 4, "seed": 222, "width": 1376, "height": 768,  "ratio": "cinema",  "elapsed_s": 21.1}),
-        ("20260426T120000_1024x1024_seed111.png", {"prompt": "a red apple",            "steps": 8, "seed": 111, "width": 1024, "height": 1024, "ratio": "square",  "elapsed_s": 38.2}),
+        ("20260426T120000_1024x1024_seed111.png", {"prompt": "a red apple",            "steps": 8, "seed": 111, "width": 1024, "height": 1024, "ratio": "square",  "elapsed_s": 38.2, "client_request_id": "ui-recovery-111"}),
     ]
     for png_name, meta in files:
         p = tmp_outputs / png_name

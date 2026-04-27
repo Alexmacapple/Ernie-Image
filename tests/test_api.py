@@ -126,6 +126,8 @@ class TestOutputsList:
         assert item["seed"] == 111
         assert item["width"] == 1024
         assert item["height"] == 1024
+        assert item["elapsed_s"] == 38.2
+        assert item["client_request_id"] == "ui-recovery-111"
 
     def test_missing_sidecar_returns_none(self, client, outputs_with_files):
         items = {i["filename"]: i for i in client.get("/api/outputs").json()}

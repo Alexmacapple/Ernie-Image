@@ -78,6 +78,8 @@ def _list_output_items() -> list[dict]:
             "seed":       meta.get("seed") if meta.get("seed") is not None else _seed_from_filename(f.name),
             "width":      meta.get("width"),
             "height":     meta.get("height"),
+            "elapsed_s":  meta.get("elapsed_s"),
+            "client_request_id": meta.get("client_request_id"),
         })
     return result
 

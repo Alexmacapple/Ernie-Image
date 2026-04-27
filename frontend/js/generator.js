@@ -26,10 +26,14 @@ const generateHint    = document.getElementById('generate-hint');
 
 const PROMPT_MAX_LENGTH = 8000;
 const PROMPT_THRESHOLDS = { short: 100, ok: 200 };
+const RECOVERY_POLL_INTERVAL_MS = 4000;
+const RECOVERY_POLL_ATTEMPTS = 45;
 
 let _sseHandle = null;
 let _lastStarted = null;
 let _lastResult = null;
+let _activeRequest = null;
+let _recoveryToken = 0;
 
 export function updatePromptCounter() {
     const counter = document.getElementById('prompt-counter');
@@ -131,7 +135,11 @@ function _showResult(event) {
     resultOpen.setAttribute('aria-label', `Afficher ${filename}`);
     resultDownload.href = imageUrl;
     resultDownload.download = filename;
-    const meta = [event.prompt ? `« ${event.prompt} »` : null, `${event.elapsed_s}s`, `seed ${event.seed}`]
+    const meta = [
+        event.prompt ? `« ${event.prompt} »` : null,
+        event.elapsed_s != null ? `${event.elapsed_s}s` : null,
+        `seed ${event.seed}`,
+    ]
         .filter(Boolean).join(' · ');
     resultMetaText.textContent = meta;
     resultSection.hidden = false;
@@ -155,6 +163,109 @@ function _resetPromptField() {
     promptEl.dispatchEvent(new Event('input',  { bubbles: true }));
     promptEl.dispatchEvent(new Event('change', { bubbles: true }));
     _clearPromptError();
+}
+
+function _newClientRequestId() {
+    if (globalThis.crypto?.randomUUID) return globalThis.crypto.randomUUID();
+    return `${Date.now()}-${Math.random().toString(36).slice(2)}`;
+}
+
+function _sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+function _showGenerateAlert(type, title, message) {
+    const existing = document.getElementById('generate-alert');
+    if (existing) existing.remove();
+
+    const alert = document.createElement('div');
+    alert.id = 'generate-alert';
+    alert.className = `fr-alert fr-alert--${type} fr-mb-3w`;
+    alert.innerHTML = `<p class="fr-alert__title">${_escHtml(title)}</p><p>${_escHtml(message)}</p>`;
+    form.insertAdjacentElement('afterend', alert);
+}
+
+function _clearGenerateAlert() {
+    const existing = document.getElementById('generate-alert');
+    if (existing) existing.remove();
+}
+
+function _outputsItems(data) {
+    return Array.isArray(data) ? data : (data.items ?? []);
+}
+
+function _matchesActiveRequest(item) {
+    if (!_activeRequest) return false;
+    if (_activeRequest.clientRequestId && item.client_request_id === _activeRequest.clientRequestId) return true;
+    return item.seed === _activeRequest.seed && item.prompt === _activeRequest.prompt;
+}
+
+function _eventFromRecoveredOutput(item) {
+    return {
+        type: 'done',
+        filename: item.filename,
+        outputs: [item],
+        elapsed_s: item.elapsed_s,
+        seed: item.seed ?? _activeRequest?.seed,
+        prompt: item.prompt ?? _activeRequest?.prompt,
+    };
+}
+
+async function _pollRecoveredOutput(token) {
+    for (let attempt = 1; attempt <= RECOVERY_POLL_ATTEMPTS; attempt += 1) {
+        if (token !== _recoveryToken) return null;
+        await _sleep(RECOVERY_POLL_INTERVAL_MS);
+        if (token !== _recoveryToken) return null;
+
+        try {
+            const data = await apiGet('/api/outputs?page=1&page_size=18');
+            const found = _outputsItems(data).find(_matchesActiveRequest);
+            if (found) return found;
+        } catch {
+            // Le polling est un filet de récupération : on réessaie sans masquer l'état principal.
+        }
+
+        const pct = Math.min(95, 70 + attempt);
+        _setProgress(pct, 'Recherche de l’image dans l’historique…', `Tentative ${attempt}/${RECOVERY_POLL_ATTEMPTS}`);
+    }
+    return null;
+}
+
+async function _recoverFromInterruptedStream(err) {
+    const token = _recoveryToken + 1;
+    _recoveryToken = token;
+    _setProgress(95, 'Connexion interrompue, récupération en cours…', err.message || 'Flux interrompu');
+    _showGenerateAlert(
+        'warning',
+        'Connexion interrompue',
+        "La génération peut continuer côté serveur. Ernie vérifie l'historique automatiquement.",
+    );
+
+    const found = await _pollRecoveredOutput(token);
+    if (token !== _recoveryToken) return;
+
+    _showProgress(false);
+    enableForm();
+
+    if (found) {
+        _showResult(_eventFromRecoveredOutput(found));
+        _resetPromptField();
+        await refreshGallery(1);
+        _showGenerateAlert(
+            'success',
+            'Image récupérée',
+            "Le flux a été interrompu, mais l'image générée a été retrouvée dans l'historique.",
+        );
+        _activeRequest = null;
+        return;
+    }
+
+    await refreshGallery(1);
+    _showGenerateAlert(
+        'warning',
+        'Connexion interrompue',
+        "La génération n'a pas encore été retrouvée. Elle peut encore apparaître dans l'historique dans quelques instants.",
+    );
 }
 
 promptEl.addEventListener('input', () => {
@@ -181,8 +292,16 @@ form.addEventListener('submit', (e) => {
         ratio: ratioEl.value || undefined,
         steps: parseInt(stepsEl.value, 10),
         seed: getSeedForSubmit(),
+        client_request_id: _newClientRequestId(),
+    };
+    _activeRequest = {
+        clientRequestId: body.client_request_id,
+        prompt,
+        seed: body.seed,
     };
 
+    _clearGenerateAlert();
+    _recoveryToken += 1;
     _setProgress(0, 'Démarrage…', '');
     _showProgress(true);
     _lastStarted = null;
@@ -196,6 +315,7 @@ form.addEventListener('submit', (e) => {
                     height: event.height,
                     seed: event.seed,
                 };
+                _activeRequest.seed = event.seed;
                 const est = event.estimated_s ?? (event.steps * 6);
                 progressDetail.textContent = `Seed ${event.seed} · durée estimée : ~${est}s · ${event.width}×${event.height}`;
                 _setProgress(2, 'Génération en cours…');
@@ -208,34 +328,33 @@ form.addEventListener('submit', (e) => {
             }
         },
         onDone(event) {
+            _recoveryToken += 1;
             _showProgress(false);
             if (event.type === 'done') {
                 _setProgress(100, 'Terminé');
                 _showResult(event);
                 _resetPromptField();
                 refreshGallery(1);
+                _activeRequest = null;
             } else if (event.type === 'error') {
                 _onError(new Error(event.detail ?? 'Erreur inconnue'));
             }
         },
         onError(err) {
+            if (_lastStarted) {
+                _recoverFromInterruptedStream(err);
+                return;
+            }
             _onError(err);
         },
     });
 });
 
 function _onError(err) {
+    _activeRequest = null;
     _showProgress(false);
     enableForm();
-
-    const existing = document.getElementById('generate-error');
-    if (existing) existing.remove();
-
-    const alert = document.createElement('div');
-    alert.id = 'generate-error';
-    alert.className = 'fr-alert fr-alert--error fr-mb-3w';
-    alert.innerHTML = `<p class="fr-alert__title">Erreur de génération</p><p>${_escHtml(err.message)}</p>`;
-    form.insertAdjacentElement('afterend', alert);
+    _showGenerateAlert('error', 'Erreur de génération', err.message);
 }
 
 resultOpen.addEventListener('click', () => {

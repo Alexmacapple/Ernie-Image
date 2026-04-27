@@ -129,6 +129,24 @@ def test_generation_progress_shows_resolved_seed():
     assert "Seed ${event.seed}" in generator
 
 
+def test_interrupted_generation_stream_is_recovered_from_history():
+    generator = _read("frontend/js/generator.js")
+    api_client = _read("frontend/js/api-client.js")
+    outputs = _read("routers/outputs.py")
+
+    assert "client_request_id: _newClientRequestId()" in generator
+    assert "_recoverFromInterruptedStream(err)" in generator
+    assert "_pollRecoveredOutput(token)" in generator
+    assert "item.client_request_id === _activeRequest.clientRequestId" in generator
+    assert "Connexion interrompue" in generator
+    assert "fr-alert--${type}" in generator
+    assert "'warning'" in generator
+    assert "'success'" in generator
+    assert "terminalEventReceived" in api_client
+    assert "Connexion interrompue avant la fin du flux." in api_client
+    assert '"client_request_id": meta.get("client_request_id")' in outputs
+
+
 def test_prompt_counter_uses_dsfr_text_tokens():
     css = _read("frontend/css/app.css")
 
