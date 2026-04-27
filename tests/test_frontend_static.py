@@ -25,8 +25,8 @@ def test_gallery_module_uses_one_cache_buster():
     assert "seed-workflow.js?v=20260427-lightbox-nav" in gallery
     assert "openImageLightbox, refresh as refreshGallery" in generator
     assert "gallery.js?v=20260427-lightbox-nav" in generator
-    assert 'src="./js/app.js?v=20260427-prd114-v1"' in index
-    assert "representation-controls.js?v=20260427-prd114-v1" in app
+    assert 'src="./js/app.js?v=20260427-prd114-v1b"' in index
+    assert "representation-controls.js?v=20260427-prd114-v1b" in app
 
 
 def test_frontend_uses_keycloak_auth_gate():
@@ -117,7 +117,7 @@ def test_main_headings_are_semantic():
     assert 'aria-labelledby="prompt-structure-button"' in index
     assert "Aide à la structure du prompt" in index
     assert '<h3 class="fr-h4 fr-mb-3w" id="gallery-title">Historique</h3>' in index
-    assert 'href="./css/app.css?v=20260427-prd114-v1"' in index
+    assert 'href="./css/app.css?v=20260427-prd114-v1b"' in index
     assert "Structure recommandée pour décrire l’image" in index
     assert "illustration éditoriale ..." in index
     assert "ambiance, contraste ..." in index
@@ -147,7 +147,8 @@ def test_prd114_visual_representation_controls_are_compact_and_positive():
     representation = _read("frontend/js/representation-controls.js")
 
     assert "initRepresentationControls" in app
-    assert "representation-controls.js?v=20260427-prd114-v1" in app
+    assert 'src="./js/app.js?v=20260427-prd114-v1b"' in index
+    assert "representation-controls.js?v=20260427-prd114-v1b" in app
     assert "Représentation visuelle" in index
     assert 'id="visual-representation-button"' in index
     assert 'aria-expanded="false" aria-controls="visual-representation-panel"' in index

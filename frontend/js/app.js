@@ -4,8 +4,8 @@ import { loadPresets, enableForm, disableForm } from './generator.js?v=20260427-
 import { refresh as refreshGallery } from './gallery.js?v=20260427-lightbox-nav';
 import { updateFooter } from './status-footer.js?v=20260427-lightbox-nav';
 import { initSeedWorkflow } from './seed-workflow.js?v=20260427-lightbox-nav';
-import { initPromptAccordionFallback } from './prompt-accordion.js?v=20260427-prd114-v1';
-import { initRepresentationControls } from './representation-controls.js?v=20260427-prd114-v1';
+import { initPromptAccordionFallback } from './prompt-accordion.js?v=20260427-prd114-v1b';
+import { initRepresentationControls } from './representation-controls.js?v=20260427-prd114-v1b';
 
 const loginScreen = document.getElementById('login-screen');
 const appScreen = document.getElementById('app-screen');
