@@ -148,8 +148,8 @@
                                 <div class="fr-collapse" id="visual-representation-panel" role="region"
                                     aria-labelledby="visual-representation-button">
                                     <div class="fr-text--sm visual-representation-content">
-                                        <p class="fr-mb-2w">
-                                            Ajoutez un ancrage positif en anglais pour préciser les traits, le décor, l'alphabet et la palette sans changer le moteur MLX.
+                                        <p id="visual-anchor-help" class="fr-mb-2w">
+                                            Ajoutez un ancrage positif en anglais pour préciser les traits, le décor, l'alphabet et la palette sans changer le moteur MLX. Le bouton ajoute un ancrage générique si aucun preset n'est sélectionné.
                                         </p>
                                         <p id="visual-anchor-warning" class="fr-hint-text fr-mb-2w"
                                             aria-live="polite" hidden></p>
@@ -220,7 +220,8 @@
 
                                         <div class="visual-anchor-actions">
                                             <button type="button" id="visual-anchor-apply" class="fr-btn fr-btn--secondary"
-                                                title="Ajouter un ancrage visuel en anglais">
+                                                title="Ajouter un ancrage visuel en anglais"
+                                                aria-describedby="visual-anchor-help visual-anchor-status">
                                                 Ajouter un ancrage visuel en anglais
                                             </button>
                                         </div>

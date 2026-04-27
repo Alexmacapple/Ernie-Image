@@ -209,6 +209,7 @@ Le bouton doit :
 
 - préserver le prompt existant ;
 - ajouter ou remplacer un bloc délimité `Visual anchor:` ;
+- ajouter un ancrage générique positif si aucun preset ni champ libre n'est renseigné ;
 - déclencher `input` et `change` pour mettre à jour le compteur ;
 - ne jamais remplacer silencieusement le prompt complet ;
 - éviter l'empilement de plusieurs blocs d'ancrage ;
@@ -378,6 +379,7 @@ La V1 doit rester compatible avec la checklist UX appliquée à l'écran actuel 
 - Le panneau contient 8 presets maximum et un seul champ libre.
 - Tous les boutons ont un intitulé visible.
 - Le bouton "Ajouter un ancrage visuel en anglais" injecte un texte dans le prompt sans l'effacer.
+- Le bouton injecte aussi un ancrage générique positif si aucun preset ni champ libre n'est renseigné.
 - Le texte injecté est en anglais, visible dans le textarea et modifiable.
 - Si un bloc `Visual anchor:` existe déjà, il est remplacé plutôt qu'empilé.
 - L'injection est bloquée ou signalée clairement si elle dépasse 8000 caractères.
@@ -455,3 +457,4 @@ Protocole de validation manuelle :
 | 2026-04-27 | Alex + Codex | Intégration hypothèse JP : désactivation d'un PE chinois quand disponible, et ancrage anglais local visible pour le backend MLX actuel |
 | 2026-04-27 | Alex + Codex | Validation UX par rapport à l'écran actuel : V1 compacte, 8 presets maximum, un champ libre, protocole seed fixe |
 | 2026-04-27 | Alex + Codex | Implémentation V1 compacte : accordéon, 8 presets, champ libre, injection `Visual anchor:`, tests statiques |
+| 2026-04-27 | Alex + Codex | Correction UX : le bouton d'ancrage ajoute un bloc générique même sans preset sélectionné |

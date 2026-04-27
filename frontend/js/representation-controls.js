@@ -1,5 +1,6 @@
 const MAX_PROMPT_LENGTH = 8000;
 const VISUAL_ANCHOR_PREFIX = 'Visual anchor:';
+const DEFAULT_VISUAL_ANCHOR_TEXT = 'coherent visible traits when characters are present, clearly described clothing and setting, Latin alphabet signage and exact text as written, consistent architecture, lighting and color palette';
 
 export const VISUAL_ANCHOR_PRESETS = [
     {
@@ -79,7 +80,7 @@ export function buildVisualIdentityBlock() {
 
     if (preset) parts.push(preset.text);
     if (custom) parts.push(custom);
-    if (!parts.length) return '';
+    if (!parts.length) parts.push(DEFAULT_VISUAL_ANCHOR_TEXT);
 
     return `${VISUAL_ANCHOR_PREFIX} ${parts.join(', ')}.`;
 }
@@ -101,12 +102,6 @@ function _selectPreset(presetId) {
 
 function _applyVisualAnchor() {
     const block = buildVisualIdentityBlock();
-    if (!block) {
-        _setStatus('Choisissez un preset ou saisissez un ancrage personnalisé.');
-        _applyBtn.focus();
-        return;
-    }
-
     const currentPrompt = _promptEl.value;
     const nextPrompt = _replaceVisualAnchorBlock(currentPrompt, block);
     if (nextPrompt.length > MAX_PROMPT_LENGTH) {

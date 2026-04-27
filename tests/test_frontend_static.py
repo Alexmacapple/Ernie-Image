@@ -155,8 +155,11 @@ def test_prd114_visual_representation_controls_are_compact_and_positive():
     assert 'aria-labelledby="visual-representation-button"' in index
     assert 'id="visual-anchor-warning"' in index
     assert 'aria-live="polite"' in index
+    assert 'id="visual-anchor-help"' in index
     assert 'id="visual-anchor-custom"' in index
     assert 'id="visual-anchor-apply"' in index
+    assert 'aria-describedby="visual-anchor-help visual-anchor-status"' in index
+    assert "Le bouton ajoute un ancrage générique si aucun preset n'est sélectionné." in index
     assert "Ajouter un ancrage visuel en anglais" in index
     assert index.count("data-visual-anchor-preset") == 8
     assert "Portraits" in index
@@ -168,12 +171,15 @@ def test_prd114_visual_representation_controls_are_compact_and_positive():
     assert "export const VISUAL_ANCHOR_PRESETS = [" in representation
     assert representation.count("id: '") == 8
     assert "MAX_PROMPT_LENGTH = 8000" in representation
+    assert "DEFAULT_VISUAL_ANCHOR_TEXT" in representation
+    assert "if (!parts.length) parts.push(DEFAULT_VISUAL_ANCHOR_TEXT);" in representation
     assert "Visual anchor:" in representation
     assert "buildVisualIdentityBlock" in representation
     assert "function _replaceVisualAnchorBlock(prompt, block)" in representation
     assert "startsWith(VISUAL_ANCHOR_PREFIX)" in representation
     assert "dispatchEvent(new Event('input', { bubbles: true }))" in representation
     assert "dispatchEvent(new Event('change', { bubbles: true }))" in representation
+    assert "Choisissez un preset ou saisissez" not in representation
     assert "innerHTML" not in representation
     assert "not Asian" not in representation
     assert "no Asian" not in representation
