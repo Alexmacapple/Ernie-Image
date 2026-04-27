@@ -1,0 +1,422 @@
+{
+  "schema_version": "1.0",
+  "id": "flat-design-spectrum-v2.4",
+  "project": "Preset generique -- illustrations flat design modernes (variante spectrum : palettes etendues)",
+  "version": "2.4",
+  "language_convention": "FR pour les meta-descriptions et notes d'usage, EN pour les tokens injectables dans les prompts IA",
+
+  "style_weight": {
+    "critical": ["flat design", "zero gradient", "solid color blocking", "geometric shapes", "no photorealistic", "no 3D render"],
+    "important": ["rounded soft corners", "simplified anatomy", "limited palette", "negative space", "no cinematic lighting"],
+    "flexible": ["isometric vs frontal", "spectrum mode vs default palette", "ambient shadow for separation", "tinted background vs pure white"],
+    "usage": "En cas de conflit entre regles, la priorite descend de critical vers flexible. Un pipeline peut sacrifier les flexible mais jamais les critical."
+  },
+
+  "shot_type": {
+    "default": "medium",
+    "options": {
+      "wide": "full scene visible, environment context, multiple elements, used for process_flow and dashboard layouts",
+      "medium": "subject with immediate context, balanced framing, used for hero_central and side_by_side",
+      "close": "tight framing on subject, minimal environment, used for character showcase and icon details",
+      "icon": "single object isolated, maximum simplification, used for icon_grid and logo"
+    },
+    "usage": "Injecter le shot_type apres le sujet et avant les style modifiers. Les layout_templates suggerent un shot_type par defaut mais il peut etre surcharge."
+  },
+
+  "style": {
+    "genre": "flat-design",
+    "positioning": "illustration vectorielle 2D premium, minimaliste, geometrique, sans profondeur realiste",
+    "tone": [
+      "moderne",
+      "accessible",
+      "clair",
+      "graphique",
+      "professionnel",
+      "friendly"
+    ]
+  },
+
+  "rendering": {
+    "linework": [
+      "crisp and precise edges",
+      "optional ultra-clean thin outlines for shape separation",
+      "clean geometric edges with soft corners",
+      "no sketch effect, no rough hand-drawn instability"
+    ],
+    "color": [
+      "bold solid color blocking with curated palette",
+      "complementary or analogous harmonious hues",
+      "default palette of 4-6 confident tones, extended to 8 in spectrum mode (see color_policy.spectrum)",
+      "no muddy colors, no excessive saturation conflict",
+      "white or light neutral background as default"
+    ],
+    "shading": [
+      "almost no shading, flat color blocking dominant",
+      "optional subtle ambient shadow for element separation only",
+      "no volumetric rendering, no dramatic lighting",
+      "no ambient occlusion, no cinematic shadows"
+    ],
+    "shape_language": [
+      "rounded geometric forms with soft corners",
+      "simplified anatomy and objects",
+      "clean modular construction",
+      "controlled symmetry or asymmetry"
+    ],
+    "depth_rules": [
+      "frontal flat view by default",
+      "isometric allowed when functional clarity improves the composition",
+      "no realistic vanishing points",
+      "layering only for readability, not for cinematic depth"
+    ],
+    "texture": [
+      "flat surfaces only",
+      "no tactile texture simulation",
+      "no paper grain, brush grain, fabric grain, or noise overlays"
+    ]
+  },
+
+  "composition": {
+    "hierarchy": [
+      "one clear focal subject",
+      "secondary elements must support the main message",
+      "preserve generous negative space",
+      "keep silhouette readability at thumbnail size"
+    ],
+    "density": "minimal to moderate, maximum 5-6 meaningful elements per scene",
+    "balance": [
+      "controlled asymmetry or modular symmetry",
+      "avoid tangents and shape mergers that reduce clarity",
+      "maintain clean edge spacing between major forms"
+    ]
+  },
+
+  "format": {
+    "aspect_ratio": "16:9",
+    "aspect_ratio_options": ["16:9", "1:1", "4:5", "9:16"],
+    "default_background": "white or very light neutral"
+  },
+
+  "avoid": [
+    "photorealistic texture and hyperrealism",
+    "3D render and cinematic lighting",
+    "dramatic shadows and heavy gradients",
+    "glossy materials and metallic reflections",
+    "skin pores and realistic anatomy detail",
+    "visual noise and cluttered backgrounds",
+    "painterly brushstrokes and sketch lines",
+    "dark muddy colors and overrendered surfaces",
+    "depth-heavy perspective and volumetric fog",
+    "lens effects, bokeh, and high-frequency micro-details",
+    "complex texture and surface grain",
+    "realistic fabric folds"
+  ],
+
+  "prompt_core": "Modern flat design illustration, premium 2D vector-style artwork, minimalist geometric composition, clean shape language, simplified forms, bold solid color blocking, crisp contours, elegant negative space, highly readable layout, polished brand-illustration quality.",
+
+  "visual_signature": [
+    "flat design with iconic simplicity",
+    "premium 2D vector-style artwork",
+    "bold solid color blocking, zero gradient",
+    "rounded geometric silhouettes with soft corners",
+    "elegant negative space and visual calm"
+  ],
+
+  "modifiers": {
+    "core": ["flat design", "minimalistic", "vector art", "line art", "iconic"],
+    "optional": ["sticker", "clean shapes", "bold shapes", "pictogram", "scalable vector look"],
+    "enrichment": ["smooth modular construction", "reduced detail density", "clear focal hierarchy", "abstract yet friendly visual treatment"],
+    "usage": "Les 5 core modifiers sont injectes apres le sujet. Les optional et enrichment modifiers ajoutent une nuance stylistique selon le contexte."
+  },
+
+  "characters": {
+    "design": "simplified geometric figures, rounded forms, minimal facial detail, defined by shape silhouette and color",
+    "anatomy": "stylized proportions, intentionally simplified, elegant abstraction",
+    "expressions": "conveyed through simple geometric cues (head tilt, arm position, body lean) not facial micro-expressions",
+    "gestures": [
+      "simple iconic poses",
+      "clear silhouette-readable actions",
+      "minimal limb articulation"
+    ],
+    "accessories": [
+      "minimal iconic accessories only",
+      "avoid tiny intricate props unless central to the message"
+    ]
+  },
+
+  "environment": {
+    "types": [
+      "abstract geometric backgrounds",
+      "simple iconic scenes",
+      "workspace and office layouts",
+      "nature scenes simplified to shapes",
+      "urban silhouettes",
+      "data and dashboard contexts",
+      "onboarding screen artwork",
+      "infographic-style contexts"
+    ],
+    "density": "minimal, maximum 5-6 elements per scene",
+    "rules": [
+      "every element is a simplified geometric shape",
+      "no perspective, no vanishing points",
+      "isometric view acceptable as alternative to flat frontal",
+      "background supports rather than dominates",
+      "clean visual support with no environmental clutter",
+      "icons, furniture, plants, charts and objects must remain silhouette-simple"
+    ]
+  },
+
+  "color_policy": {
+    "families": [
+      "modern corporate harmonies",
+      "pastel accessible palettes",
+      "bold primary contrasts",
+      "complementary or analogous schemes"
+    ],
+    "dominant": "white or very light neutral background",
+    "accents": [
+      "teal and coral",
+      "blue and orange",
+      "purple and yellow-green",
+      "green and cream",
+      "terracotta and cream",
+      "any 5-8 color harmony"
+    ],
+    "spectrum": {
+      "description": "Richesse chromatique elargie -- plus de couleurs distinctes par scene, transitions de teintes entre elements adjacents, palette vivante sans quitter le flat",
+      "rules": [
+        "up to 8 distinct flat color blocks per image instead of 4-6",
+        "adjacent elements can use neighboring hues on the color wheel for natural spectrum flow",
+        "each major element gets its own confident color -- no two main shapes share the same tone",
+        "background can shift from pure white to very light tinted (pale lavender, pale mint, pale peach) to add warmth"
+      ],
+      "spectrum_palettes": [
+        "sunrise: coral, amber, warm pink, soft yellow, light peach background",
+        "ocean: teal, deep blue, aqua, seafoam green, pale cyan background",
+        "garden: sage green, terracotta, soft purple, golden yellow, cream background",
+        "aurora: purple, electric blue, teal, magenta, soft pink, pale lavender background",
+        "sunset: deep coral, burnt orange, warm red, golden, soft peach background"
+      ]
+    },
+    "forbidden": [
+      "gradients within a single shape (flat blocks only)",
+      "neon overload",
+      "dark moody palettes",
+      "muddy or conflicting saturations"
+    ],
+    "contrast_rules": [
+      "preserve sufficient contrast between foreground and background",
+      "more colors means more discipline -- every color must earn its place",
+      "spectrum flow creates visual rhythm, not chaos"
+    ]
+  },
+
+  "mood": {
+    "allowed": [
+      "clean professional clarity",
+      "friendly accessibility",
+      "modern simplicity",
+      "calm informational",
+      "playful but restrained",
+      "polished and sophisticated",
+      "visually calm and intentional",
+      "vibrant spectrum richness"
+    ],
+    "forbidden": [
+      "dramatic tension",
+      "dark moody atmosphere",
+      "nostalgic or vintage",
+      "chaotic or complex",
+      "melodramatic"
+    ]
+  },
+
+  "series_rules": {
+    "invariants": [
+      "zero gradients, minimal shadows",
+      "geometric shapes with soft corners",
+      "controlled palette per image (4-6 default, up to 8 in spectrum mode)",
+      "white or light background",
+      "flat frontal or isometric perspective",
+      "vector-like scalable aesthetic"
+    ],
+    "variables_per_episode": [
+      "color palette choice",
+      "subject matter",
+      "number of elements",
+      "isometric vs frontal view",
+      "level of character simplification"
+    ],
+    "quality_checks": [
+      "readable at small size",
+      "no accidental gradients",
+      "no unnecessary micro-details",
+      "coherent palette across the series",
+      "clear silhouette separation"
+    ]
+  },
+
+  "negative_short": "photorealistic, 3D render, cinematic lighting, heavy gradients, glossy materials, dramatic shadows, depth of field, film grain, sketch lines, cluttered background",
+
+  "negative_core": "photorealistic, realistic texture, hyperrealism, 3D render, cinematic lighting, dramatic shadows, heavy gradients, glossy materials, reflections, metallic surfaces, skin pores, complex texture, visual noise, cluttered background, excessive detail, painterly brushstrokes, sketch lines, rough outlines, dark muddy colors, overrendered surfaces, depth-heavy perspective, volumetric fog, lens effects, bokeh, high-frequency micro-details, realistic perspective, ray tracing, subsurface scattering, rim light, depth of field, film grain, textured brushwork, noisy background, ornamental clutter, realistic muscles, detailed fingers, complex hair strands",
+
+  "negative_usage": "negative_short (10 termes) pour Midjourney et moteurs avec limite de tokens. negative_core (35 termes) pour SDXL, Flux et moteurs sans contrainte de longueur.",
+
+  "aesthetic_references": [
+    "modern branding illustration",
+    "startup website hero art",
+    "onboarding screen artwork",
+    "infographic-style design",
+    "premium editorial flat illustration",
+    "UI illustration systems"
+  ],
+
+  "prompt_examples": {
+    "logo": "[subject] logo, flat design, minimalistic, vector art, line art, iconic, [color palette]",
+    "illustration_web": "[scene with characters], flat design, minimalistic, vector art, clean shapes, iconic, [color palette]",
+    "icon": "[app icon subject], flat design, minimalistic, vector art, line art, iconic, [colors]",
+    "poster": "[poster subject], flat design, minimalistic, vector art, bold shapes, iconic, [color palette]",
+    "character": "[character description], flat design, minimalistic, vector art, rounded geometric silhouette, simplified proportions, [color palette]",
+    "infographic": "[data subject], flat design, minimalistic, vector art, clean modular layout, iconic, [color palette]",
+    "spectrum_hero": "[subject], flat design, minimalistic, vector art, iconic, premium 2D illustration, bold solid color blocking, 8 distinct flat color tones, sunrise palette (coral, amber, warm pink, soft yellow), light peach background, elegant negative space",
+    "spectrum_scene": "[scene with characters], flat design, minimalistic, vector art, iconic, clean shapes, spectrum palette ocean (teal, deep blue, aqua, seafoam green), pale cyan background, adjacent hues flowing naturally between elements"
+  },
+
+  "prompt_builder": {
+    "template": "[subject], [shot_type], [action or state], flat design, minimalistic, vector art, iconic, premium 2D illustration, [composition], [shape language], [palette], [background], [optional context]",
+    "recommended_order": [
+      "subject",
+      "shot_type",
+      "action/state",
+      "style core",
+      "composition",
+      "shape language",
+      "palette",
+      "background",
+      "environment/context",
+      "negative prompt"
+    ],
+    "usage_note": "Sujet en premier, puis action, puis contraintes de style et composition. Le prompt_builder structure l'assemblage du prompt final."
+  },
+
+  "layout_templates": {
+    "hero_central": {
+      "description": "central character or object, generous negative space, clean background",
+      "use_cases": ["hero section", "character showcase", "mascot illustration", "product feature"],
+      "composition": "subject centered, minimum 40% empty space around, focal point clear and dominant",
+      "typical_elements": 1,
+      "variant": "frontal facing viewer"
+    },
+    "side_by_side": {
+      "description": "two elements facing each other, explainer layout, balanced symmetry",
+      "use_cases": ["before and after", "comparison", "collaboration", "conversation"],
+      "composition": "two balanced halves, mirror or near-symmetry, visual conversation path from left to right",
+      "typical_elements": 2,
+      "variant": "isometric or frontal"
+    },
+    "dashboard_infographic": {
+      "description": "modular grid layout, data cards, clean separation",
+      "use_cases": ["analytics dashboard", "feature overview", "product benefits", "metrics display"],
+      "composition": "grid-based 2x2 or 3x3, equal spacing, each module self-contained with clear boundary",
+      "typical_elements": 4,
+      "variant": "flat modular, no perspective"
+    },
+    "process_flow": {
+      "description": "left-to-right or top-to-bottom sequential steps, connected by simple lines",
+      "use_cases": ["onboarding flow", "tutorial", "workflow steps", "timeline"],
+      "composition": "clear linear progression, connecting lines or arrows between steps, numbered or visual hierarchy",
+      "typical_elements": 3,
+      "variant": "horizontal or vertical flow"
+    },
+    "icon_grid": {
+      "description": "regular grid of iconic elements, uniform sizing, consistent spacing",
+      "use_cases": ["feature list", "capability showcase", "service offering", "skills display"],
+      "composition": "equal-sized icons in uniform grid, consistent padding, monochromatic or limited color per row",
+      "typical_elements": 6,
+      "variant": "2x3 or 3x3 grid"
+    }
+  },
+
+  "interaction_scenes": {
+    "user_collaborating": {
+      "description": "two simplified figures working together on a shared task",
+      "use_cases": ["teamwork messaging", "collaboration features", "partnership", "co-creation"],
+      "character_count": 2,
+      "scene_focus": "shared workspace, high five, puzzle pieces fitting",
+      "visual_cue": "hands or bodies angled toward each other"
+    },
+    "user_analyzing_data": {
+      "description": "single figure examining charts or dashboard elements",
+      "use_cases": ["analytics product", "insights feature", "monitoring dashboard", "decision making"],
+      "character_count": 1,
+      "scene_focus": "figure leaning toward a visible chart, magnifying glass, pointing gesture",
+      "visual_cue": "focused posture, clear sight line to data element"
+    },
+    "team_brainstorming": {
+      "description": "3-4 figures around a shared workspace",
+      "use_cases": ["ideation product", "team planning", "creative collaboration", "meeting"],
+      "character_count": 3,
+      "scene_focus": "figures around table or board, sticky notes, light bulbs above heads",
+      "visual_cue": "circular arrangement, raised arms or engaged postures"
+    },
+    "remote_meeting": {
+      "description": "figures in separate screen frames, connected visually",
+      "use_cases": ["remote work", "video conferencing", "distributed team", "async collaboration"],
+      "character_count": 2,
+      "scene_focus": "video call windows or screen frames, figures visible in separate boxes",
+      "visual_cue": "frames or borders separating figures, connection lines"
+    },
+    "startup_workflow": {
+      "description": "figure moving through a process with clear steps",
+      "use_cases": ["product growth", "user journey", "onboarding progress", "milestone celebration"],
+      "character_count": 1,
+      "scene_focus": "figure at different stages of a visible process, step indicators or path",
+      "visual_cue": "forward momentum, ascending path, progress markers"
+    },
+    "learning_moment": {
+      "description": "figure receiving information from a visual element (book, screen, diagram)",
+      "use_cases": ["educational product", "knowledge base", "tutorial content", "skill building"],
+      "character_count": 1,
+      "scene_focus": "figure interacting with book, screen, or diagram element",
+      "visual_cue": "attention directed to learning source, curious posture"
+    }
+  },
+
+  "brand_personality": {
+    "playful_tech": {
+      "description": "rounded shapes, brighter accents, warmer palette, slightly more expressive characters",
+      "use_cases": ["consumer tech", "startup brand", "gaming company", "creative tool"],
+      "shape_language": "rounded corners, bouncy proportions, soft curves everywhere",
+      "color_palette": ["bright coral", "electric blue", "sunny yellow", "lime green"],
+      "character_style": "expressive faces with simple emoji-like expressions, dynamic poses",
+      "background": "light pastels or white with colorful geometric accents",
+      "tone_modulation": "fun, approachable, energetic, optimistic"
+    },
+    "serious_fintech": {
+      "description": "more angular shapes, muted palette, formal poses, minimal decoration",
+      "use_cases": ["finance", "banking", "enterprise SaaS", "investment platform"],
+      "shape_language": "sharp corners, geometric precision, grid-aligned composition",
+      "color_palette": ["navy blue", "slate gray", "deep teal", "charcoal"],
+      "character_style": "neutral expressions, professional postures, minimal details",
+      "background": "white or off-white, sparse accent colors",
+      "tone_modulation": "trustworthy, professional, secure, authoritative"
+    },
+    "friendly_productivity": {
+      "description": "soft shapes, pastel accents, relaxed poses, warm background tints",
+      "use_cases": ["productivity tool", "collaboration software", "daily app", "wellness product"],
+      "shape_language": "soft rounded forms, approachable proportions, organic asymmetry",
+      "color_palette": ["sage green", "soft peach", "lavender", "warm gray"],
+      "character_style": "content expressions, relaxed poses, warm gestures",
+      "background": "light warm tint (cream, pale yellow) with subtle texture",
+      "tone_modulation": "warm, supportive, calm, human-centered"
+    },
+    "educational_platform": {
+      "description": "clear hierarchical layout, warm inviting palette, explanatory compositions",
+      "use_cases": ["e-learning platform", "course product", "training company", "knowledge app"],
+      "shape_language": "balanced geometric forms, clear visual hierarchy, consistent scale relationships",
+      "color_palette": ["warm orange", "soft blue", "green accent", "cream"],
+      "character_style": "curious expressions, teaching poses, hands pointing or explaining",
+      "background": "white with warm accent zones, emphasis through color zones",
+      "tone_modulation": "accessible, encouraging, clear, instructional"
+    }
+  }
+}

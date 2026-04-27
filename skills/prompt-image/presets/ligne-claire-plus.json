@@ -1,0 +1,352 @@
+{
+  "schema_version": "1.0",
+  "id": "llm-council-feuilleton-s1",
+  "project": "Feuilleton LLM Council",
+  "version": "2.2",
+  "language_convention": "FR pour les meta-descriptions et notes d'usage, EN pour les tokens injectables dans les prompts IA",
+
+  "style_weight": {
+    "critical": ["ligne claire editorial", "clean black outlines", "flat colors dominant", "no photorealistic", "no anime", "polished editorial finish"],
+    "important": ["subtle localized shading", "variable weight outlines", "no heavy gradients", "no painterly texture", "face readability priority", "16:9 landscape"],
+    "flexible": ["shading depth on secondary elements", "warm vs cool lighting balance", "background detail level", "reflection intensity on glass and metal"],
+    "usage": "En cas de conflit entre regles, la priorite descend de critical vers flexible. Un pipeline peut sacrifier les flexible mais jamais les critical."
+  },
+
+  "shot_type": {
+    "default": "medium",
+    "options": {
+      "wide": "full scene visible, establishing shot, used for empty_aftermath and abstract_ai_concept compositions",
+      "medium": "subject with context, faces readable, used for round_table_discussion and strategic_duo",
+      "medium-wide": "wider framing with character context, used for speaker_addressing_council",
+      "close": "tight framing on face, maximum expression detail, used for emotional beats and character focus"
+    },
+    "usage": "Injecter le shot_type apres le sujet et avant les style modifiers. Voir aussi camera_policy pour les regles specifiques au feuilleton."
+  },
+
+  "style": {
+    "genre": "ligne-claire-plus",
+    "positioning": "editorial semi-realism: believable but clearly illustrated, never photographic. Between franco-belgian BD and polished digital illustration",
+    "tone": [
+      "éditorial",
+      "intelligent",
+      "poli",
+      "narratif",
+      "contemporain",
+      "prestigieux"
+    ]
+  },
+
+  "rendering": {
+    "linework": [
+      "clean black outlines",
+      "slightly variable weight for natural feel",
+      "sharp, uniform, precise edges",
+      "no bleeding, no rough sketch effect"
+    ],
+    "color": [
+      "flat colors as dominant areas",
+      "subtle localized shading for volume",
+      "curated palette with mature, controlled contrast",
+      "cool neutral base with warm editorial accents"
+    ],
+    "shading": [
+      "subtle, soft, controlled shadows and highlights",
+      "smooth precise shading, no grainy paint texture",
+      "localized on faces, hands, and clothing folds",
+      "no heavy gradients, no messy painterly overlay"
+    ]
+  },
+
+  "format": {
+    "aspect_ratio": "16:9"
+  },
+
+  "avoid": [
+    "photorealism",
+    "cartoon exaggeration",
+    "painterly texture and brush chaos",
+    "anime style and distortion",
+    "neon colors and rainbow clutter",
+    "speech bubbles and text rendered in image",
+    "heavy shadows and dramatic lighting excess",
+    "visual clutter and cluttered backgrounds",
+    "exotic style overload and baroque ornament",
+    "hyperreal skin pores and uncanny photorealism"
+  ],
+
+  "prompt_core": "Franco-belgian ligne claire editorial illustration, editorial semi-realism believable but clearly illustrated, clean black outlines with slightly variable weight, dominant flat colors with subtle localized shading, smooth polished finish, warm editorial atmosphere.",
+
+  "visual_signature": [
+    "clean black contours with variable weight",
+    "flat color areas with subtle localized shading",
+    "warm editorial atmosphere, contemporary prestige",
+    "clear detail hierarchy: faces and hands sharp, background simplified",
+    "smooth polished digital finish without texture noise"
+  ],
+
+  "characters": {
+    "design": "credible, contemporary, thoughtful, expressive without caricature",
+    "anatomy": "realistic and believable",
+    "expressions": "subtle, nuanced, natural, sophisticated",
+    "gestures": [
+      "discussion and deliberation",
+      "strategic reflection",
+      "attention and listening",
+      "skepticism and critical thinking",
+      "collective intellectual presence"
+    ]
+  },
+
+  "camera_policy": {
+    "preferred_shots": ["medium shot", "medium-wide shot"],
+    "acceptable_shots": ["close-up on faces", "wide establishing shot"],
+    "angle": "eye-level or slightly elevated, no extreme angles",
+    "perspective": "slight depth, no extreme lens distortion, no fisheye",
+    "group_composition": "triangular or circular arrangement, faces always readable",
+    "max_secondary_objects": 5,
+    "background_treatment": "simplified, supportive, never competing with subjects"
+  },
+
+  "material_policy": {
+    "surfaces": [
+      "polished warm wood with subtle grain",
+      "clean glass with controlled reflections",
+      "brushed metal with soft sheen",
+      "matte textile with precise fold logic",
+      "smooth screens with faint glow",
+      "clean paper and documents"
+    ],
+    "forbidden_materials": [
+      "rough concrete or industrial textures",
+      "glossy plastic",
+      "ornate carved surfaces",
+      "aged or weathered materials"
+    ],
+    "rendering_rule": "materials are suggested not simulated, simplified to flat areas with minimal reflection cues"
+  },
+
+  "palette_templates": {
+    "morning_council": {
+      "dominant": "warm off-white and light gray",
+      "accents": "amber morning light, soft gold on wood",
+      "mood": "calm anticipation"
+    },
+    "late_evening_strategy": {
+      "dominant": "deep slate blue and charcoal",
+      "accents": "warm amber desk lamp glow, cool blue window reflections",
+      "mood": "reflective seriousness"
+    },
+    "urban_institutional_daylight": {
+      "dominant": "cool neutral gray and off-white",
+      "accents": "teal and warm skin tones",
+      "mood": "modern strategic atmosphere"
+    },
+    "abstract_ai_chamber": {
+      "dominant": "muted blue-gray",
+      "accents": "subtle purple and gold geometric elements",
+      "mood": "poised futurity"
+    }
+  },
+
+  "environment": {
+    "types": [
+      "contemporary council rooms and meeting spaces",
+      "glass-walled strategy spaces",
+      "elegant modern workspaces",
+      "urban architecture and interiors",
+      "editorial modern interiors",
+      "speculative governance chambers",
+      "abstract symbolic AI deliberation spaces"
+    ],
+    "density": "moderate and controlled",
+    "rules": [
+      "decor supports the narrative without stealing attention",
+      "architectural clarity and readability at small scale (LinkedIn feed)",
+      "balance between detail and simplification"
+    ]
+  },
+
+  "color_policy": {
+    "families": [
+      "cool neutrals",
+      "warm accents"
+    ],
+    "dominant": "cool neutral base (slate gray, off-white)",
+    "accents": [
+      "warm amber and golden tones",
+      "warm skin tones",
+      "muted jewel tones"
+    ],
+    "forbidden": [
+      "neon overload",
+      "rainbow clutter",
+      "gratuitous saturation spikes",
+      "chaotic palette shifts"
+    ]
+  },
+
+  "mood": {
+    "allowed": [
+      "calm intellectual tension",
+      "collaborative debate",
+      "lucid anticipation",
+      "reflective seriousness",
+      "poised futurity",
+      "modern strategic atmosphere",
+      "thoughtful contemporary presence"
+    ],
+    "forbidden": [
+      "camp and absurdity",
+      "visual chaos",
+      "melodramatic spectacle",
+      "chaotic fantasy intensity"
+    ]
+  },
+
+  "series_rules": {
+    "invariants": [
+      "genre: ligne-claire-plus",
+      "prompt_core and visual signature",
+      "format.aspect_ratio: 16:9",
+      "rendering.linework: clean black outlines with variable weight",
+      "rendering.color: flat dominants with subtle shading",
+      "rendering.shading: no heavy gradients, no painterly texture",
+      "editorial clarity and polished finish"
+    ],
+    "variables_per_episode": [
+      "environment and decor",
+      "character count and arrangement",
+      "mood and atmospheric tone",
+      "color palette within allowed families",
+      "composition and camera angle",
+      "time of day and lighting angle"
+    ]
+  },
+
+  "composition_templates": {
+    "round_table_discussion": {
+      "description": "Three characters around a round table in medium shot, seated but engaged, clear sightlines to each face",
+      "camera": "medium shot, slightly elevated angle",
+      "character_positions": "triangular arrangement, all faces readable at 45-degree angles",
+      "focal_point": "table surface and characters' hands in discussion",
+      "supporting_elements": "simple round table, chairs, background simplified to solid or soft gradient"
+    },
+    "strategic_duo": {
+      "description": "Two characters facing each other in debate, medium-wide shot, clear gesture and expression clarity",
+      "camera": "medium shot, eye level, slight depth between subjects",
+      "character_positions": "face-to-face, separated by negative space, both profiles readable",
+      "focal_point": "faces and hand gestures mid-debate",
+      "supporting_elements": "minimalist workspace setting, clean background, furniture suggests formal setting"
+    },
+    "speaker_addressing_council": {
+      "description": "One character standing and speaking, three or four seated listeners in background, clear hierarchy",
+      "camera": "medium-wide shot, speaker in foreground focus",
+      "character_positions": "speaker in sharp focus, council members in soft focus arranged behind",
+      "focal_point": "speaker's face, gesture, posture",
+      "supporting_elements": "council chamber or boardroom, architectural elements frame but don't distract"
+    },
+    "empty_aftermath": {
+      "description": "Empty council room after meeting, traces of presence visible, contemplative composition",
+      "camera": "medium-wide establishing shot",
+      "character_positions": "no characters present",
+      "focal_point": "room layout, subtle signs of recent occupation: chair angle, papers, cup on table",
+      "supporting_elements": "strong architectural definition, lighting suggests recent departure, melancholic mood"
+    },
+    "abstract_ai_concept": {
+      "description": "Symbolic scene without characters, abstract forms representing AI deliberation: geometric shapes, light interactions, architectural space",
+      "camera": "wide shot of conceptual space",
+      "character_positions": "none",
+      "focal_point": "light, form, spatial relationships creating narrative meaning",
+      "supporting_elements": "minimal color, geometric precision, cool tones, suggests institutional or technological setting"
+    }
+  },
+
+  "lighting_presets": {
+    "editorial_daylight": {
+      "description": "Soft lateral daylight, warm golden tones, gentle shadows suggesting window light from side",
+      "key_light": "soft side light, warm color temperature 3200-4000K",
+      "shadow_quality": "light and diffuse, soft edges, minimal contrast",
+      "color_cast": "amber and gold accents on warm surfaces, neutral cool shadows",
+      "mood": "calm morning energy, accessible and welcoming",
+      "typical_use": "daytime council discussions, collaborative scenes"
+    },
+    "evening_strategy": {
+      "description": "Warm artificial light from desk lamps and ambient evening glow, deeper shadows, intimate atmosphere",
+      "key_light": "warm amber desk lamp, color temperature 2700K",
+      "shadow_quality": "moderate depth, more defined than daylight, shadows visible but not harsh",
+      "color_cast": "warm ambers and golds dominate, cool blue window reflections in background",
+      "mood": "reflective, serious, strategic intensity without melodrama",
+      "typical_use": "evening strategy sessions, late-night deliberations"
+    },
+    "institutional_daylight": {
+      "description": "Cool, uniform institutional light, blue-gray tones, clinical clarity, suggests fluorescent or modern LED lighting",
+      "key_light": "cool overhead or evenly distributed light, color temperature 5000-6000K",
+      "shadow_quality": "minimal shadows, uniform illumination, clinical appearance",
+      "color_cast": "cool neutrals, blue-gray base, muted tones, minimal warm accents",
+      "mood": "formal authority, institutional presence, modern governance",
+      "typical_use": "formal council chambers, abstract deliberation scenes"
+    }
+  },
+
+  "composition_priority": {
+    "priority_order": [
+      "face readability: all character faces must be clear, expressive, and readable at thumbnail scale",
+      "gesture clarity: hand positions and body language must communicate intent and emotional state",
+      "scene concept: narrative elements and setting support the story beat",
+      "environment support: background architecture and decor reinforce mood without competing",
+      "decorative detail: ornament, texture, and secondary visual interest fill negative space last"
+    ],
+    "enforcement_rule": "If any element compromises face readability, simplify or remove it. Faces and hands are sacred. Never trade character clarity for environmental richness.",
+    "detail_hierarchy": "sharp focus: faces and hands | medium focus: primary objects and spatial relationships | soft focus or simplified: background and decor"
+  },
+
+  "negative_short": "photorealism, painterly texture, heavy shading, anime style, neon colors, speech bubbles, text in image, cluttered background, cartoon exaggeration, rough sketch feel",
+
+  "negative_core": "photorealism, painterly texture, heavy shading, cartoon exaggeration, anime style, neon colors, speech bubbles, text in image, cluttered background, exotic visual overload, baroque ornament, rough sketch feel, muddy colors, hyperreal detail, visual clutter, distorted anatomy",
+
+  "negative_usage": "negative_short (10 termes) pour Midjourney et moteurs avec limite de tokens. negative_core (16 termes) pour SDXL, Flux et moteurs sans contrainte de longueur.",
+
+  "prompt_builder": {
+    "template": "[subject], [shot_type], [action or state], franco-belgian ligne claire editorial illustration, clean black outlines with slightly variable weight, dominant flat colors with subtle localized shading, smooth polished finish, [composition_template], [lighting_preset], [palette_template], [mood]",
+    "recommended_order": [
+      "subject",
+      "shot_type",
+      "action/state",
+      "style core (ligne claire, editorial, outlines, flat colors)",
+      "shading approach",
+      "composition template",
+      "lighting preset",
+      "palette template",
+      "mood/atmosphere",
+      "negative prompt"
+    ],
+    "usage_note": "Sujet en premier, puis cadrage, puis action. Les composition_templates, lighting_presets et palette_templates sont specifiques au feuilleton LLM Council."
+  },
+
+  "quality_checkpoints": {
+    "style_markers": [
+      "prompt_core present at start of generation",
+      "clean black outlines with variable weight visible",
+      "flat colors dominant with subtle localized shading",
+      "no grainy paint texture, no messy brushwork",
+      "polished editorial finish",
+      "no photorealism, no anime, no excessive cartoon"
+    ],
+    "scene_markers": [
+      "all concept elements present and well-composed",
+      "character expressions readable and appropriate",
+      "proportions and anatomy credible",
+      "perspective and spatial relationships correct",
+      "environment supports narrative without distraction",
+      "overall atmosphere coherent with intended mood"
+    ],
+    "feasibility_risks": [
+      "multiple characters (3+): faisable, prioritize face clarity over background detail",
+      "hands and gestures visible: risque modéré, recommend medium shot framing to manage detail",
+      "text rendered in image: très risqué avec générateurs IA, à éviter",
+      "complex geometric structures: possible mais demande clarté dans le prompt",
+      "reflective surfaces and glass: maîtrisable, include in material description",
+      "subtle shading transitions: possible avec le prompt_core, vérifier sur le rendu"
+    ]
+  }
+}

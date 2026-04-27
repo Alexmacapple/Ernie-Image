@@ -1,0 +1,174 @@
+{
+  "schema_version": "1.1",
+  "id": "kandinsky-abstrait-v1",
+  "project": "Série Kandinsky abstrait — Ernie / Qwen-Image",
+  "version": "1.0",
+
+  "style": {
+    "genre": "gegenstandslos-expressionniste",
+    "genre_description": "Abstraction pure dans la lignée Kandinsky : aucune référence figurative, formes nées de la seule nécessité intérieure (Innere Notwendigkeit), couleurs traitées comme des fréquences sonores (Klang). Couvre les trois périodes : lyrique-improvisatoire (1910–1914), Bauhaus géométrique (1922–1933), Paris biomorphique (1934–1944).",
+    "positioning": "abstrait-pur",
+    "tone": ["pneumatique", "vibratoire", "spirituel", "nécessaire"]
+  },
+
+  "rendering": {
+    "linework": [
+      "no representational outlines",
+      "color-boundary edges only — forms defined by color zones, not drawn lines",
+      "edges may bleed, dissolve, or collide across neighboring zones",
+      "black lines when used are autonomous forms, not contours of objects"
+    ],
+    "color": [
+      "pure chromatic Klang — each color treated as a sound frequency",
+      "primary opposition dominant: red (warm pulse) vs blue (cool resonance) vs yellow (bright vibration)",
+      "black as spatial void — active force, not neutral background",
+      "warm zones self-illuminate against cool voids",
+      "maximum saturation in focal Klang zones",
+      "interference zones at color boundaries are valid compositional subjects"
+    ],
+    "shading": [
+      "no cast shadows anywhere",
+      "no directional external light source",
+      "internal chromatic luminosity only — warm colors pulse, cool colors recede",
+      "flat value within each color zone — no gradient except at interference boundaries"
+    ],
+    "tension_mechanics": [
+      "rupture: form crosses its own boundary, color bleeds beyond contour into neighboring zone",
+      "resonance: two chromatic Klang frequencies vibrate in close proximity without touching — the gap is the subject",
+      "emergence: luminous form rises from dark void ground, growing in intensity toward upper field",
+      "collapse: form diminishes and dissolves asymmetrically toward an edge, approaching visual silence",
+      "opposition: warm Klang zone directly confronts cool Klang zone across a narrow interference boundary"
+    ]
+  },
+
+  "format": {
+    "aspect_ratio": "1:1",
+    "aspect_ratio_variants": ["16:9", "2:3"]
+  },
+
+  "avoid": [
+    "figurative reference of any kind",
+    "human forms",
+    "animal forms",
+    "recognizable objects",
+    "landscapes",
+    "portraits",
+    "photorealism",
+    "illustration style",
+    "cartoon style",
+    "anime style",
+    "decorative ornaments",
+    "text visible in image",
+    "letters or numbers",
+    "logos or symbols",
+    "watermarks",
+    "symmetric balanced composition",
+    "centered stable focal point",
+    "neon palette",
+    "pastel palette",
+    "excessive uniformity or visual rest",
+    "closed complete forms where all sides are visible"
+  ],
+
+  "prompt_core": "Gegenstandslos abstract expressionist painting, chromatic Klang vibration, Innere Notwendigkeit — no figurative reference, no recognizable objects, pure color as force, Kandinsky 1912–1937.",
+
+  "visual_signature": [
+    "no closed forms — every shape either dissolves, bleeds, or is cut by the frame",
+    "chromatic Klang opposition — warm vs cool frequencies in unresolved tension",
+    "Innere Notwendigkeit — no element without inner justification",
+    "black void as active spatial force, not neutral background",
+    "one chromatic Klang strike point per image — maximum saturation at tension apex"
+  ],
+
+  "color_policy": {
+    "families": ["primary-opposition", "void-black", "luminous-accent"],
+    "dominant": "primary color opposition (red / blue / yellow) against black or deep ground",
+    "allowed": [
+      "crimson red", "cadmium red", "vermillion",
+      "ultramarine blue", "cobalt blue", "prussian blue",
+      "cadmium yellow", "lemon yellow",
+      "black", "deep brown", "dark violet",
+      "white and pale tones for luminous emergence zones",
+      "orange and green as interference products at color boundaries only"
+    ],
+    "forbidden": [
+      "neon colors",
+      "pastel colors",
+      "flesh tones",
+      "earth tones as dominant",
+      "pink",
+      "turquoise as dominant",
+      "gray as dominant"
+    ]
+  },
+
+  "mood": {
+    "allowed": [
+      "pneumatique — énergie spirituelle traversant l'image",
+      "vibratoire — tension chromatique sans résolution",
+      "mélancolique — Klang du bleu se retirant vers le silence",
+      "lyrique — explosion émotionnelle spontanée",
+      "kompositionnel — tension géométrique calculée",
+      "dionysien — débordement de formes hors de leurs contours",
+      "théosophique — forces invisibles rendues visibles sur fond sombre",
+      "cosmique — cercles et orbes comme entités planétaires"
+    ],
+    "forbidden": [
+      "décoratif — aucun élément pour la beauté seule",
+      "narratif — aucune histoire figurative",
+      "statique symétrique — l'équilibre doit être dynamique"
+    ]
+  },
+
+  "signature": {
+    "seed_phrase": "Gegenstandslos, chromatic Klang, Innere Notwendigkeit, no figurative reference, pure color vibration, Kandinsky 1912–1937.",
+    "manifesto": "Chaque couleur est un son. Chaque forme est une nécessité. Ce qui n'est pas justifié par la tension intérieure n'existe pas.",
+    "marks": {
+      "geometry": "arcs and circles in unresolved tension with triangles and angles — no shape is at rest",
+      "light": "colors self-illuminate — no external light source ever enters the canvas",
+      "composition": "centrifugal or asymmetric drift — no stable center, no closure, frame cuts forms mid-movement",
+      "strike": "one chromatic Klang strike point per image — the single zone of maximum saturation surrounded by relative void, at the apex of the inner tension"
+    },
+    "tyrannical_rule": "Every element must be justified by Innere Notwendigkeit — if its removal would not create tension or loss, it should not exist."
+  },
+
+  "negative_core": "low resolution, low quality, photorealistic, photography, human figures, faces, animal forms, recognizable objects, landscapes, buildings, text, letters, numbers, symbols, logos, watermarks, cartoon style, anime style, illustration style, flat vector, clip art, decorative ornament, pastel palette, neon palette, symmetric stable composition, centered focal point, uniform composition, oversmoothed, AI-looking, cluttered, blurry muddy color mixing",
+
+  "quality_checkpoints": {
+    "style_markers": [
+      "prompt_core présent en tête",
+      "aucune référence figurative dans l'image générée",
+      "opposition chromatique visible (chaud vs froid)",
+      "au moins une mécanique de tension active",
+      "un seul strike point de saturation maximale identifiable"
+    ],
+    "scene_markers": [
+      "la mécanique de tension choisie est visible et lisible",
+      "la palette respecte la color_policy",
+      "le format et le ratio correspondent",
+      "la composition ne présente pas de centre stable"
+    ],
+    "feasibility_risks": [
+      "Qwen peut introduire des formes semi-figuratives — contrainte négative renforcée obligatoire",
+      "interférences chromatiques peuvent être rendues comme gradients lisses — préciser 'sharp interference zone, not smooth gradient'",
+      "fond noir peut être éclairci — préciser 'deep black void ground, do not lighten'"
+    ]
+  },
+
+  "series_rules": {
+    "invariants": [
+      "prompt_core",
+      "avoid",
+      "negative_core",
+      "signature.tyrannical_rule",
+      "color_policy.forbidden"
+    ],
+    "variables_per_image": [
+      "tension_mechanic chosen",
+      "primary Klang colors",
+      "aspect_ratio",
+      "mood",
+      "period reference (lyrique / Bauhaus / Paris)"
+    ]
+  }
+}

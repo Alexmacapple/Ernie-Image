@@ -1,0 +1,368 @@
+{
+  "schema_version": "1.0",
+  "id": "digital-prestige-v1.0",
+  "project": "Preset generique -- illustration digitale prestige, style roman graphique moderne",
+  "version": "1.0",
+  "language_convention": "FR pour les meta-descriptions et notes d'usage, EN pour les tokens injectables dans les prompts IA",
+
+  "style_weight": {
+    "critical": ["clean digital illustration", "black ink outlines sharp uniform precise", "no photorealistic", "no 3D render", "no anime", "polished finish"],
+    "important": ["soft controlled shadows for volume", "flat color areas as base", "smooth precise shading", "no grainy paint texture", "no bleeding outlines", "stylized not photographic"],
+    "flexible": ["reflection sharpness on metal", "fabric fold detail level", "shadow depth intensity", "highlight softness"],
+    "usage": "En cas de conflit entre regles, la priorite descend de critical vers flexible. Un pipeline peut sacrifier les flexible mais jamais les critical."
+  },
+
+  "shot_type": {
+    "default": "medium",
+    "options": {
+      "wide": "full scene visible, environment detail, architectural framing, used for establishing shots and group scenes",
+      "medium": "subject with context, balanced framing, face and hands readable, used for character scenes and dialogue",
+      "close": "tight framing, maximum detail on face or object, material rendering visible, used for emotional beats and detail showcase",
+      "icon": "single object isolated, stylized simplification, used for spot illustrations and editorial icons"
+    },
+    "usage": "Injecter le shot_type apres le sujet et avant les style modifiers. Le medium shot est le cadrage naturel pour ce style."
+  },
+
+  "style": {
+    "genre": "digital-prestige",
+    "positioning": "Modern prestige graphic novel illustration, clean digital rendering with controlled volume, stylized realism that never crosses into photography",
+    "tone": [
+      "prestige",
+      "professionnel",
+      "poli",
+      "precis",
+      "contemporain",
+      "sophistique"
+    ]
+  },
+
+  "rendering": {
+    "linework": [
+      "black ink outlines on all major shapes",
+      "sharp uniform precise line weight",
+      "no bleeding, no feathering, no rough edges",
+      "outlines define form boundaries with clarity",
+      "consistent weight throughout, no hand-drawn variation"
+    ],
+    "color": [
+      "clean digital coloring with flat color areas as base layer",
+      "curated palette with controlled contrast",
+      "colors are confident and precise, never muddy",
+      "color fills stay within outlined boundaries",
+      "palette supports narrative mood"
+    ],
+    "shading": [
+      "soft controlled shadows and highlights for volume",
+      "smooth precise shading with no grainy paint texture",
+      "shadows are deliberate and localized, not atmospheric",
+      "highlights are sharp where needed (metal, glass) and soft on organic forms",
+      "no heavy dramatic lighting, no ambient occlusion overkill",
+      "shading suggests volume without simulating photography"
+    ],
+    "materials": [
+      "sharp reflections on metal surfaces, controlled and precise",
+      "precise fabric folds with clean shadow logic",
+      "smooth glass with faint controlled reflections",
+      "wood grain suggested not simulated",
+      "skin rendered with smooth controlled tones, no pores",
+      "materials are rendered with clarity but remain stylized"
+    ],
+    "texture": [
+      "smooth polished digital finish throughout",
+      "no paper grain, no brush grain, no noise overlays",
+      "no watercolor bleeding, no oil paint texture",
+      "surfaces are clean and precise",
+      "texture conveyed through shading logic not surface noise"
+    ],
+    "depth_rules": [
+      "controlled perspective, mild depth acceptable",
+      "foreground sharp, background progressively simplified",
+      "no extreme lens distortion or fisheye",
+      "depth conveyed through overlapping, size, and controlled shadow",
+      "atmospheric perspective used sparingly"
+    ]
+  },
+
+  "composition": {
+    "hierarchy": [
+      "one clear focal subject or action",
+      "detail density highest on focal point, decreasing outward",
+      "secondary elements support but never compete",
+      "faces and hands are always priority rendering targets",
+      "readable at reduced size"
+    ],
+    "density": "moderate to rich, controlled complexity, maximum 6-8 meaningful elements per scene",
+    "balance": [
+      "considered composition with clear visual flow",
+      "asymmetry preferred over rigid symmetry",
+      "negative space used intentionally, not accidentally",
+      "no visual clutter despite material detail"
+    ]
+  },
+
+  "format": {
+    "aspect_ratio": "16:9",
+    "aspect_ratio_options": ["16:9", "1:1", "4:5", "9:16", "3:4"],
+    "default_background": "contextual, varies by scene"
+  },
+
+  "avoid": [
+    "photorealistic rendering and hyperrealism",
+    "3D render and CGI aesthetic",
+    "grainy paint textures and watercolor effects",
+    "rough sketch lines and hand-drawn imprecision",
+    "anime style and manga conventions",
+    "cartoon exaggeration and caricature",
+    "neon colors and oversaturated palettes",
+    "bleeding outlines and feathered edges",
+    "cluttered backgrounds and visual noise",
+    "excessive photorealistic skin detail (pores, veins)",
+    "dramatic cinematic lighting (lens flare, god rays)",
+    "speech bubbles and text rendered in image"
+  ],
+
+  "prompt_core": "Clean digital illustration in a modern prestige graphic novel style, black ink outlines sharp uniform and precise, clean digital coloring with flat color areas and soft controlled shadows for volume, smooth precise shading, polished final render, details rendered with clarity and precision but stylized, professional clear polished atmosphere.",
+
+  "visual_signature": [
+    "sharp uniform black ink outlines",
+    "flat color base with soft controlled volume shading",
+    "smooth polished digital finish",
+    "sharp reflections on metal, precise fabric folds",
+    "stylized clarity, never photographic",
+    "prestige graphic novel sensibility"
+  ],
+
+  "modifiers": {
+    "core": ["digital illustration", "graphic novel style", "ink outlines", "polished finish", "prestige"],
+    "optional": ["editorial quality", "book cover quality", "cinematic composition", "premium rendering", "gallery quality"],
+    "enrichment": ["controlled volumetric shading", "precise material rendering", "professional atmosphere", "clean visual hierarchy"],
+    "usage": "Les 5 core modifiers sont injectes apres le sujet. Les optional et enrichment ajoutent une nuance selon le contexte."
+  },
+
+  "characters": {
+    "design": "realistic proportions with stylized precision, expressive without caricature, polished and contemporary",
+    "anatomy": "accurate and believable, clearly illustrated not photographic, clean digital rendering",
+    "expressions": "nuanced and readable, subtle sophistication, conveyed through precise facial rendering",
+    "gestures": [
+      "natural and purposeful poses",
+      "hands rendered with care and precision",
+      "body language communicates narrative",
+      "controlled dynamism, never chaotic"
+    ],
+    "accessories": [
+      "rendered with material precision (metal, leather, fabric)",
+      "functional to character identity",
+      "sharp outlines maintain shape clarity"
+    ]
+  },
+
+  "environment": {
+    "types": [
+      "modern urban interiors with architectural detail",
+      "contemporary workspaces and offices",
+      "atmospheric street scenes",
+      "elegant institutional spaces",
+      "nature scenes with controlled complexity",
+      "abstract or minimal prestige backdrops"
+    ],
+    "density": "moderate to rich, every element purposeful",
+    "rules": [
+      "architecture rendered with precision and clean lines",
+      "environment detail decreases with distance from focal point",
+      "materials are identifiable (wood, metal, glass, concrete)",
+      "lighting consistent throughout the scene",
+      "background supports mood without competing with subjects"
+    ]
+  },
+
+  "color_policy": {
+    "families": [
+      "sophisticated neutrals with accent colors",
+      "warm editorial palettes",
+      "cool institutional tones",
+      "rich muted jewel tones"
+    ],
+    "dominant": "contextual, driven by scene mood and narrative",
+    "accents": [
+      "deep teal and warm amber",
+      "burgundy and slate",
+      "navy and gold",
+      "olive and terracotta",
+      "charcoal and copper",
+      "any 5-7 color harmony with mature confidence"
+    ],
+    "forbidden": [
+      "neon overload",
+      "pastel-only palettes (too soft for prestige tone)",
+      "rainbow clutter",
+      "muddy or conflicting saturations",
+      "gratuitous color shifts between elements"
+    ],
+    "contrast_rules": [
+      "outlines ensure shape separation at any contrast level",
+      "value range from deep shadows to clean highlights",
+      "color temperature supports mood (warm = intimate, cool = formal)",
+      "accent colors used strategically for narrative focus"
+    ]
+  },
+
+  "mood": {
+    "allowed": [
+      "professional polish",
+      "quiet sophistication",
+      "narrative tension",
+      "contemplative stillness",
+      "urban energy",
+      "institutional authority",
+      "intimate conversation",
+      "controlled drama"
+    ],
+    "forbidden": [
+      "camp and absurdity",
+      "horror and grotesque",
+      "chaotic visual intensity",
+      "melodramatic spectacle",
+      "cartoonish levity"
+    ]
+  },
+
+  "series_rules": {
+    "invariants": [
+      "sharp uniform black ink outlines",
+      "flat color base with controlled volume shading",
+      "smooth polished digital finish, no grain",
+      "materials rendered stylized not photographic",
+      "no speech bubbles, no text in image",
+      "prestige graphic novel visual language"
+    ],
+    "variables_per_episode": [
+      "color palette and mood",
+      "subject matter and scene",
+      "environment type",
+      "lighting warmth and direction",
+      "material focus (metal-heavy, fabric-heavy, organic)",
+      "shadow depth and highlight intensity"
+    ],
+    "quality_checks": [
+      "all shapes have clean sharp outlines",
+      "shading is smooth without grain or brush texture",
+      "materials identifiable but clearly illustrated",
+      "faces and hands at highest detail priority",
+      "no photorealistic uncanny valley effect"
+    ]
+  },
+
+  "negative_short": "photorealistic, 3D render, grainy paint texture, anime style, rough sketch lines, bleeding outlines, neon colors, speech bubbles, cluttered background, watercolor effects",
+
+  "negative_core": "photorealistic, realistic texture, hyperrealism, 3D render, CGI aesthetic, grainy paint texture, watercolor effects, rough sketch lines, bleeding outlines, feathered edges, anime style, manga conventions, cartoon exaggeration, neon colors, oversaturated palette, speech bubbles, text in image, cluttered background, visual noise, excessive detail, skin pores, lens flare, god rays, dramatic cinematic lighting, film grain, noise overlays, brush texture, paper grain, muddy colors, distorted anatomy",
+
+  "negative_usage": "negative_short (10 termes) pour Midjourney et moteurs avec limite de tokens. negative_core (29 termes) pour SDXL, Flux et moteurs sans contrainte de longueur.",
+
+  "aesthetic_references": [
+    "Enki Bilal Nikopol trilogy rendering",
+    "Sean Murphy Batman White Knight linework",
+    "Bastien Vives polished digital style",
+    "Jock clean digital illustration",
+    "Phil Noto smooth digital coloring",
+    "Alex Maleev controlled shadow work",
+    "modern European graphic novel covers"
+  ],
+
+  "prompt_examples": {
+    "character": "[character description], clean digital illustration, prestige graphic novel style, sharp black ink outlines, flat color base with soft controlled shadows for volume, [expression], [color palette], polished atmosphere",
+    "scene": "[scene with characters], clean digital illustration, modern prestige graphic novel, sharp uniform outlines, smooth digital coloring with controlled volume, [composition], [color palette], professional polished finish",
+    "environment": "[setting description], clean digital illustration, prestige graphic novel style, sharp outlines, precise architectural rendering, material detail (metal, glass, wood), [color palette], controlled shadows, polished atmosphere",
+    "portrait": "[character portrait], close shot, clean digital illustration, prestige graphic novel, sharp ink outlines, smooth controlled shading on face, precise material rendering on clothing, [color palette], polished editorial quality",
+    "action": "[action scene], clean digital illustration, prestige graphic novel, sharp outlines, controlled dynamic composition, smooth shading with volume, [color palette], professional polished atmosphere"
+  },
+
+  "prompt_builder": {
+    "template": "[subject], [shot_type], [action or state], clean digital illustration, prestige graphic novel style, sharp black ink outlines uniform and precise, flat color base with soft controlled shadows for volume, smooth polished finish, [composition], [material focus], [color palette], [mood/atmosphere]",
+    "recommended_order": [
+      "subject",
+      "shot_type",
+      "action/state",
+      "style core (digital illustration, graphic novel, ink outlines)",
+      "coloring and shading approach",
+      "composition",
+      "material rendering focus",
+      "color palette",
+      "mood/atmosphere",
+      "negative prompt"
+    ],
+    "usage_note": "Sujet en premier, puis cadrage, puis action, puis contraintes de style. Le prompt_core est injecte en tete pour verrouiller le style prestige."
+  },
+
+  "layout_templates": {
+    "hero_portrait": {
+      "description": "single character portrait with material detail and controlled lighting",
+      "use_cases": ["character introduction", "book cover", "editorial portrait", "profile illustration"],
+      "composition": "subject rule-of-thirds or centered, background simplified or contextual, face at highest detail",
+      "typical_elements": 1,
+      "variant": "three-quarter view preferred for volume showcase"
+    },
+    "narrative_duo": {
+      "description": "two characters in interaction, balanced composition with narrative tension",
+      "use_cases": ["dialogue scene", "confrontation", "partnership", "interview"],
+      "composition": "balanced but asymmetric, clear sight lines between characters, depth via overlapping and shadow",
+      "typical_elements": 2,
+      "variant": "medium shot, slight depth between planes"
+    },
+    "establishing_scene": {
+      "description": "environment-focused composition with or without characters, architectural precision",
+      "use_cases": ["setting introduction", "mood piece", "urban landscape", "interior showcase"],
+      "composition": "architectural lines guide the eye, material rendering showcased, characters secondary if present",
+      "typical_elements": 3,
+      "variant": "wide shot with controlled depth"
+    },
+    "dramatic_moment": {
+      "description": "single high-impact narrative beat with focused lighting and composition",
+      "use_cases": ["climactic scene", "reveal", "emotional peak", "key decision"],
+      "composition": "strong focal point, supporting elements frame the moment, shadow and light create tension",
+      "typical_elements": 2,
+      "variant": "medium or close shot, controlled dramatic angle"
+    },
+    "editorial_spread": {
+      "description": "rich scene balancing multiple elements for magazine or book interior",
+      "use_cases": ["chapter illustration", "feature article", "narrative summary", "concept piece"],
+      "composition": "layered composition with clear reading path, multiple elements at varying detail levels, prestige finish",
+      "typical_elements": 4,
+      "variant": "wide 16:9 or 3:4 depending on layout"
+    }
+  },
+
+  "brand_personality": {
+    "noir_moderne": {
+      "description": "high contrast, deep shadows, urban tension, sophisticated darkness",
+      "use_cases": ["crime narrative", "thriller illustration", "noir editorial", "urban drama"],
+      "color_palette": ["charcoal", "deep blue-black", "warm amber accent", "blood red"],
+      "material_focus": "metal surfaces, wet streets, leather, glass reflections",
+      "character_style": "sharp features, controlled expressions, tension in posture",
+      "tone_modulation": "tense, atmospheric, controlled menace, sophisticated"
+    },
+    "corporate_elegance": {
+      "description": "clean lines, restrained palette, institutional polish, authority",
+      "use_cases": ["business illustration", "annual report", "institutional communication", "leadership portrait"],
+      "color_palette": ["navy blue", "warm gray", "gold accent", "cream"],
+      "material_focus": "polished wood, glass architecture, tailored fabric, brushed metal",
+      "character_style": "dignified proportions, measured expressions, professional attire rendered with precision",
+      "tone_modulation": "authoritative, polished, trustworthy, measured"
+    },
+    "aventure_contemporaine": {
+      "description": "dynamic but controlled, warm palette, narrative energy, modern adventure",
+      "use_cases": ["adventure narrative", "travel illustration", "action editorial", "documentary style"],
+      "color_palette": ["deep teal", "warm terracotta", "olive green", "dusty gold"],
+      "material_focus": "outdoor materials, weathered surfaces, natural textures stylized",
+      "character_style": "active poses, expressive faces, practical clothing rendered with care",
+      "tone_modulation": "energetic, warm, purposeful, grounded"
+    },
+    "intimiste": {
+      "description": "soft warm tones, quiet moments, emotional depth, restrained beauty",
+      "use_cases": ["literary illustration", "emotional narrative", "portrait series", "quiet drama"],
+      "color_palette": ["warm cream", "soft burgundy", "muted blue", "honey amber"],
+      "material_focus": "soft fabrics, warm wood, candlelight, paper and books",
+      "character_style": "gentle expressions, relaxed postures, intimate proximity",
+      "tone_modulation": "tender, contemplative, intimate, emotionally rich"
+    }
+  }
+}

@@ -1,0 +1,406 @@
+{
+  "schema_version": "1.0",
+  "id": "whiteboard-sketch-v2.1",
+  "project": "Preset signature -- diagramme technique style whiteboard premium, faux-handmade controle, palette semantique restreinte, pedagogie visuelle argumentative",
+  "version": "2.1",
+  "language_convention": "FR pour les meta-descriptions et notes d'usage, EN pour les tokens injectables dans les prompts IA",
+
+  "quick_spec": {
+    "description": "Spec rapide en 1 page -- tout ce qu'il faut pour reproduire le style sans lire le reste",
+    "colors": {
+      "background": "#F4F4F4",
+      "contour": "#4F4F4F",
+      "fill_neutral": "#DDE0E3",
+      "accent_problem": "#D96B6B",
+      "accent_solution": "#6DBD7E",
+      "accent_conclusion": "#73B2E8",
+      "accent_mechanism": "#9E7FEB"
+    },
+    "strokes": {
+      "primary": "2.5px, dark gray, rounded caps",
+      "secondary": "1.5px, medium gray, rounded caps",
+      "arrow": "2px, dark gray, hand-drawn slight curve"
+    },
+    "typography": {
+      "title": "28-36px, handwritten bold (Virgil/Caveat), centered, dark gray",
+      "label": "16-20px, handwritten regular, colored by semantic role",
+      "annotation": "12-14px, handwritten light, dark gray, near arrows"
+    },
+    "master_components": ["system_card (rounded rect, gray fill, label)", "data_container (large rect, small blocks inside)", "metric_badge (capsule, colored fill, number)", "conclusion_banner (wide rect, blue fill, bottom)", "flow_arrow (hand-drawn, annotated)"],
+    "golden_rule": "Chaque couleur = un sens. Pas de couleur decorative."
+  },
+
+  "style_weight": {
+    "critical": ["off-white warm background", "hand-drawn rounded shapes", "semantic color coding", "handwritten typography", "generous whitespace", "no corporate polish"],
+    "important": ["controlled imperfection in linework", "soft muted desaturated accents", "vertical narrative flow within sections", "maximum 4-5 colors per image", "conclusion/takeaway anchored at bottom"],
+    "flexible": ["background texture grain intensity", "arrow style (straight vs curved)", "border style (solid vs dashed)", "accent saturation level", "composition template choice"],
+    "usage": "En cas de conflit entre regles, la priorite descend de critical vers flexible. Le critical definit l'ADN whiteboard-sketch -- sans ces elements, ce n'est plus ce preset. La signature est le faux-handmade controle : propre et maitrise mais jamais geometriquement parfait."
+  },
+
+  "style": {
+    "genre": "whiteboard-sketch",
+    "genre_description": "Controlled hand-drawn whiteboard style for technical diagrams and educational infographics. Mimics marker on whiteboard or pen on paper -- but clean, deliberate, never actually rough. The imperfection is aesthetic, not sloppy. Closest digital references: Excalidraw, tldraw, Whimsical sketch mode. The visual language is argumentative: every element encodes a point in a demonstration, not just decoration.",
+    "positioning": "entre croquis de tableau blanc, schema product design, infographie explicative simplifiee et demonstration technique rendue chaleureuse",
+    "tone": ["pedagogique", "decontracte", "clair", "accessible", "technique", "credible", "chaleureux"]
+  },
+
+  "priority_hierarchy": [
+    { "rank": 1, "domain": "clarity", "rule": "La hierarchie visuelle et la lisibilite du message sont sacrees -- chaque element doit etre compris en 2 secondes" },
+    { "rank": 2, "domain": "semantics", "rule": "Chaque couleur porte un sens. Aucune couleur decorative. Le style est argumentatif, pas ornemental" },
+    { "rank": 3, "domain": "style", "rule": "Rendu conforme au prompt_core -- hand-drawn controle, jamais vector sharp ni corporate polish" },
+    { "rank": 4, "domain": "composition", "rule": "Respiration, whitespace genereux, flux de lecture naturel haut-bas ou gauche-droite" },
+    { "rank": 5, "domain": "exclusions", "rule": "Anti-derive corporate, anti-3D, anti-complexite decorative" }
+  ],
+
+  "rendering": {
+    "linework": [
+      "controlled hand-drawn lines with deliberate slight imperfection -- faux-handmade, never actually rough",
+      "rounded corners on ALL shapes -- no sharp angles, no pointed corners",
+      "variable line weight suggesting confident marker or felt-tip pen",
+      "contour dark gray-black (#4A4A4A to #5A5A5A), never pure black (#000)",
+      "slightly thinner contours for secondary elements, thicker for primary containers"
+    ],
+    "color": [
+      "warm off-white background (#F3F3F3 to #F6F6F6) with very subtle paper grain texture",
+      "soft muted gray fills for neutral containers and structural elements (#D8DCE0 to #E2E5E8)",
+      "semantic color accents: each color MUST carry functional meaning, never decorative",
+      "all accents desaturated and pastel -- never neon, never fully saturated",
+      "maximum 4-5 distinct colors per image including gray"
+    ],
+    "shading": [
+      "flat fills only -- absolutely no gradients inside shapes",
+      "no drop shadows, no glow effects, no volumetric light",
+      "very subtle paper texture on background providing the only depth",
+      "extremely faint depth suggestion through slight tone variation between foreground and background elements"
+    ],
+    "typography": [
+      "handwritten-style rounded casual typeface throughout -- Virgil, Caveat, Patrick Hand aesthetic",
+      "title: large, confident, centered, dark gray to black",
+      "section labels: medium size, colored according to semantic role (red/green)",
+      "annotations: small, dark gray, placed near arrows or connectors",
+      "metrics/KPI: medium, centered inside colored badge/capsule shapes",
+      "never condensed, never ultra-bold, never serif, never sans-serif corporate"
+    ]
+  },
+
+  "components": {
+    "description": "Vocabulaire de composants reutilisables. Chaque diagramme est assemble a partir de ce kit restreint -- pas d'elements ad hoc.",
+    "system_card": {
+      "description": "Rectangle arrondi representant un acteur, outil ou point d'entree",
+      "style": "rounded rectangle, light gray fill, dark contour, centered handwritten label",
+      "usage": "designate an agent, tool, system or entry point"
+    },
+    "data_container": {
+      "description": "Grand rectangle arrondi contenant des petits rectangles internes -- represente un ensemble/corpus/systeme",
+      "style": "large rounded rectangle with light gray fill, containing repeated small rounded rectangles in slightly darker gray",
+      "usage": "represent a database, codebase, file collection, or complex system"
+    },
+    "optimized_subset": {
+      "description": "Conteneur en pointilles legers avec un bloc colore interne -- represente une selection/filtrage",
+      "style": "dashed light gray border, inside: smaller solid container with green or accent fill, fewer internal blocks",
+      "usage": "represent a filtered set, minimal selection, optimized subset"
+    },
+    "metric_badge": {
+      "description": "Capsule/pilule coloree affichant un KPI ou une metrique cle",
+      "style": "rounded capsule shape, tinted fill matching semantic color, centered handwritten number and label",
+      "usage": "highlight a key metric, count, score, or measurement"
+    },
+    "conclusion_banner": {
+      "description": "Rectangle arrondi large en bas du diagramme -- le takeaway principal",
+      "style": "wide rounded rectangle, blue tinted fill, centered handwritten synthesis text",
+      "usage": "key insight, final takeaway, summary statement -- always at bottom of diagram"
+    },
+    "decision_node": {
+      "description": "Losange representant un noeud de decision, traitement ou structure intermediaire",
+      "style": "diamond/rhombus shape, purple or accent fill, centered label",
+      "usage": "decision point, processing node, intermediate mechanism"
+    },
+    "flow_arrow": {
+      "description": "Fleche verticale ou horizontale simple avec annotation optionnelle",
+      "style": "hand-drawn arrow with slight curve, dark gray, annotation text in smaller handwriting alongside",
+      "usage": "causal relationship, data flow, process direction"
+    },
+    "section_separator": {
+      "description": "Ligne pointillee verticale ou horizontale separant des sections logiques",
+      "style": "dashed light gray line, very subtle",
+      "usage": "separate comparison columns, logical sections"
+    }
+  },
+
+  "composition": {
+    "framing": [
+      "structured layout with clear visual hierarchy driven by size and position",
+      "title centered at top, conclusion banner anchored at bottom",
+      "comparison layouts use vertical separator (dashed line) between columns",
+      "vertical narrative flow within each section: agent -> process -> data -> metrics"
+    ],
+    "spatial_design": [
+      "extremely generous whitespace -- the void is pedagogical, it teaches by separating",
+      "elements float with breathing room, never packed or compressed",
+      "implicit grid alignment but with hand-drawn looseness",
+      "arrows and connectors always labeled when they represent a named operation"
+    ],
+    "camera": {
+      "default": "flat orthographic, straight-on view, no perspective",
+      "forbidden": "perspective, 3D, isometric, depth, parallax"
+    },
+    "detail_density": {
+      "focal": "clear labels, readable metrics, distinct shapes",
+      "supporting": "simpler unlabeled boxes, lighter fills",
+      "background": "empty off-white space -- the whiteboard itself"
+    },
+    "complexity": {
+      "simple": "single flow or concept with 3-5 elements -- maximum clarity",
+      "balanced": "comparison or multi-step with 6-12 elements -- sweet spot",
+      "rich": "full system diagram with 12-20 elements -- still breathable, never cluttered"
+    },
+    "templates": {
+      "comparison": {
+        "description": "Two columns side by side: problem (left) vs solution (right), separated by dashed vertical line, conclusion banner at bottom",
+        "structure": "title | [left column: label + flow] | separator | [right column: label + flow] | conclusion banner",
+        "color_mapping": "left column accents in red (problem), right column accents in green (solution), conclusion in blue"
+      },
+      "vertical_flow": {
+        "description": "Single column top-to-bottom process: input -> steps -> output",
+        "structure": "title | system_card (input) | arrow | process steps | arrow | result | metric_badge",
+        "color_mapping": "neutral gray for process, green for successful outputs, red for error branches"
+      },
+      "architecture": {
+        "description": "System architecture with interconnected components",
+        "structure": "title | system_cards connected by labeled arrows | data_containers for storage layers | metric_badges for KPIs",
+        "color_mapping": "gray for infrastructure, purple for decision/processing nodes, blue for highlights"
+      },
+      "step_by_step": {
+        "description": "Numbered sequential steps with annotations",
+        "structure": "title | numbered system_cards in vertical sequence | arrows between each | annotation alongside | conclusion",
+        "color_mapping": "green for completed steps, gray for future steps, blue for current/active step"
+      },
+      "matrix": {
+        "description": "2x2 or 3x2 grid comparing multiple dimensions",
+        "structure": "title | row/column headers | cells as system_cards with varying fills | summary row or banner",
+        "color_mapping": "semantic fill per cell based on status/quality"
+      }
+    }
+  },
+
+  "format": {
+    "aspect_ratio": "4:3",
+    "aspect_ratio_options": ["4:3", "16:9", "1:1", "3:2"]
+  },
+
+  "subject_logic": {
+    "default_type": "technical diagrams, process flows, comparisons, architecture schemas, concept explanations",
+    "allowed_forms": [
+      "before/after and problem/solution comparisons",
+      "flowcharts and process diagrams with causal arrows",
+      "architecture diagrams with labeled interconnected components",
+      "data flow visualizations with direction indicators",
+      "concept maps and mind maps with hierarchy",
+      "step-by-step explanations with numbered stages",
+      "KPI dashboards as simple metric badge collections",
+      "decision trees with diamond nodes"
+    ],
+    "forbidden_forms": [
+      "photorealistic scenes or objects",
+      "complex character illustrations",
+      "abstract art without informational purpose",
+      "3D visualizations or isometric art",
+      "decorative illustrations"
+    ],
+    "metaphor_vocabulary": {
+      "files / code units": "repeated small rounded rectangles inside a container",
+      "database / corpus": "large data_container with internal blocks",
+      "system / tool / agent": "system_card with centered label",
+      "decision / processing": "diamond decision_node",
+      "filtered selection": "optimized_subset (dashed border + colored interior)",
+      "metric / KPI": "metric_badge capsule with number",
+      "conclusion / insight": "conclusion_banner at bottom",
+      "causal link": "flow_arrow with annotation"
+    }
+  },
+
+  "environment": {
+    "types": [
+      "warm off-white surface with subtle paper or whiteboard grain",
+      "clean light background suggesting a physical writing surface"
+    ],
+    "density": "low",
+    "rules": [
+      "background always warm off-white, never pure white, never dark",
+      "texture very subtle -- paper grain at 5-10% opacity, never distracting",
+      "no decorative elements outside the diagram content",
+      "the background IS the whiteboard -- it provides context through absence"
+    ]
+  },
+
+  "color_policy": {
+    "dominant": "warm off-white background (#F3F3F3 to #F6F6F6), soft gray structural elements (#D8DCE0 to #E2E5E8)",
+    "semantic_accents": {
+      "problem": { "role": "inefficiency, cost, warning, error", "hex_range": "#D96B6B to #E06A6A", "description": "soft coral red, desaturated" },
+      "solution": { "role": "optimization, benefit, success, positive", "hex_range": "#67B97A to #71C084", "description": "fresh mint green, slightly pastel" },
+      "conclusion": { "role": "synthesis, takeaway, key insight, highlight", "hex_range": "#6DAEE6 to #79B7EA", "description": "soft sky blue, sustained but gentle" },
+      "mechanism": { "role": "structure, decision, intermediate processing, special", "hex_range": "#9A79E8 to #A184EE", "description": "moderate lavender purple" }
+    },
+    "neutral_tones": {
+      "contour": "#4A4A4A to #5A5A5A -- dark gray, never pure black",
+      "fill": "#D8DCE0 to #E2E5E8 -- soft cool gray for containers",
+      "background": "#F3F3F3 to #F6F6F6 -- warm off-white"
+    },
+    "rules": [
+      "every color instance must carry semantic meaning -- no decorative color",
+      "gray is always neutral/structural, never carries positive or negative meaning",
+      "only one accent color per logical section -- no rainbow within a single block",
+      "accents always desaturated and pastel, never neon or fully saturated"
+    ],
+    "forbidden": ["neon", "saturated primary", "dark backgrounds", "gradients", "pure black (#000)", "pure white (#FFF)"]
+  },
+
+  "mood": {
+    "allowed": [
+      "pedagogical clarity",
+      "informal approachability",
+      "technical credibility",
+      "warm rationality",
+      "engineer-friendly directness",
+      "calm demonstration"
+    ],
+    "forbidden": [
+      "dramatic intensity",
+      "dark atmosphere",
+      "corporate rigidity",
+      "artistic abstraction",
+      "chaotic complexity",
+      "infantile playfulness"
+    ],
+    "brand_voice": "intelligent but accessible, technical but human, expert without arrogance, pedagogical without infantilization, innovative without aggressive futurism"
+  },
+
+  "avoid": [
+    "photorealism, photographic elements, realistic icons",
+    "3D rendering, isometric, perspective depth, glassmorphism, neumorphism",
+    "drop shadows, glow effects, gradients, volumetric light",
+    "sharp vector precision -- too clean kills the sketch feel",
+    "dark backgrounds, neon/saturated/fluorescent colors",
+    "anime, cartoon, comic book, concept art",
+    "corporate polish (Canva, PowerPoint, material design)",
+    "pure black (#000) or pure white (#FFF) -- always off-tones"
+  ],
+
+  "prompt_core": "Hand-drawn whiteboard sketch technical diagram, controlled marker-pen aesthetic with deliberate slight imperfection, warm off-white textured paper background, soft rounded shapes with dark gray contours, muted gray containers, semantic pastel color accents (coral red for problems, mint green for solutions, sky blue for conclusions, lavender for mechanisms), handwritten casual typography, generous pedagogical whitespace, clean argumentative visual hierarchy, 4:3.",
+
+  "compressed_inference_prompt": "Whiteboard sketch diagram, hand-drawn marker style, off-white paper, rounded gray containers, semantic color accents red green blue purple, handwritten labels, generous whitespace, 4:3.",
+
+  "negative_short": "photorealism, 3D rendering, corporate infographic, dark background, neon colors, sharp vector, polished digital, gradient, drop shadow, anime",
+
+  "negative_usage": "negative_short (10 termes) pour Midjourney et moteurs avec limite de tokens. negative_core.flat_string (15 termes) pour SDXL, Flux et moteurs sans contrainte de longueur.",
+
+  "negative_core": {
+    "rendering": ["photorealism", "3D rendering", "polished digital art", "sharp vector precision", "glossy surfaces"],
+    "style_drift": ["corporate infographic", "PowerPoint slide", "Canva template", "anime", "cartoon", "concept art", "material design"],
+    "composition": ["cluttered layout", "decorative borders", "background patterns", "symmetric mechanical grid"],
+    "color": ["neon colors", "dark background", "heavy gradients", "saturated palette", "pure black", "pure white"],
+    "content": ["complex illustrations", "photographic elements", "realistic icons", "3D objects"],
+    "lighting": ["drop shadows", "glow effects", "volumetric light", "dramatic lighting"],
+    "flat_string": "photorealism, 3D rendering, corporate infographic, PowerPoint, anime, cartoon, neon colors, dark background, heavy gradients, cluttered layout, sharp vector, polished digital, drop shadow, glow effect, material design"
+  },
+
+  "visual_signature": [
+    "controlled hand-drawn imperfection -- faux-handmade, never sloppy",
+    "warm off-white paper texture background",
+    "semantic color coding where every hue carries functional meaning",
+    "handwritten casual rounded typography (Virgil/Caveat family)",
+    "extremely generous pedagogical whitespace"
+  ],
+
+  "signature": {
+    "seed_phrase": "Technical whiteboard diagram drawn with confident controlled marker strokes on warm textured paper, where imperfection is deliberate aesthetic not sloppiness, color is never decorative but always argumentative, and whitespace teaches as much as the shapes it separates.",
+    "manifesto": "A warm whiteboard where complex systems become clear through simple shapes, semantic colors, and breathing room. Every diagram is an argument rendered in marker pen.",
+    "marks": {
+      "geometry": "rounded rectangles and soft organic shapes assembled from a reusable component kit, never sharp corners, connectors as hand-drawn arrows with optional annotations",
+      "light": "flat even ambient lighting with no directional source, paper grain texture provides the only depth, no shadows no glow",
+      "composition": "structured comparison or vertical flow layout, title at top and conclusion banner at bottom, generous breathing room between every element, implicit grid with hand-drawn looseness"
+    },
+    "tyrannical_rule": "Every color in the image must carry semantic meaning. Gray is neutral/container, red is problem/cost, green is solution/benefit, blue is conclusion/insight, purple is mechanism/structure. No decorative color allowed. If an element has color, it makes a point."
+  },
+
+  "series_rules": {
+    "invariants": [
+      "warm off-white background with paper grain",
+      "hand-drawn rounded shapes with controlled imperfection",
+      "semantic color coding (red/green/blue/purple/gray)",
+      "handwritten typography throughout",
+      "generous whitespace and breathing room",
+      "conclusion banner at bottom when applicable"
+    ],
+    "variables": [
+      "composition template (comparison, flow, architecture, matrix)",
+      "specific accent colors used (not all 4 are required per image)",
+      "complexity level (simple/balanced/rich)",
+      "aspect ratio",
+      "specific component mix"
+    ]
+  },
+
+  "style_flexibility": {
+    "strict_mode": {
+      "when": "serie visuelle coherente, branding tech blog, documentation produit",
+      "rules": "prompt_core integral, tous les composants du kit, palette hex precise, conclusion banner obligatoire"
+    },
+    "relaxed_mode": {
+      "when": "illustration editoriale ponctuelle, post LinkedIn, schema one-shot",
+      "allowed": ["compressed_inference_prompt au lieu de prompt_core", "composants ad hoc hors du kit", "accent colors plus satures si le sujet l'exige", "pas de conclusion banner si le diagramme est auto-explicatif"],
+      "locked": ["warm off-white background", "hand-drawn aesthetic", "semantic color usage", "rounded shapes", "generous whitespace"]
+    }
+  },
+
+  "prompt_builder": {
+    "templates": {
+      "comparison": "[problem] vs [solution] comparison diagram, two columns separated by dashed line, [prompt_core], left column with red problem accents, right column with green solution accents, blue conclusion banner at bottom summarizing the insight",
+      "vertical_flow": "[process] vertical flow diagram, [prompt_core], system cards connected by annotated arrows flowing top to bottom, metric badges highlighting key measurements, neutral gray process with green success indicators",
+      "architecture": "[system] architecture diagram, [prompt_core], interconnected system cards with labeled flow arrows, data containers for storage, purple decision nodes, blue highlight on focal component",
+      "step_by_step": "[process] step-by-step explanation, [prompt_core], numbered stages in vertical sequence with annotated arrows, green progression indicators, blue conclusion at bottom"
+    },
+    "order": ["1. subject/concept", "2. composition template", "3. prompt_core", "4. semantic color placement", "5. specific components used", "6. conclusion/takeaway", "7. exclusions"]
+  },
+
+  "example_prompts": {
+    "token_optimization_comparison": "Token optimization comparison diagram, two columns on warm off-white paper: left column 'Without Graph' showing Claude Code system card with arrow labeled 'reads everything' to large gray container filled with many small file blocks labeled 'Entire Codebase' and red metric badge '13,205 tokens' below, right column 'With Graph' showing Claude Code card with arrow labeled 'queries graph' to a small purple network of five connected nodes with thin lines between them labeled 'Graph' then arrow labeled 'blast radius' to small green container with only five blocks inside labeled 'Minimal Review Set' and green metric badge '1,928 tokens' below, columns separated by dashed gray vertical line, wide blue conclusion banner anchored at bottom reading '6.8x fewer tokens + higher review quality', hand-drawn whiteboard sketch style with controlled marker-pen imperfection, rounded shapes, handwritten casual typography, generous whitespace, 4:3.",
+    "ci_cd_pipeline_flow": "CI/CD deployment pipeline vertical flow diagram on warm off-white paper, system cards for 'Developer', 'Git Push', 'CI Server' connected by annotated hand-drawn arrows, purple diamond decision node 'Tests Pass?' with green arrow to 'Deploy' and red arrow to 'Fix', green metric badge '99.2% uptime' at bottom, blue conclusion banner 'Automated deploys reduce errors by 4x', hand-drawn whiteboard sketch style, rounded shapes, semantic color accents, handwritten labels, generous whitespace, 4:3.",
+    "microservices_architecture": "Microservices architecture diagram on warm off-white paper, five gray system cards (Auth, API Gateway, Users, Orders, Payments) connected by labeled hand-drawn arrows showing request flow, large dashed data container 'Database Cluster' at bottom with three small internal blocks, purple diamond 'Load Balancer' at top distributing traffic, green metric badges for response times, hand-drawn whiteboard sketch style, controlled imperfection, semantic colors, generous whitespace, 16:9.",
+    "before_after_refactoring": "Code refactoring comparison diagram on warm off-white paper, left column 'Before' with tangled arrows between six gray system cards showing spaghetti dependencies and red metric badge 'Coupling: 87%', right column 'After' with clean layered architecture three cards with clear arrows and green metric badge 'Coupling: 23%', dashed vertical separator, blue conclusion banner 'Clean architecture reduces bug rate by 60%', hand-drawn whiteboard sketch style, rounded shapes, handwritten typography, 4:3."
+  },
+
+  "model_adaptation": {
+    "nano_banana_2": {
+      "strategy": "5-bloc, insister sur sketch et hand-drawn, formulations positives pour exclure le corporate polish",
+      "risks": "texte: eleve (handwritten text lisible tres difficile a obtenir) | contour: modere (imperfection controlee difficile a doser) | layout: modere (structure spatiale peut etre ignoree)",
+      "tip": "prompt_core en bloc 3. Ne PAS demander de texte lisible dans l'image -- utiliser des blocs placeholder avec des formes suggerant du texte. Insister sur 'warm off-white background' pour eviter le fond blanc pur. Decrire les formes plutot que les labels."
+    },
+    "qwen_image_2": {
+      "strategy": "7 regles, sujet en tete, negative prompt explicite, meilleur support texte",
+      "risks": "texte: modere (meilleur rendu que Nano) | layout: faible (bon respect de la structure) | style: modere (peut tirer vers le vector propre)",
+      "tip": "flat_string en champ negatif. Specifier 'hand-drawn sketch style NOT vector NOT digital' pour eviter la derive vers le propre. Ajouter 'marker pen aesthetic with slight imperfection' pour ancrer le faux-handmade."
+    },
+    "sdxl_flux": {
+      "strategy": "prompt lineaire dense, negative prompt, bon rendu de textures papier",
+      "risks": "texte: eleve | style: modere (peut aller vers l'illustration polie)",
+      "tip": "compressed_inference_prompt + composition. (hand-drawn:1.2), (whiteboard sketch:1.1), (polished digital:-0.5). Le grain papier est un point fort de SDXL."
+    },
+    "midjourney": {
+      "strategy": "prompt compact, --no flag, attention a la derive illustrative",
+      "risks": "style: eleve (MJ a tendance a polir et embellir, incompatible avec le sketch) | texte: eleve",
+      "tip": "compressed_inference_prompt + --ar 4:3 --s 250 --c 30. Stylize BAS (250) pour eviter l'embellissement. Ajouter 'rough sketch, marker pen, whiteboard' dans le prompt et 'polished, digital art, illustration' dans --no."
+    }
+  },
+
+  "quality_checks": [
+    "controlled hand-drawn imperfection present in linework (faux-handmade, not sloppy, not vector-clean)",
+    "warm off-white background with paper grain visible",
+    "all shapes rounded, contours dark gray (see quick_spec.colors)",
+    "every colored element carries semantic meaning (see quick_spec.golden_rule)",
+    "maximum 4-5 colors total, generous whitespace between ALL sections",
+    "clear visual hierarchy: title > labels > components > annotations (see quick_spec.typography)",
+    "conclusion or takeaway visually distinct at bottom",
+    "diagram tells a story with clear narrative direction"
+  ]
+}

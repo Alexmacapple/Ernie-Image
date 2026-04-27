@@ -42,9 +42,11 @@ PRD-114 : contrôle de représentation visuelle.
 
 Quand Alex demande un prompt image pour Ernie Studio, appliquer le chaînage local avant de répondre :
 
-1. Lire `/Users/alex/Claude/.claude/skills/prompt-image/SKILL.md` et structurer l'idée comme `/prompt-image --gen ernie`.
-2. Lire `/Users/alex/Claude/.claude/skills/ernie-image/SKILL.md` puis, si nécessaire, `/Users/alex/Claude/.claude/skills/ernie-image/REFERENCE.md` pour adapter le prompt à ERNIE Studio / MLX.
-3. Utiliser `/Users/alex/Claude/.claude/skills/ernie-studio-presets/SKILL.md` seulement si la demande porte sur un preset UI, un audit de preset ou une synchronisation front.
+1. Lire `skills/prompt-image/SKILL.md` et structurer l'idée comme `prompt-image --gen ernie`.
+2. Lire `skills/ernie-image/SKILL.md` puis, si nécessaire, `skills/ernie-image/REFERENCE.md` pour adapter le prompt à ERNIE Studio / MLX.
+3. Utiliser `skills/ernie-studio-presets/SKILL.md` seulement si la demande porte sur un preset UI, un audit de preset ou une synchronisation front.
+
+Pipeline complet : voir `skills/pipeline-prompt-ernie-long.md` (ou `skills/pipeline-prompt-ernie-court.md` pour la version courte).
 
 Sortie attendue par défaut :
 

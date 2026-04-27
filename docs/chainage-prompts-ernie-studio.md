@@ -2,15 +2,22 @@
 
 ## Objectif
 
-Quand une demande porte sur un prompt image destiné à Ernie Studio, ne pas répondre avec un prompt générique. Appliquer d'abord les skills locaux de prompting, puis produire une version adaptée au backend MLX.
+Quand une demande porte sur un prompt image destiné à Ernie Studio, ne pas répondre avec un prompt générique. Appliquer les skills de prompting dans l'ordre, puis produire une version adaptée au backend MLX.
+
+## Pipeline complet
+
+Les deux versions du pipeline sont dans `skills/` :
+
+- Version longue (objectifs, consignes, sorties attendues) : `skills/pipeline-prompt-ernie-long.md`
+- Version courte (bloc copiable) : `skills/pipeline-prompt-ernie-court.md`
 
 ## Chaînage agent
 
-1. Lire `/Users/alex/Claude/.claude/skills/prompt-image/SKILL.md`.
-2. Traiter la demande comme `/prompt-image --gen ernie`.
-3. Lire `/Users/alex/Claude/.claude/skills/ernie-image/SKILL.md`.
-4. Lire `/Users/alex/Claude/.claude/skills/ernie-image/REFERENCE.md` si la demande implique un prompt complet, un ancrage positif, un biais à réduire, plusieurs variantes ou un audit.
-5. Lire `/Users/alex/Claude/.claude/skills/ernie-studio-presets/SKILL.md` seulement si la demande concerne un preset UI, un libellé de bouton, un fragment `Visual anchor:` déjà présent dans le front ou une synchronisation avec `frontend/js/representation-controls.js`.
+1. Lire `skills/prompt-image/SKILL.md`.
+2. Traiter la demande comme `prompt-image --gen ernie`.
+3. Lire `skills/ernie-image/SKILL.md`.
+4. Lire `skills/ernie-image/REFERENCE.md` si la demande implique un prompt complet, un ancrage positif, un biais à réduire, plusieurs variantes ou un audit.
+5. Lire `skills/ernie-studio-presets/SKILL.md` seulement si la demande concerne un preset UI, un libellé de bouton, un fragment `Visual anchor:` déjà présent dans le front ou une synchronisation avec `frontend/js/representation-controls.js`.
 
 ## Format de sortie
 
@@ -50,23 +57,7 @@ Visual anchor: Paris Haussmann apartment, Latin alphabet books and sheet music, 
 
 ## Formulation utilisateur recommandée
 
-Version courte :
-
-```text
-Fais un prompt image pour ERNIE Studio en appliquant les skills prompt-image puis ernie-image. Lis les SKILL.md concernés avant de répondre. Sujet : femme de 50 ans qui joue du ukulélé dans un appartement parisien.
-```
-
-Version complète :
-
-```text
-Utilise les skills locaux dans cet ordre :
-1. /Users/alex/Claude/.claude/skills/prompt-image/SKILL.md pour structurer l'idée en prompt image, avec --gen ernie.
-2. /Users/alex/Claude/.claude/skills/ernie-image/SKILL.md et sa REFERENCE.md pour adapter le prompt à ERNIE Studio / MLX.
-3. /Users/alex/Claude/.claude/skills/ernie-studio-presets/SKILL.md seulement pour vérifier si un preset Ernie Studio est pertinent ; sinon indique N/A.
-
-Idée image : femme de 50 ans jouant du ukulélé dans un appartement parisien.
-Sortie attendue : prompt final ERNIE en blocs [Type], [Sujet], [Composition], [Lumière], [Texture], [Texte], avec Visual anchor, sans negative_prompt.
-```
+Copier le contenu de `skills/pipeline-prompt-ernie-court.md` ou `skills/pipeline-prompt-ernie-long.md` et remplacer `[IDÉE IMAGE]` par le concept voulu.
 
 ## Exemple
 

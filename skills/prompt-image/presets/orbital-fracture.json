@@ -1,0 +1,237 @@
+{
+  "schema_version": "1.0",
+  "id": "orbital-fracture-v4.4",
+  "project": "Preset signature -- geometrie orbitale fracturee, luminescence chirurgicale, void hostile",
+  "version": "4.4",
+  "language_convention": "FR pour les meta-descriptions et notes d'usage, EN pour les tokens injectables dans les prompts IA",
+
+  "style_weight": {
+    "critical": ["dark hostile void background", "incomplete orbital geometry", "fractured arcs and rings", "ultra-thin surgical luminescence", "single accent color", "no photorealistic"],
+    "important": ["monochrome slate-blue charcoal base", "accent confined to fracture points", "one strike point burning sharper", "generous negative space as hostile void", "scientific poster aesthetic"],
+    "flexible": ["accent color choice (gold/amber/teal/cyan)", "complexity level (sparse/balanced/dense)", "lighting preset", "composition template", "strict vs relaxed mode"],
+    "usage": "En cas de conflit entre regles, la priorite descend de critical vers flexible. Le critical definit la signature orbital-fracture -- sans ces elements, ce n'est plus ce preset."
+  },
+
+  "shot_type": {
+    "default": "medium-wide",
+    "options": {
+      "wide": "full system visible, maximum void, used for orbital_system and modular_grid compositions",
+      "medium-wide": "primary structure with surrounding void, poster balance, used for central_halo and diagonal_flow",
+      "medium": "focused on structure detail, less void, used for dense complexity and figure compositions",
+      "close": "tight on fracture detail, maximum structural precision, used for specimen and detail showcase"
+    },
+    "usage": "Injecter le shot_type apres le sujet. Le medium-wide est le cadrage naturel du poster scientifique."
+  },
+
+  "style": {
+    "genre": "scientific-abstract-visualization",
+    "genre_description": "Premium abstract scientific visualization and tech poster illustration. Focuses on geometric clarity, data aesthetics and academic elegance -- not cinematic concept art.",
+    "positioning": "entre visualisation de donnees, poster scientifique premium et illustration technologique minimaliste",
+    "tone": ["precis", "elegant", "moderne", "minimaliste", "scientifique", "maitrise"]
+  },
+
+  "priority_hierarchy": [
+    { "rank": 1, "domain": "subject", "rule": "Sujet focal lisible et identifiable avant tout" },
+    { "rank": 2, "domain": "style", "rule": "Rendu conforme au prompt_core" },
+    { "rank": 3, "domain": "composition", "rule": "Cadrage, espace negatif et hierarchie visuelle" },
+    { "rank": 4, "domain": "exclusions", "rule": "Anti-derive, ne doit pas ecraser sujet ou style" }
+  ],
+
+  "signature": {
+    "seed_phrase": "Precise orbital geometry fractured into incomplete rings and interrupted arcs, revealed only by ultra-thin surgical luminescence, with accent light confined to points of rupture, transfer, and structural tension.",
+    "manifesto": "A dark scientific void containing incomplete orbital intelligence, where geometry never fully closes and light behaves like a scalpel, exposing only the breaks.",
+    "marks": {
+      "geometry": "incomplete orbital rings, fractured arcs, interrupted structures -- geometry never fully closes",
+      "light": "ultra-thin surgical luminescence, accent only at fracture points, joints, and transfer lines -- never diffused, never decorative",
+      "composition": "slight asymmetry (60/40), focal off-center, vast structured silence on one side",
+      "strike": "one single resonance point per image where accent intensity peaks sharply -- the plectrum moment -- brighter, harder-edged, higher contrast than all other fracture points, located at the point of maximum structural tension"
+    },
+    "tyrannical_rule": "Every image must contain at least one incomplete arc or fractured ring. Light must never be wider than a wire EXCEPT at the single strike point where it burns sharper and harder -- still razor-controlled, never blooming into a soft halo."
+  },
+
+  "prompt_core": "Minimalist premium scientific poster, incomplete orbital geometry fractured into precise segments suspended in a dark hostile void, ultra-thin surgical wireframe rendering, monochrome slate-blue and charcoal palette, single restrained accent bleeding through fracture lines with one strike point burning sharper at maximum tension, clean gradients, compressed focal against vast aggressive negative space, polished academic-tech aesthetic, 16:9 landscape.",
+
+  "compressed_inference_prompt": "Dark hostile void, fractured orbital wireframe, slate-blue monochrome, surgical accent at fractures with one sharper strike point, focal compressed against void, vector precision, scientific poster, 16:9.",
+
+  "rendering": {
+    "linework": ["precise geometric vector contours", "luminous wireframe structures with intentional breaks", "crisp edges on dark background", "incomplete arcs and fractured orbital rings as recurring motif"],
+    "color": ["monochrome slate-blue and charcoal base", "single restrained accent (gold, amber, teal or cyan)", "luminous elements on near-black background"],
+    "shading": ["ultra-thin surgical glow confined to fracture lines and joints", "smooth gradients for depth only in background", "accent light never wider than a wire EXCEPT at the single strike point", "strike point: one localized high-contrast accent burst at maximum structural tension"],
+    "materials": ["glass-like translucent surfaces", "thin emissive lines", "matte dark substrate", "subtle metallic accents"],
+    "tension_mechanics": [
+      "rupture: geometry breaking along visible stress lines",
+      "transfer: energy pulse moving through a junction node",
+      "emergence: new structure forming from a fracture point",
+      "collapse: partial implosion of arc segments toward core",
+      "resonance: repeating oscillation pattern across parallel arcs"
+    ]
+  },
+
+  "composition": {
+    "framing": ["landscape poster layout, strong focal structure", "generous negative space as hostile void not passive background", "balanced asymmetry with tighter focal compression against the void"],
+    "spatial_design": ["subject isolated in dark void with faint grid hints", "radial, orbital, axial or modular organization"],
+    "camera": {
+      "default": "orthographic or slight perspective, medium-wide, stable non-dynamic",
+      "height": "eye-level or slightly elevated (15-30 degrees)",
+      "lens_equivalent": "50-85mm equivalent for medium shots, 24-35mm for wide establishing",
+      "isometric": "allowed for modular_grid and data_flow compositions",
+      "forbidden": "fisheye, extreme dutch angle, handheld shake"
+    },
+    "detail_density": {
+      "focal": "high precision",
+      "midground": "moderate, supporting geometry only",
+      "background": "minimal, faint grid or empty"
+    },
+    "complexity": {
+      "sparse": "single isolated form, maximum void, extreme restraint",
+      "balanced": "primary form + secondary geometry, 2-3 layers -- poster sweet spot",
+      "dense": "rich focal geometry, high detail at center only, clean background"
+    },
+    "templates": {
+      "central_halo": "single focal structure centered, radial glow outward, vast void",
+      "diagonal_flow": "primary on diagonal (lower-left to upper-right), streams following axis, void in opposing corners",
+      "orbital_system": "central nucleus with concentric rings, satellite nodes at varying distances",
+      "modular_grid": "2x2 or 3x2 modules, consistent spacing, accent color linking them",
+      "asymmetric_anchor": "dominant structure 60% frame on one side, void on other for title/secondary"
+    }
+  },
+
+  "format": {
+    "aspect_ratio": "16:9",
+    "aspect_ratio_options": ["16:9", "1:1", "4:5", "9:16"]
+  },
+
+  "subject_logic": {
+    "default_type": "abstract geometric systems and scientific forms",
+    "allowed_forms": ["wireframe surfaces and topological meshes", "parametric curves and modular networks", "orbital arcs and diagrammatic volumes", "layered translucent planes and data flow streams"],
+    "forbidden_forms": ["cartoon mascots", "consumer UI screens", "literal office-tech scenes"],
+    "concept_to_form": {
+      "data / analytics": "data_flow streams, luminous particle rivers",
+      "AI / machine learning": "mesh network, interconnected nodes, orbital arcs",
+      "network / infrastructure": "modular node graph, hub-and-spoke",
+      "algorithm / process": "parametric curves, layered translucent planes",
+      "security / cryptography": "topological mesh, locked orbital rings, geometric lattice",
+      "API / integration": "data_flow streams between node clusters, bridge arcs",
+      "database / storage": "stacked translucent planes, volumetric cube wireframe",
+      "human-AI interaction": "figure template + data_flow streams to mesh node"
+    },
+    "human_figures": {
+      "allowed": true,
+      "treatment": "silhouette, wireframe or minimal geometric -- never photorealistic, always subordinate to the system",
+      "max_characters": 1
+    }
+  },
+
+  "environment": {
+    "types": ["abstract mathematical void", "dark computational interior", "pure black with faint structural grid"],
+    "rules": ["background supports subject without competing", "only subtle grids or coordinate cues", "preserve emptiness"],
+    "effects": ["light haze only for depth reinforcement", "sparse particle traces near focal structures"]
+  },
+
+  "color_policy": {
+    "dominant": "slate blue, charcoal gray, pure black",
+    "accents": ["gold / amber (default warm)", "teal / cyan (default cool)", "white luminescence (highlights only)"],
+    "rules": ["one accent maximum per image", "accent reserved for focal guidance only", "highlights sparse"],
+    "accent_fallback": [
+      "1. Restrict: 'accent color only on [focal element]'",
+      "2. Reduce: 'faint accent' or 'subtle accent trace'",
+      "3. Replace: white luminescence only if accent stays uncontrollable"
+    ]
+  },
+
+  "lighting_system": {
+    "fracture_bleed": "ultra-thin accent light bleeding exclusively through fracture lines and arc breaks -- signature default",
+    "central_glow": "contained volumetric glow from focal center, soft falloff, accent hue -- for single dense subject",
+    "ambient_chamber": "uniform low-level ambient, no directional source, pure contrast -- for maximum void"
+  },
+
+  "negative_short": "photorealism, cartoon, anime, neon overload, cluttered background, rainbow palette, film grain, lens flare, warm dominant palette, stock photo",
+
+  "negative_usage": "negative_short (10 termes) pour Midjourney et moteurs avec limite de tokens. negative_core.flat_string (16 termes) pour SDXL, Flux et moteurs sans contrainte de longueur.",
+
+  "negative_core": {
+    "rendering": ["photorealism", "painterly brushstrokes", "rough sketch lines", "noisy texture", "film grain"],
+    "style_drift": ["cartoon", "anime", "cyberpunk excess", "vintage aesthetic", "stock photo", "overdecorated sci-fi"],
+    "composition": ["cluttered background", "messy composition", "chaotic layout"],
+    "color": ["rainbow palette", "neon overload", "warm dominant palette", "pastel colors"],
+    "content": ["readable text blocks", "equations", "cluttered UI", "photorealistic human figures"],
+    "lighting": ["harsh spotlighting", "dramatic cinema contrast", "lens flare"],
+    "flat_string": "photorealism, cartoon, anime, cyberpunk excess, cluttered background, rainbow palette, neon overload, readable text, equations, film grain, noisy texture, stock photo, harsh spotlight, lens flare, warm dominant palette, rough sketch lines"
+  },
+
+  "series_rules": {
+    "invariants": ["dark background + monochrome base + single accent", "geometric precision + generous negative space", "scientific poster readability"],
+    "variables": ["accent color", "subject geometry family", "composition template", "complexity level", "lighting preset"],
+    "seed_strategy": {
+      "consistency": "pour une serie coherente, fixer le style seed et varier uniquement le sujet seed",
+      "exploration": "varier les deux seeds pour maximiser la diversite dans le style lock",
+      "batch_rule": "generer 4 variations par concept, selectionner la plus conforme aux quality_checks"
+    }
+  },
+
+  "style_flexibility": {
+    "strict_mode": {
+      "when": "serie visuelle, branding, poster scientifique",
+      "rules": "prompt_core integral, un seul accent, restreint au focal"
+    },
+    "relaxed_mode": {
+      "when": "illustration editoriale, storytelling tech, concept art minimaliste",
+      "allowed": ["compressed_inference_prompt au lieu de prompt_core", "second accent tres faible pour depth cue", "figure humaine avec plus de detail anatomique (stylise)", "formes architecturales suggerees en fond"],
+      "locked": ["dark background", "monochrome base", "geometric rendering", "negative space >= 30%"]
+    }
+  },
+
+  "prompt_builder": {
+    "templates": {
+      "mesh": "[subject], abstract wireframe mesh, [prompt_core], [accent] on focal geometry, [composition]",
+      "orbital": "[subject], concentric rings and arcs, [prompt_core], [accent] along orbital paths, [composition]",
+      "data_flow": "[concept], luminous particle streams, [prompt_core], [accent] on data streams, [composition]",
+      "topology": "[surface], parametric surface with grid lines, [prompt_core], [accent] on highlights, [composition]",
+      "poster": "[subject], scientific poster layout, [prompt_core], title space upper third, [accent] on focal element",
+      "figure": "[silhouette/wireframe figure], integrated into geometric system, [prompt_core], [accent] on figure edges and data links, [composition]"
+    },
+    "order": ["1. subject", "2. prompt_core", "3. accent placement", "4. composition", "5. background", "6. exclusions"]
+  },
+
+  "example_prompts": {
+    "neural_network_mesh": "Luminous neural network as interconnected wireframe mesh with fractured synaptic arcs that break before reaching distant nodes, clusters of glowing nodes linked by thin emissive lines, central hub node burning sharper amber at the primary convergence point (strike), minimalist premium scientific poster, incomplete orbital geometry fractured into precise segments in a dark hostile void, ultra-thin surgical wireframe rendering, monochrome slate-blue and charcoal, single restrained amber accent bleeding through fractures, focal compressed against vast aggressive void, orthographic medium-wide, 16:9 landscape.",
+    "quantum_orbital": "Concentric incomplete orbital rings fractured at irregular intervals around a dense geometric core, electron shells rendered as translucent arcs with deliberate gaps, one fracture point on the innermost ring burning sharper teal where energy transfer peaks (strike), minimalist premium scientific poster, incomplete orbital geometry in dark hostile void, ultra-thin surgical wireframe, monochrome slate-blue and charcoal, single restrained teal accent at fracture points, focal compressed against void, 16:9 landscape.",
+    "data_infrastructure": "Flowing luminous data particle streams connecting modular server node clusters through fractured bridge arcs that break at the central gateway junction, gateway fracture point burning sharper cyan where all streams converge (strike), minimalist premium scientific poster, incomplete geometry in dark hostile void, ultra-thin surgical wireframe, monochrome slate-blue and charcoal, single restrained cyan accent at fractures, diagonal flow lower-left to upper-right compressed against void, 16:9 landscape.",
+    "developer_silhouette": "Minimal geometric silhouette of a developer facing a luminous wireframe screen rendered as incomplete orbital arc with fractured edges, emissive data streams flowing from screen fractures into hostile surrounding void, screen fracture point burning sharper amber where data exits (strike), figure integrated as dark geometric form subordinate to the system, minimalist premium scientific poster, incomplete geometry in dark hostile void, ultra-thin surgical wireframe, monochrome slate-blue and charcoal, single restrained amber accent at fractures, figure on left 40% with vast aggressive void right, 16:9 landscape."
+  },
+
+  "model_adaptation": {
+    "nano_banana_2": {
+      "strategy": "5-bloc, formulations positives, negative_core converti en positif inline",
+      "risks": "accent: faible | figure: modere (wireframe OK)",
+      "tip": "prompt_core en bloc 3. compressed_inference_prompt si > 300 tokens"
+    },
+    "qwen_image_2": {
+      "strategy": "7 regles, sujet en tete, negative prompt explicite",
+      "risks": "accent: modere (diffusion possible) | figure: faible",
+      "tip": "flat_string en champ negatif. Ajouter 'accent only on [element]'"
+    },
+    "sdxl_flux": {
+      "strategy": "prompt lineaire dense, negative prompt, token weighting supporte",
+      "risks": "accent: eleve (saturation sur fond sombre) | figure: faible",
+      "tip": "compressed_inference_prompt + sujet < 77 tokens CLIP. Poids accent (0.7-0.8). Weighting: (wireframe geometry:1.2), (single [color] accent:0.8)"
+    },
+    "midjourney": {
+      "strategy": "prompt compact, --no flag, style via suffixes",
+      "risks": "accent: modere | figure: faible",
+      "tip": "compressed_inference_prompt + --ar 16:9 --s 750 --c 15. Convertir exclusions en positif"
+    }
+  },
+
+  "quality_checks": [
+    "subject readable against dark background",
+    "at least one incomplete arc or fractured ring present (signature)",
+    "accent confined to fracture points EXCEPT one strike point burning brighter (plectrum)",
+    "strike point located at maximum structural tension, not random",
+    "single accent color, no chromatic competition",
+    "negative space reads as hostile void not passive emptiness",
+    "at least one tension mechanic active (rupture, transfer, emergence, collapse or resonance)",
+    "no cyberpunk or sci-fi drift",
+    "clean edges on all geometric forms"
+  ]
+}

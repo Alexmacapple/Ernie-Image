@@ -1,0 +1,349 @@
+{
+  "schema_version": "1.0",
+  "id": "ligne-claire-v1.0",
+  "project": "Preset generique -- illustrations ligne claire franco-belge",
+  "version": "1.0",
+  "language_convention": "FR pour les meta-descriptions et notes d'usage, EN pour les tokens injectables dans les prompts IA",
+
+  "style_weight": {
+    "critical": ["ligne claire", "thick black outlines", "flat colors", "no photorealistic", "no 3D render", "no anime"],
+    "important": ["minimal shading", "slightly exaggerated expressions", "warm off-white background", "dot halftone pattern", "no speech bubbles", "no text"],
+    "flexible": ["outline weight variation", "halftone density", "level of expression exaggeration", "background detail level"],
+    "usage": "En cas de conflit entre regles, la priorite descend de critical vers flexible. Un pipeline peut sacrifier les flexible mais jamais les critical."
+  },
+
+  "shot_type": {
+    "default": "medium",
+    "options": {
+      "wide": "full scene visible, environment context, multiple characters, used for group scenes and establishing shots",
+      "medium": "subject with immediate context, balanced framing, expressions readable, used for dialogue and action",
+      "close": "tight framing on face or object, maximum expression detail, used for emotional beats and portraits",
+      "icon": "single object isolated, maximum simplification, used for icons and spot illustrations"
+    },
+    "usage": "Injecter le shot_type apres le sujet et avant les style modifiers. Le medium shot est le cadrage naturel de la ligne claire."
+  },
+
+  "style": {
+    "genre": "ligne-claire",
+    "positioning": "Franco-Belgian comic book illustration, clean and readable, flat colors with thick outlines, retro-modern sensibility",
+    "tone": [
+      "narratif",
+      "lisible",
+      "expressif",
+      "retro-moderne",
+      "accessible",
+      "graphique"
+    ]
+  },
+
+  "rendering": {
+    "linework": [
+      "thick black outlines as dominant visual element",
+      "consistent line weight with minor variation for depth",
+      "crisp precise edges, no sketch effect",
+      "outlines define every shape boundary clearly",
+      "no feathering, no rough hand-drawn instability"
+    ],
+    "color": [
+      "flat solid colors within outlined areas",
+      "limited palette of 4-6 confident tones per scene",
+      "warm off-white (#F5F0E8) as default background",
+      "colors are bold and readable, never muddy",
+      "no color bleeding outside outlines"
+    ],
+    "shading": [
+      "minimal shading, flat color blocking dominant",
+      "optional subtle shadow for ground contact only",
+      "no volumetric rendering, no dramatic lighting",
+      "no ambient occlusion, no cinematic shadows",
+      "shading conveyed through color value shifts not gradients"
+    ],
+    "texture": [
+      "subtle dot halftone pattern on background or large flat areas",
+      "halftone is decorative, not simulating photography",
+      "no paper grain, no brush grain, no noise overlays",
+      "flat surfaces within outlined shapes"
+    ],
+    "depth_rules": [
+      "frontal or three-quarter view by default",
+      "mild perspective allowed for architectural scenes",
+      "no extreme foreshortening",
+      "depth conveyed through overlapping shapes and size, not atmospheric perspective"
+    ]
+  },
+
+  "composition": {
+    "hierarchy": [
+      "one clear focal subject or action",
+      "secondary elements support narrative",
+      "preserve generous negative space",
+      "silhouette readability at thumbnail size",
+      "outlines ensure shape separation at any scale"
+    ],
+    "density": "moderate, maximum 5-6 meaningful elements per scene",
+    "balance": [
+      "controlled asymmetry or panel-like framing",
+      "clear foreground-background separation via line weight",
+      "no tangent lines where shapes meet ambiguously"
+    ]
+  },
+
+  "format": {
+    "aspect_ratio": "16:9",
+    "aspect_ratio_options": ["16:9", "1:1", "4:5", "9:16"],
+    "default_background": "warm off-white (#F5F0E8) with subtle dot halftone pattern"
+  },
+
+  "avoid": [
+    "photorealistic texture and hyperrealism",
+    "3D render and cinematic lighting",
+    "dramatic shadows and heavy gradients",
+    "anime style and manga conventions",
+    "painterly brushstrokes and watercolor effects",
+    "neon colors and oversaturated palettes",
+    "speech bubbles and text rendered in image",
+    "cluttered backgrounds and visual noise",
+    "glossy materials and metallic reflections",
+    "realistic skin pores and micro-details",
+    "sketch lines and rough unfinished look"
+  ],
+
+  "prompt_core": "Franco-Belgian comic book ligne claire illustration, thick black outlines, flat colors with minimal shading, slightly exaggerated expressions, warm off-white background with subtle dot halftone pattern, clean readable composition, polished editorial quality.",
+
+  "visual_signature": [
+    "thick black outlines defining every shape",
+    "flat bold colors within clean boundaries",
+    "warm off-white (#F5F0E8) background",
+    "subtle dot halftone texture on flat areas",
+    "slightly exaggerated but readable expressions",
+    "retro-modern comic book sensibility"
+  ],
+
+  "modifiers": {
+    "core": ["ligne claire", "comic book style", "thick outlines", "flat colors", "franco-belgian"],
+    "optional": ["halftone dots", "retro illustration", "editorial comic", "album cover style", "bande dessinee"],
+    "enrichment": ["clean shape separation", "readable at small size", "narrative clarity", "expressive but controlled"],
+    "usage": "Les 5 core modifiers sont injectes apres le sujet. Les optional et enrichment ajoutent une nuance selon le contexte."
+  },
+
+  "characters": {
+    "design": "slightly stylized figures, expressive faces, clear silhouettes defined by thick outlines",
+    "anatomy": "proportioned but slightly exaggerated, cartoon-influenced realism",
+    "expressions": "slightly exaggerated for readability: wider eyes, more pronounced brows, expressive mouths",
+    "gestures": [
+      "clear readable poses",
+      "exaggerated for narrative clarity",
+      "hands simplified but expressive",
+      "body language tells the story"
+    ],
+    "accessories": [
+      "iconic props clearly outlined",
+      "simplified to essential shapes",
+      "functional to the narrative, not decorative clutter"
+    ]
+  },
+
+  "environment": {
+    "types": [
+      "urban street scenes simplified to essential shapes",
+      "interior spaces with clear architectural lines",
+      "landscapes reduced to layered flat planes",
+      "workspaces and offices",
+      "cafes and public spaces",
+      "abstract or minimal backdrops"
+    ],
+    "density": "moderate, every element outlined and intentional",
+    "rules": [
+      "every element has a clear black outline",
+      "background simpler than foreground",
+      "architectural lines reinforce composition",
+      "environment supports narrative without competing",
+      "dot halftone fills large empty areas"
+    ]
+  },
+
+  "color_policy": {
+    "families": [
+      "warm primaries and secondaries",
+      "muted vintage tones",
+      "bold comic book palette",
+      "earthy naturals"
+    ],
+    "dominant": "warm off-white (#F5F0E8) background",
+    "accents": [
+      "vermillion red and cobalt blue",
+      "ochre yellow and forest green",
+      "burnt sienna and slate blue",
+      "terracotta and teal",
+      "any 4-6 color harmony with comic book confidence"
+    ],
+    "forbidden": [
+      "gradients within shapes",
+      "neon overload",
+      "pastel-only palettes (too soft for ligne claire)",
+      "dark moody monochrome",
+      "muddy or conflicting saturations"
+    ],
+    "contrast_rules": [
+      "thick outlines ensure separation even with similar colors",
+      "preserve strong contrast between foreground elements and background",
+      "accent colors used sparingly for narrative focus"
+    ]
+  },
+
+  "mood": {
+    "allowed": [
+      "narrative adventure",
+      "quiet observation",
+      "urban exploration",
+      "gentle humor",
+      "editorial clarity",
+      "retro-modern nostalgia",
+      "contemplative stillness",
+      "dynamic action"
+    ],
+    "forbidden": [
+      "horror and grotesque",
+      "dark moody atmosphere",
+      "melodramatic spectacle",
+      "chaotic visual intensity",
+      "photographic mundanity"
+    ]
+  },
+
+  "series_rules": {
+    "invariants": [
+      "thick black outlines on all elements",
+      "flat colors, minimal shading",
+      "warm off-white background with dot halftone",
+      "no speech bubbles, no text in image",
+      "ligne claire visual language throughout"
+    ],
+    "variables_per_episode": [
+      "color palette choice",
+      "subject matter and scene",
+      "number of characters",
+      "environment type",
+      "level of expression exaggeration",
+      "halftone density and placement"
+    ],
+    "quality_checks": [
+      "all shapes have clear black outlines",
+      "no accidental gradients or soft edges",
+      "expressions readable at thumbnail size",
+      "background simpler than foreground",
+      "halftone subtle, not overpowering"
+    ]
+  },
+
+  "negative_short": "photorealistic, 3D render, anime style, heavy gradients, painterly brushstrokes, speech bubbles, text in image, neon colors, sketch lines, cluttered background",
+
+  "negative_core": "photorealistic, realistic texture, hyperrealism, 3D render, cinematic lighting, dramatic shadows, heavy gradients, anime style, manga conventions, glossy materials, reflections, metallic surfaces, skin pores, complex texture, visual noise, cluttered background, excessive detail, painterly brushstrokes, watercolor effects, sketch lines, rough outlines, neon colors, oversaturated palette, speech bubbles, text in image, dark muddy colors, overrendered surfaces, depth-heavy perspective, volumetric fog, lens effects, bokeh, film grain, noisy background",
+
+  "negative_usage": "negative_short (10 termes) pour Midjourney et moteurs avec limite de tokens. negative_core (33 termes) pour SDXL, Flux et moteurs sans contrainte de longueur.",
+
+  "aesthetic_references": [
+    "Herge Tintin clear line style",
+    "Joost Swarte illustrations",
+    "Jason Lutes Berlin graphic novel",
+    "Dupuy-Berberian illustration style",
+    "Chris Ware simplified panels",
+    "retro European comic book covers",
+    "editorial magazine illustration"
+  ],
+
+  "prompt_examples": {
+    "character": "[character description], ligne claire, comic book style, thick black outlines, flat colors, slightly exaggerated expression, [color palette], warm off-white background with subtle dot halftone",
+    "scene": "[scene with characters], ligne claire, franco-belgian comic book, thick outlines, flat bold colors, [composition], [color palette], warm off-white (#F5F0E8) background, dot halftone pattern",
+    "urban": "[urban setting], ligne claire, thick black outlines, flat colors, architectural precision, [color palette], warm off-white background, subtle halftone, no people or with distant silhouettes",
+    "object": "[object description], ligne claire, comic book style, thick black outlines, flat colors, iconic simplification, [colors], warm off-white background with dot halftone",
+    "editorial": "[editorial concept], ligne claire, franco-belgian illustration, thick outlines, flat colors, narrative composition, [color palette], warm off-white background, polished editorial quality"
+  },
+
+  "prompt_builder": {
+    "template": "[subject], [shot_type], [action or state], ligne claire, franco-belgian comic book, thick black outlines, flat colors, slightly exaggerated expressions, [composition], [color palette], warm off-white (#F5F0E8) background, subtle dot halftone, [optional context]",
+    "recommended_order": [
+      "subject",
+      "shot_type",
+      "action/state",
+      "style core (ligne claire, comic book, thick outlines, flat colors)",
+      "expression style",
+      "composition",
+      "color palette",
+      "background",
+      "halftone treatment",
+      "environment/context",
+      "negative prompt"
+    ],
+    "usage_note": "Sujet en premier, puis cadrage, puis action, puis contraintes de style. Le prompt_core est injecte en tete pour verrouiller le style ligne claire."
+  },
+
+  "layout_templates": {
+    "hero_portrait": {
+      "description": "single character portrait, generous negative space, strong outline silhouette",
+      "use_cases": ["character introduction", "avatar", "editorial portrait", "cover illustration"],
+      "composition": "subject centered or rule-of-thirds, minimum 30% background visible, halftone fills empty space",
+      "typical_elements": 1,
+      "variant": "three-quarter or frontal view"
+    },
+    "dialogue_duo": {
+      "description": "two characters facing each other, conversation framing",
+      "use_cases": ["dialogue scene", "confrontation", "interview", "collaboration"],
+      "composition": "balanced halves, slight overlap or negative space between subjects, both faces readable",
+      "typical_elements": 2,
+      "variant": "medium shot, eye-level"
+    },
+    "street_scene": {
+      "description": "urban or interior environment with optional characters, architectural framing",
+      "use_cases": ["establishing shot", "mood piece", "urban exploration", "setting introduction"],
+      "composition": "architectural lines guide the eye, characters secondary to environment, layered depth via overlapping shapes",
+      "typical_elements": 3,
+      "variant": "wide or medium-wide shot"
+    },
+    "action_panel": {
+      "description": "single dynamic action moment, comic panel energy",
+      "use_cases": ["action beat", "dramatic moment", "chase scene", "discovery"],
+      "composition": "diagonal energy lines, clear motion direction, exaggerated pose, speed suggested through composition",
+      "typical_elements": 2,
+      "variant": "dynamic angle, slight dutch tilt acceptable"
+    },
+    "spot_illustration": {
+      "description": "small isolated object or vignette, editorial spot art",
+      "use_cases": ["article illustration", "icon", "chapter header", "decorative element"],
+      "composition": "single element on halftone background, maximum simplification, icon-like clarity",
+      "typical_elements": 1,
+      "variant": "frontal, centered, no environment"
+    }
+  },
+
+  "brand_personality": {
+    "classic_aventure": {
+      "description": "Tintin-inspired clarity, adventure tone, primary colors, clean environments",
+      "use_cases": ["adventure narrative", "travel illustration", "exploration theme", "children's editorial"],
+      "color_palette": ["vermillion red", "cobalt blue", "ochre yellow", "forest green"],
+      "character_style": "proportioned figures, round faces, clear eyes, active poses",
+      "tone_modulation": "adventurous, optimistic, clear, narrative"
+    },
+    "urban_contemplatif": {
+      "description": "quieter tone, muted palette, urban settings, observational mood",
+      "use_cases": ["urban narrative", "slice of life", "editorial magazine", "architectural illustration"],
+      "color_palette": ["slate blue", "burnt sienna", "warm gray", "muted teal"],
+      "character_style": "naturalistic proportions, subtle expressions, contemplative poses",
+      "tone_modulation": "quiet, observational, melancholic, sophisticated"
+    },
+    "retro_pop": {
+      "description": "bolder colors, more exaggerated expressions, playful energy, vintage feel",
+      "use_cases": ["poster art", "album cover", "retro branding", "pop culture illustration"],
+      "color_palette": ["hot pink", "electric yellow", "turquoise", "orange"],
+      "character_style": "exaggerated features, dynamic poses, high energy silhouettes",
+      "tone_modulation": "playful, energetic, bold, retro-cool"
+    },
+    "editorial_serieux": {
+      "description": "restrained palette, formal compositions, journalistic tone",
+      "use_cases": ["press illustration", "opinion piece", "documentary style", "institutional communication"],
+      "color_palette": ["charcoal", "deep blue", "warm cream", "terracotta accent"],
+      "character_style": "dignified proportions, measured expressions, formal postures",
+      "tone_modulation": "authoritative, measured, informative, serious"
+    }
+  }
+}

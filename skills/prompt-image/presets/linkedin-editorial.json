@@ -1,0 +1,395 @@
+{
+  "schema_version": "1.0",
+  "id": "linkedin-editorial-v1.0",
+  "project": "Preset LinkedIn -- editorial warm prestige, conseil/strategie avec temperature humaine",
+  "version": "1.0",
+  "language_convention": "FR pour les meta-descriptions et notes d'usage, EN pour les tokens injectables dans les prompts IA",
+
+  "style_weight": {
+    "critical": ["editorial illustration", "fine elegant outlines", "warm palette", "no photorealistic", "no 3D render", "no stock photo aesthetic", "no corporate-AI sheen"],
+    "important": ["subtle localized shading for soft volume", "cream or warm tinted background", "one vibrant accent color", "readable at thumbnail size", "no flat design", "no anime"],
+    "flexible": ["outline weight variation range", "grain texture intensity", "accent color choice within warm spectrum", "background detail level"],
+    "usage": "En cas de conflit entre regles, la priorite descend de critical vers flexible. Le critical definit ce qui rend ce preset different du corporate generique."
+  },
+
+  "shot_type": {
+    "default": "medium",
+    "options": {
+      "wide": "full scene with environment context, used for establishing shots and group scenes, rare on LinkedIn",
+      "medium": "subject with immediate context, faces readable, primary LinkedIn format, used for most posts",
+      "close": "tight framing on face or hands, maximum expression detail, used for emotional beats and thought leadership portraits",
+      "vignette": "small isolated concept illustration, editorial spot art, used for abstract ideas and decorative headers"
+    },
+    "usage": "LinkedIn favorise le medium shot. Le close fonctionne pour les portraits thought leadership. La vignette pour illustrer un concept abstrait."
+  },
+
+  "style": {
+    "genre": "linkedin-editorial",
+    "positioning": "Premium editorial illustration for professional content. Harvard Business Review illustrated, not startup landing page. Credible for business topics, warm enough for human connection, sophisticated enough to carry a strong idea.",
+    "tone": [
+      "editorial",
+      "premium",
+      "intelligent",
+      "chaleureux",
+      "pose",
+      "confiant",
+      "lumineux"
+    ],
+    "anti_positioning": [
+      "NOT stock photography aesthetic",
+      "NOT flat design SaaS illustration",
+      "NOT corporate AI art (Midjourney default look)",
+      "NOT cold cabinet consulting visual",
+      "NOT startup neon-bright landing page",
+      "NOT Canva template aesthetic"
+    ]
+  },
+
+  "rendering": {
+    "linework": [
+      "fine elegant outlines, present but not dominant",
+      "slightly variable weight for life and warmth",
+      "never thick comic-book outlines",
+      "never uniform vector-perfect lines",
+      "lines suggest form rather than contain it"
+    ],
+    "color": [
+      "warm curated palette with mature confidence",
+      "cream or warm-tinted background as default",
+      "one vibrant accent color per image (signature element)",
+      "colors are confident but never loud",
+      "no cold corporate blue as dominant"
+    ],
+    "shading": [
+      "subtle and localized for soft volume",
+      "smooth controlled shadows on faces and key elements",
+      "never flat (distinguishes from flat-design presets)",
+      "never dramatic (distinguishes from digital-prestige noir)",
+      "shading creates warmth and depth without weight"
+    ],
+    "texture": [
+      "subtle grain texture across the image as signature element",
+      "grain is warm and organic, never digital noise",
+      "grain density: visible at full size, invisible at thumbnail",
+      "no paper grain, no brush texture, no watercolor effects"
+    ],
+    "depth_rules": [
+      "mild controlled depth, foreground sharp background softened",
+      "no extreme perspective or fisheye",
+      "depth through overlapping and value shift, not atmospheric haze",
+      "composition reads clearly at LinkedIn thumbnail size (approx 500px wide)"
+    ]
+  },
+
+  "composition": {
+    "hierarchy": [
+      "one clear focal subject or idea",
+      "readable at LinkedIn feed thumbnail size (critical)",
+      "strong silhouette separation between elements",
+      "generous breathing room, never cluttered",
+      "key message readable in under 2 seconds"
+    ],
+    "density": "restrained, maximum 3-4 meaningful elements per scene",
+    "balance": [
+      "considered asymmetry with clear visual anchor",
+      "negative space is a design choice not an accident",
+      "composition guides the eye to the focal point immediately"
+    ],
+    "linkedin_specific": [
+      "test readability at 500px wide before finalizing",
+      "avoid small text or fine detail that disappears in feed",
+      "high contrast between subject and background for feed standout",
+      "face or key element in upper two-thirds (LinkedIn crops bottom)"
+    ]
+  },
+
+  "format": {
+    "aspect_ratio": "1:1",
+    "aspect_ratio_options": ["1:1", "1200:627", "4:5", "16:9"],
+    "default_background": "warm cream (#F5EDE0) or warm gold tint (#FAF3E8)",
+    "linkedin_formats": {
+      "feed_landscape": "1200x627 (1.91:1) -- standard LinkedIn post image",
+      "feed_square": "1:1 -- maximum visual real estate in feed",
+      "feed_portrait": "4:5 -- tall format, more space but may crop",
+      "article_header": "16:9 -- LinkedIn article cover image"
+    }
+  },
+
+  "avoid": [
+    "stock photography aesthetic and generic corporate imagery",
+    "flat design SaaS illustration (too common on LinkedIn)",
+    "AI art default look (Midjourney corporate default, DALL-E smooth render)",
+    "cold corporate blue dominant palette",
+    "neon colors and startup-bright aesthetics",
+    "photorealistic rendering and hyperrealism",
+    "3D render and CGI aesthetic",
+    "anime style and cartoon exaggeration",
+    "dark moody atmospheric scenes",
+    "cluttered compositions with too many elements",
+    "small text or fine detail that disappears at thumbnail size",
+    "speech bubbles and text rendered in image",
+    "generic business iconography (handshakes, lightbulbs, gears)"
+  ],
+
+  "prompt_core": "Premium editorial illustration, fine elegant outlines with slightly variable weight, warm color palette with cream background and vibrant accent color, subtle localized shading for soft volume, modern professional figures with natural warmth, subtle grain texture, sophisticated yet approachable atmosphere, magazine-quality editorial composition optimized for social feed readability.",
+
+  "visual_signature": [
+    "fine elegant outlines with life and slight variation",
+    "warm cream or gold-tinted background",
+    "one vibrant accent color per image",
+    "subtle warm grain texture across the image",
+    "soft volume through localized shading",
+    "premium editorial warmth, never cold or clinical"
+  ],
+
+  "signature_elements": {
+    "description": "Elements recurrents qui rendent le style identifiable dans un feed LinkedIn. Choisir 2-3 et les maintenir sur toute la serie.",
+    "required": [
+      "warm cream/gold background tint (never pure white)",
+      "subtle grain texture"
+    ],
+    "choose_one": [
+      "consistent accent color (burnt coral #E07A5F recommended)",
+      "rounded corner framing",
+      "recurring small object (notebook, coffee cup, plant)"
+    ],
+    "accent_color_options": {
+      "burnt_coral": "#E07A5F -- warm, distinctive, far from LinkedIn blue",
+      "burnt_mandarin": "#D4793A -- energetic, warm, premium feel",
+      "soft_vermillon": "#C94C3D -- confident, bold, editorial",
+      "deep_terracotta": "#B85C3A -- grounded, warm, strategic",
+      "emerald_accent": "#4A8C6F -- fresh alternative, still warm enough"
+    }
+  },
+
+  "modifiers": {
+    "core": ["editorial illustration", "premium magazine style", "warm human professional", "fine linework", "subtle grain"],
+    "optional": ["Harvard Business Review illustration", "New Yorker editorial art", "modern business portraiture", "thought leadership visual"],
+    "enrichment": ["warm confident atmosphere", "intelligent visual storytelling", "professional yet approachable", "contemporary editorial clarity"],
+    "usage": "Les 5 core modifiers sont injectes apres le sujet. Les optional referencent des publications pour ancrer le style. Les enrichment ajoutent le ton."
+  },
+
+  "characters": {
+    "design": "contemporary professionals, diverse, realistic proportions with editorial stylization, never caricature",
+    "anatomy": "believable and grounded, slightly stylized for editorial elegance, not photographic",
+    "expressions": "natural, engaged, confident but warm -- a slight smile, focused attention, thoughtful gaze. Never stiff corporate poses",
+    "gestures": [
+      "natural conversational gestures",
+      "thinking poses (hand on chin, looking up)",
+      "active listening (leaning forward, eye contact)",
+      "presenting or explaining (open hand, pointing at screen)",
+      "collaborative (side by side, shared attention on object)"
+    ],
+    "wardrobe": [
+      "smart casual to business casual (no suits-and-ties unless context demands)",
+      "rolled sleeves, open collars, casual blazers",
+      "contemporary and relatable, never costume-like",
+      "clothing colors support the palette, never compete"
+    ],
+    "diversity": "default to diverse representation in gender, age, and background unless the concept specifies otherwise"
+  },
+
+  "environment": {
+    "types": [
+      "modern open workspaces with natural light",
+      "cafe or coworking spaces",
+      "conference rooms with human touches",
+      "outdoor urban professional settings",
+      "home office with personality",
+      "abstract warm gradient backgrounds",
+      "minimal environment with single contextual object"
+    ],
+    "density": "minimal and intentional, background supports never competes",
+    "rules": [
+      "environment is suggested not detailed (editorial style)",
+      "warm light always present, even in minimal backgrounds",
+      "a single contextual object can replace a full environment (laptop, whiteboard, coffee)",
+      "architectural elements simplified to clean lines",
+      "plants, books, screens as subtle context cues"
+    ]
+  },
+
+  "color_policy": {
+    "families": [
+      "warm neutrals as base",
+      "one vibrant warm accent per image",
+      "skin tones as warm anchors"
+    ],
+    "dominant": "warm cream (#F5EDE0) or warm gold (#FAF3E8) background",
+    "accent_strategy": "one accent color per image, used on 1-2 elements maximum (clothing detail, object, background shape). The accent is the eye magnet.",
+    "recommended_accents": [
+      "burnt coral (#E07A5F) -- primary recommendation",
+      "burnt mandarin (#D4793A)",
+      "soft vermillon (#C94C3D)",
+      "deep terracotta (#B85C3A)",
+      "emerald (#4A8C6F) -- for variety"
+    ],
+    "supporting_tones": [
+      "warm charcoal (#3D3D3D) for outlines and text-weight elements",
+      "warm gray (#8C8377) for secondary elements",
+      "soft sand (#D4C5B2) for depth layers",
+      "warm white (#FAF7F2) for highlights"
+    ],
+    "forbidden": [
+      "cold corporate blue as dominant",
+      "neon anything",
+      "rainbow or multicolor chaos",
+      "dark moody palettes",
+      "pure black backgrounds",
+      "pure white backgrounds (always warm-tinted)"
+    ]
+  },
+
+  "mood": {
+    "allowed": [
+      "warm professional confidence",
+      "intelligent clarity",
+      "calm strategic focus",
+      "human connection in professional context",
+      "luminous optimism without naivete",
+      "editorial sophistication",
+      "approachable expertise",
+      "quiet thought leadership"
+    ],
+    "forbidden": [
+      "cold corporate authority",
+      "startup hype energy",
+      "dark dramatic tension",
+      "playful cartoon levity",
+      "generic motivational poster tone",
+      "urgency and pressure"
+    ]
+  },
+
+  "series_rules": {
+    "invariants": [
+      "fine elegant outlines with variable weight",
+      "warm cream or gold-tinted background",
+      "subtle grain texture",
+      "one vibrant warm accent color per image",
+      "soft volume through localized shading",
+      "no stock photo, no flat design, no corporate-AI default"
+    ],
+    "variables_per_post": [
+      "accent color choice (within warm spectrum)",
+      "subject and scene",
+      "number of characters (0-3)",
+      "environment type",
+      "composition template",
+      "concept abstraction level"
+    ],
+    "quality_checks": [
+      "readable at 500px wide (LinkedIn thumbnail test)",
+      "accent color visible and intentional",
+      "grain texture present but not overpowering",
+      "warm tint on background confirmed (not pure white)",
+      "no element from avoid list present",
+      "mood is warm and professional, not cold or chaotic"
+    ]
+  },
+
+  "negative_short": "photorealistic, stock photo, 3D render, flat design, anime style, corporate blue, neon colors, dark moody, cluttered, generic business icons",
+
+  "negative_core": "photorealistic, stock photography, generic corporate imagery, 3D render, CGI aesthetic, flat design SaaS illustration, anime style, cartoon exaggeration, neon colors, cold corporate blue, dark moody atmosphere, cluttered composition, generic business iconography, speech bubbles, text in image, pure white background, pure black background, heavy dramatic shadows, watercolor effects, sketch lines, AI art default look, Canva template aesthetic",
+
+  "negative_usage": "negative_short (10 termes) pour Midjourney et moteurs avec limite de tokens. negative_core (22 termes) pour SDXL, Flux et moteurs sans contrainte de longueur.",
+
+  "aesthetic_references": [
+    "Harvard Business Review editorial illustrations",
+    "The Economist magazine illustrations",
+    "New Yorker editorial artwork",
+    "Monocle magazine visual style",
+    "Kinfolk magazine illustrations",
+    "modern editorial business portraiture",
+    "Malika Favre simplified editorial style",
+    "Tom Haugomat warm editorial illustrations"
+  ],
+
+  "prompt_examples": {
+    "thought_leadership": "[person thinking or presenting], premium editorial illustration, fine elegant outlines with slight variation, warm cream background with subtle grain, soft volume shading, [burnt coral accent on one element], natural warm expression, modern professional, magazine quality",
+    "concept_abstract": "[abstract business concept], premium editorial illustration, fine linework, warm cream background with subtle grain, [accent color] geometric accent shape, minimal composition, editorial sophistication, social feed optimized",
+    "team_scene": "[2-3 professionals in interaction], premium editorial illustration, fine elegant outlines, warm palette with cream background and [accent] detail, subtle localized shading, natural gestures, smart casual clothing, approachable expertise atmosphere, subtle grain texture",
+    "solo_portrait": "[professional in context], close shot, premium editorial illustration, fine variable outlines, warm cream background, [accent color] clothing detail, soft volume on face, confident warm expression, subtle grain, magazine editorial quality",
+    "object_vignette": "[professional object or metaphor], vignette shot, premium editorial illustration, fine outlines, warm cream background with subtle grain, [accent color] highlight, minimal elegant composition, editorial spot art quality"
+  },
+
+  "prompt_builder": {
+    "template": "[subject], [shot_type], [action or state], premium editorial illustration, fine elegant outlines with slightly variable weight, warm cream background with subtle grain texture, [accent color] on [accent element], soft localized shading for volume, [composition], [mood/atmosphere], modern professional magazine quality",
+    "recommended_order": [
+      "subject",
+      "shot_type",
+      "action/state",
+      "style core (editorial illustration, fine outlines, warm palette)",
+      "background (warm cream + grain)",
+      "accent color placement",
+      "shading approach",
+      "composition",
+      "mood/atmosphere",
+      "quality suffix",
+      "negative prompt"
+    ],
+    "usage_note": "Sujet en premier, puis cadrage, puis style. Toujours specifier ou placer l'accent color (vetement, objet, forme geometrique). Le grain et le fond cream sont injectes systematiquement."
+  },
+
+  "layout_templates": {
+    "thought_leader_portrait": {
+      "description": "single professional in a contextual setting, warm and confident",
+      "use_cases": ["personal branding post", "opinion piece", "expertise showcase", "profile illustration"],
+      "composition": "subject rule-of-thirds, environment suggested not detailed, accent color on one clothing or object element",
+      "typical_elements": 1,
+      "variant": "three-quarter view, medium or close shot"
+    },
+    "strategic_conversation": {
+      "description": "two professionals in engaged dialogue, balanced warmth",
+      "use_cases": ["collaboration post", "mentoring story", "partnership announcement", "interview recap"],
+      "composition": "balanced halves, both faces readable, shared attention on a common object or idea",
+      "typical_elements": 2,
+      "variant": "medium shot, eye-level"
+    },
+    "team_moment": {
+      "description": "small group (3 max) sharing a productive moment",
+      "use_cases": ["team culture post", "workshop recap", "brainstorming story", "hiring post"],
+      "composition": "triangular arrangement, natural proximity, all faces readable, shared focal point",
+      "typical_elements": 3,
+      "variant": "medium or medium-wide shot"
+    },
+    "concept_vignette": {
+      "description": "abstract or metaphorical illustration of a business concept, no characters",
+      "use_cases": ["abstract idea post", "framework illustration", "newsletter header", "article decoration"],
+      "composition": "centered or asymmetric single element, generous negative space, accent color as focal magnet",
+      "typical_elements": 1,
+      "variant": "vignette shot, minimal"
+    },
+    "workspace_atmosphere": {
+      "description": "professional environment without prominent characters, mood-driven",
+      "use_cases": ["company culture post", "remote work story", "productivity tip", "office design"],
+      "composition": "environment-focused, warm light, contextual objects tell the story, human traces without visible people",
+      "typical_elements": 3,
+      "variant": "medium-wide shot"
+    }
+  },
+
+  "content_archetypes": {
+    "description": "Types de posts LinkedIn frequents et comment le preset les illustre",
+    "opinion_post": {
+      "visual": "thought_leader_portrait, close or medium, person in reflection or speaking",
+      "accent_placement": "on a notebook, glasses, or collar detail",
+      "mood": "intelligent clarity, quiet thought leadership"
+    },
+    "how_to_post": {
+      "visual": "concept_vignette or team_moment, medium",
+      "accent_placement": "on the key object or step indicator",
+      "mood": "approachable expertise, warm professional confidence"
+    },
+    "story_post": {
+      "visual": "strategic_conversation or workspace_atmosphere",
+      "accent_placement": "on the emotional anchor of the scene",
+      "mood": "human connection in professional context"
+    },
+    "announcement_post": {
+      "visual": "team_moment or thought_leader_portrait, medium-wide",
+      "accent_placement": "on the object of announcement (screen, document, product)",
+      "mood": "luminous optimism without naivete"
+    }
+  }
+}

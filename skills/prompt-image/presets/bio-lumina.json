@@ -1,0 +1,304 @@
+{
+  "schema_version": "1.0",
+  "id": "bio-lumina-v1.1",
+  "project": "Preset signature -- bioluminescence organique, architecture vegetale nocturne, pulsation vivante",
+  "version": "1.1",
+  "language_convention": "FR pour les meta-descriptions et notes d'usage, EN pour les tokens injectables dans les prompts IA",
+
+  "style_weight": {
+    "critical": ["dark nocturnal base", "bioluminescent light from within", "visible vein networks", "organic not electric", "no photorealistic", "no cyberpunk neon"],
+    "important": ["cyan and aquatic green as primary glow", "warm atmospheric depth", "one pulse point burning warmer", "light grows outward from internal structures", "botanical not technological"],
+    "flexible": ["magenta pulse intensity", "atmospheric haze density", "organic complexity level", "water/reflection presence", "composition template"],
+    "usage": "En cas de conflit entre regles, la priorite descend de critical vers flexible. Le critical definit la signature bio-lumina -- lumiere organique interne, jamais projetee."
+  },
+
+  "shot_type": {
+    "default": "medium",
+    "options": {
+      "wide": "full botanical environment, layered depth, used for garden and terrace compositions",
+      "medium": "organic structure with surrounding atmosphere, used for pathway and balanced compositions",
+      "medium-close": "focused on organic detail with atmospheric context, used for canopy and rich detail",
+      "close": "tight on specimen detail, vein circuitry visible, used for specimen and leaf close-ups"
+    },
+    "usage": "Injecter le shot_type apres le sujet. Le medium est le cadrage naturel pour l'equilibre profondeur/detail."
+  },
+
+  "style": {
+    "genre": "organic-bioluminescent",
+    "genre_description": "Organic architectural visualization with bioluminescent lighting. Living structures, pulsing vegetal circuits, nocturnal serenity. Not sci-fi neon -- nature augmented, not replaced.",
+    "positioning": "entre architecture vegetale, visualisation biologique premium et illustration nocturne organique",
+    "tone": ["vivant", "architectural", "nocturne", "paisible", "organique", "lumineux"]
+  },
+
+  "priority_hierarchy": [
+    { "rank": 1, "domain": "subject", "rule": "Le sujet organique focal doit etre lisible et identifiable" },
+    { "rank": 2, "domain": "style", "rule": "Rendu conforme au prompt_core -- bioluminescent, pas neon" },
+    { "rank": 3, "domain": "composition", "rule": "Profondeur vegetale, layers organiques, respiration visuelle" },
+    { "rank": 4, "domain": "exclusions", "rule": "Anti-derive cyberpunk, anti-plastique, anti-geometrie froide" }
+  ],
+
+  "signature": {
+    "seed_phrase": "Living organic architecture pulsing with bioluminescent veins in a warm nocturnal void, where light grows from within like sap rising through botanical circuitry.",
+    "manifesto": "A nocturnal garden where architecture breathes, where every surface is alive with slow pulsing light that follows organic pathways, never electric grids.",
+    "marks": {
+      "biology": "visible vein networks and botanical circuitry running through every surface -- light follows growth patterns not wire patterns",
+      "light": "bioluminescent glow emanating from within organic matter -- never surface-applied, always growing outward from internal structures",
+      "atmosphere": "warm nocturnal serenity with layered depth -- foreground detail fading into soft dark distance",
+      "strike": "one single pulse point per image where bioluminescence peaks in intensity -- the heartbeat moment -- brighter, warmer, located where organic energy converges"
+    },
+    "tyrannical_rule": "Every image must contain at least one visible vein-lit organic pathway. Light must always appear to grow from within, never projected from outside."
+  },
+
+  "prompt_core": "Organic bioluminescent architecture in warm nocturnal void, living vegetal structures with visible pulsing vein networks, botanical circuitry glowing from within, layered depth with cyan and aquatic green bioluminescence, one pulse point burning warmer where organic energy converges, soft dark atmospheric distance, polished bio-architectural aesthetic, 16:9 landscape.",
+
+  "compressed_inference_prompt": "Nocturnal void, bioluminescent organic architecture, pulsing vein-lit surfaces, cyan and green glow from within, warm pulse point, botanical depth, 16:9.",
+
+  "rendering": {
+    "surfaces": [
+      "organic fiber textures -- interwoven plant matter, resin, bark, membrane",
+      "vein-lit leaves with visible internal circuitry",
+      "smooth bioluminescent surfaces that glow from beneath the skin",
+      "translucent organic layers revealing internal vein structures"
+    ],
+    "color": [
+      "deep black nocturnal base",
+      "primary accents: glowing cyan and aquatic green bioluminescence",
+      "secondary accent: magenta pulse at convergence points (rare, focal only)",
+      "warm amber-green undertones on organic surfaces near light sources"
+    ],
+    "light_behavior": [
+      "bioluminescence: light grows outward from internal vein structures, never projected",
+      "pulsing quality: light suggests slow rhythmic energy, not static glow",
+      "soft atmospheric falloff into warm darkness at edges",
+      "no harsh shadows, no spotlights, no artificial light sources"
+    ],
+    "materials": [
+      "living plant fiber and interwoven botanical matter",
+      "translucent resin with trapped bioluminescent veins",
+      "organic membrane stretched over structural frames",
+      "moss, lichen and micro-vegetation as texture accents",
+      "smooth wood-like surfaces with visible growth rings"
+    ],
+    "tension_mechanics": [
+      "pulse: rhythmic bioluminescent intensity wave along vein networks",
+      "growth: new organic structure emerging from existing matter",
+      "symbiosis: two different organic systems sharing light through connected veins",
+      "bloom: concentrated burst of luminescence at a flowering or convergence point",
+      "fade: gradual light extinction toward edges suggesting organic boundary"
+    ]
+  },
+
+  "composition": {
+    "framing": [
+      "layered organic depth -- foreground detail, midground structure, background atmosphere",
+      "generous dark breathing space between organic elements",
+      "natural asymmetry following organic growth patterns not geometric grids"
+    ],
+    "spatial_design": [
+      "subject anchored by organic architecture with depth layers",
+      "vertical growth lines balanced by horizontal platforms or canopies",
+      "dark negative space as warm nocturnal environment not hostile void"
+    ],
+    "camera": {
+      "default": "slight perspective with organic depth, medium to medium-wide",
+      "height": "eye-level or slightly below (looking up into canopy)",
+      "lens_equivalent": "35-50mm for immersive depth, 85mm for detail close-ups",
+      "forbidden": "extreme angles, fisheye, flat orthographic"
+    },
+    "detail_density": {
+      "focal": "rich organic detail -- veins, texture, membrane, glow",
+      "midground": "structural organic forms, softer detail",
+      "background": "atmospheric dark warmth, fading silhouettes"
+    },
+    "complexity": {
+      "sparse": "single bioluminescent plant or leaf, maximum dark space",
+      "balanced": "organic terrace or structure with 2-3 layers of depth -- sweet spot",
+      "dense": "full botanical environment, rich foreground, layered canopy"
+    },
+    "templates": {
+      "terrace": "elevated organic platform with bioluminescent vegetation, depth into dark distance",
+      "canopy": "looking up through layered translucent leaves with light filtering through veins",
+      "pathway": "organic corridor or bridge with vein-lit edges fading into dark distance",
+      "specimen": "single bioluminescent organism or plant isolated in dark space, close-up",
+      "garden": "full nocturnal garden scene with multiple organic light sources at varying depths"
+    }
+  },
+
+  "format": {
+    "aspect_ratio": "16:9",
+    "aspect_ratio_options": ["16:9", "1:1", "4:5", "9:16"]
+  },
+
+  "subject_logic": {
+    "default_type": "organic bioluminescent architecture and botanical structures",
+    "allowed_forms": [
+      "vein-lit leaves, ferns, and botanical elements",
+      "organic fiber platforms, terraces, and bridges",
+      "bioluminescent fungi, moss, and micro-organisms",
+      "living structural elements (columns, arches, canopies) grown from plant matter",
+      "translucent resin and membrane surfaces",
+      "water features with reflected bioluminescence"
+    ],
+    "forbidden_forms": [
+      "metal structures and industrial elements",
+      "neon signs and electric lighting",
+      "geometric wireframe (reserved for orbital-fracture)",
+      "consumer electronics and screens"
+    ],
+    "concept_to_form": {
+      "data / information": "vein networks carrying luminescent signals through organic pathways",
+      "connection / network": "symbiotic root systems with shared bioluminescent connections",
+      "growth / progress": "emerging botanical structures with new vein-lit shoots",
+      "security / protection": "organic membrane enclosures with dense vein barriers",
+      "rest / calm": "nocturnal terrace with soft ambient bioluminescence",
+      "energy / power": "convergent pulse point where multiple vein systems meet and bloom"
+    },
+    "human_figures": {
+      "allowed": true,
+      "treatment": "silhouette or soft organic form -- never photorealistic, always subordinate to the botanical environment",
+      "max_characters": 2
+    }
+  },
+
+  "environment": {
+    "types": [
+      "nocturnal botanical terrace",
+      "bioluminescent forest interior",
+      "organic architectural space",
+      "living greenhouse or conservatory",
+      "aquatic-adjacent organic platform"
+    ],
+    "rules": [
+      "environment IS the subject -- organic architecture, not backdrop",
+      "dark sky or deep shadow as warm surrounding, not hostile",
+      "every surface suggests life, growth, or organic process"
+    ],
+    "effects": [
+      "soft atmospheric haze for depth layering",
+      "bioluminescent reflections in water or resin surfaces",
+      "micro-particle pollen or spore traces near light sources"
+    ]
+  },
+
+  "color_policy": {
+    "dominant": "deep black, dark forest green, warm charcoal",
+    "accents": [
+      "glowing cyan (primary bioluminescence)",
+      "aquatic green (secondary organic glow)",
+      "magenta pulse (rare, convergence/bloom points only)"
+    ],
+    "rules": [
+      "cyan and green can coexist as natural bioluminescent variation",
+      "magenta reserved for pulse/bloom moments only -- max 1 per image",
+      "all color must appear to emanate from organic matter, never ambient"
+    ],
+    "accent_fallback": [
+      "1. If colors spread too wide: restrict to vein pathways only",
+      "2. If magenta dominates: remove it, keep cyan/green only",
+      "3. If overall too bright: darken background, increase atmospheric falloff"
+    ]
+  },
+
+  "lighting_system": {
+    "vein_glow": "bioluminescence emanating from visible internal vein structures -- signature default, always present",
+    "pulse_bloom": "concentrated burst of warmer light at organic convergence point -- for strike moments",
+    "ambient_nocturnal": "very soft warm darkness with no visible light source -- for atmosphere and depth"
+  },
+
+  "negative_short": "photorealism, cyberpunk neon, metallic, electric light, industrial, geometric wireframe, cartoon, anime, daylight, fluorescent",
+
+  "negative_usage": "negative_short (10 termes) pour Midjourney et moteurs avec limite de tokens. negative_core.flat_string (15 termes) pour SDXL, Flux et moteurs sans contrainte de longueur.",
+
+  "negative_core": {
+    "rendering": ["photorealism", "plastic surfaces", "metallic sheen", "harsh shadows", "lens flare"],
+    "style_drift": ["cyberpunk neon", "sci-fi tech", "steampunk", "geometric wireframe", "cartoon", "anime"],
+    "composition": ["cluttered background", "flat composition without depth", "symmetrical grid layout"],
+    "color": ["neon overload", "rainbow palette", "cold blue-only palette", "desaturated gray"],
+    "content": ["readable text", "screens and monitors", "industrial machinery", "concrete and steel"],
+    "lighting": ["electric spotlights", "fluorescent lighting", "projected light", "sun or daylight"],
+    "flat_string": "photorealism, cyberpunk neon, metallic, harsh shadows, electric light, industrial, concrete, geometric wireframe, cartoon, anime, screens, daylight, fluorescent, lens flare, plastic"
+  },
+
+  "series_rules": {
+    "invariants": [
+      "dark nocturnal base + bioluminescent organic light",
+      "visible vein networks on every surface",
+      "light grows from within, never projected",
+      "warm atmospheric depth"
+    ],
+    "variables": [
+      "plant species and organic forms",
+      "accent balance (more cyan vs more green vs magenta bloom)",
+      "composition template",
+      "complexity level",
+      "presence or absence of water/reflection"
+    ],
+    "seed_strategy": {
+      "consistency": "fix vein style and color temperature, vary organic forms and composition",
+      "exploration": "vary both organic forms and accent balance for maximum diversity",
+      "batch_rule": "generate 4 variations, select most organic and least sci-fi"
+    }
+  },
+
+  "style_flexibility": {
+    "strict_mode": {
+      "when": "serie visuelle, branding bio-tech, poster botanique",
+      "rules": "prompt_core integral, vein glow obligatoire, magenta reserve au strike"
+    },
+    "relaxed_mode": {
+      "when": "illustration editoriale, storytelling, concept art organique",
+      "allowed": ["compressed_inference_prompt au lieu de prompt_core", "magenta plus present comme accent secondaire", "figure humaine avec plus de detail", "elements architecturaux non-organiques en arriere-plan lointain"],
+      "locked": ["dark nocturnal base", "bioluminescent light from within", "visible vein structures", "organic dominant aesthetic"]
+    }
+  },
+
+  "prompt_builder": {
+    "templates": {
+      "terrace": "[organic platform], bioluminescent vegetation with vein-lit edges, [prompt_core], [accent] along vein pathways, layered depth into dark distance",
+      "canopy": "[overhead botanical view], translucent leaves with visible vein circuits, [prompt_core], [accent] filtering through leaf veins, atmospheric depth below",
+      "pathway": "[organic corridor], vein-lit edges fading into darkness, [prompt_core], [accent] along pathway veins, perspective depth",
+      "specimen": "[single organism], isolated in dark space, [prompt_core], [accent] from internal veins, close-up with dark surrounding",
+      "garden": "[full botanical scene], multiple light sources at varying depths, [prompt_core], [accent] distributed across vein networks, rich layered composition"
+    },
+    "order": ["1. organic subject", "2. prompt_core", "3. accent placement on veins", "4. composition and depth", "5. atmospheric treatment", "6. exclusions"]
+  },
+
+  "example_prompts": {
+    "bioluminescent_terrace": "Elevated organic fiber terrace interwoven from living plant matter and translucent resin, broad vein-lit leaves with visible pulsing cyan circuitry arching over the platform edge, aquatic green glow emanating from root structures beneath the decking, one convergence point where multiple vein systems meet burning warmer with magenta pulse (strike), organic bioluminescent architecture in warm nocturnal void, botanical circuitry glowing from within, layered depth with soft atmospheric falloff into warm darkness, 16:9 landscape.",
+    "specimen_leaf": "Single enormous vein-lit leaf floating in absolute dark nocturnal space, internal botanical circuitry visible as branching cyan pathways carrying slow pulsing light from stem to tip, leaf membrane translucent revealing layered vein structures beneath, the central vein junction burning warmer where all pathways converge (strike), organic bioluminescent architecture in warm nocturnal void, close-up specimen composition, aquatic green undertones at leaf edges fading into darkness, 16:9 landscape."
+  },
+
+  "model_adaptation": {
+    "nano_banana_2": {
+      "strategy": "5-bloc, formulations positives, organic vocabulary over technical",
+      "risks": "accent: modere (cyan/green peuvent fusionner) | organic: bon rendu general",
+      "tip": "prompt_core en bloc 3. Insister sur 'glowing from within' pour eviter le neon externe"
+    },
+    "qwen_image_2": {
+      "strategy": "7 regles, sujet en tete, negative prompt explicite",
+      "risks": "accent: faible (bon controle couleur) | organic: bon",
+      "tip": "flat_string en champ negatif. Specifier 'bioluminescent not neon' explicitement"
+    },
+    "sdxl_flux": {
+      "strategy": "prompt lineaire dense, negative prompt, bons rendus organiques",
+      "risks": "accent: modere (peut tirer vers le neon) | organic: excellent",
+      "tip": "compressed_inference_prompt + sujet. (bioluminescent:1.2), (neon:0.3) pour forcer organique"
+    },
+    "midjourney": {
+      "strategy": "prompt compact, excellent rendu organique et atmospherique",
+      "risks": "accent: faible | organic: excellent (point fort de MJ)",
+      "tip": "compressed_inference_prompt + --ar 16:9 --s 800 --c 20. MJ excelle sur ce type de scene"
+    }
+  },
+
+  "quality_checks": [
+    "subject readable as organic architecture against dark background",
+    "at least one visible vein-lit pathway present (signature)",
+    "light appears to grow from within organic matter, not projected externally",
+    "one pulse/bloom point burning warmer at organic convergence (plectrum)",
+    "cyan and green coexist naturally, magenta rare and focal only",
+    "atmospheric depth with warm dark falloff, not flat composition",
+    "no cyberpunk or neon drift -- organic not electric",
+    "surfaces read as living matter not plastic or metal"
+  ]
+}
