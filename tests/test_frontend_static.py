@@ -42,9 +42,10 @@ def test_frontend_uses_keycloak_auth_gate():
     assert "logout-btn" in index
     assert "Se connecter" in index
     assert "Se déconnecter" in index
-    assert "fr-header__tools-links" not in index
+    assert "fr-header__tools" in index
+    assert "fr-header__tools-links" in index
     assert "fr-header__menu-links" not in index
-    assert "header-actions" in index
+    assert "header-actions" not in index
     assert "isAuthenticated" in app
     assert "login(usernameInput.value.trim(), passwordInput.value)" in app
     assert "'Authorization': `Bearer ${getAccessToken()}`" in api_client
