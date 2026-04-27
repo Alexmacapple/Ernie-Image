@@ -1,6 +1,6 @@
 # PRD-114 : Ernie Studio - contrôle de représentation visuelle
 
-**Statut** : Cadré - non implémenté
+**Statut** : Implémenté - V1 compacte
 **Date** : 2026-04-27
 **Auteur** : Alex
 **Source** : Retours d'usage Ernie Studio - biais visuel perçu sur les portraits, personnages et décors
@@ -19,16 +19,16 @@
 - [x] Prompts de test mélodrame pop espagnol documentés dans `docs/prompts-melodrame-pop-espagnol.md`.
 - [x] Validation UX effectuée par rapport à l'écran actuel : formulaire déjà dense, V1 à limiter strictement.
 - [x] Périmètre V1 ajusté : accordéon compact, 8 presets maximum, un champ libre, un bouton d'injection.
-- [ ] Non implémenté : panneau UI "Représentation visuelle" compact.
-- [ ] Non implémenté : module `representation-controls.js`, incluant un ancrage visuel anglais local maîtrisé.
-- [ ] Non implémenté : 8 presets positifs maximum de représentation, décor, alphabet, architecture et palette.
-- [ ] Non implémenté : bouton "Ajouter un ancrage visuel en anglais".
-- [ ] Non implémenté : détection locale de prompts vagues, affichée comme aide non bloquante.
-- [ ] Non implémenté : protocole de comparaison à seed fixe.
-- [ ] Non implémenté : tests statiques ciblés sur les presets positifs et le périmètre V1.
+- [x] Implémenté : panneau UI "Représentation visuelle" compact.
+- [x] Implémenté : module `representation-controls.js`, incluant un ancrage visuel anglais local maîtrisé.
+- [x] Implémenté : 8 presets positifs maximum de représentation, décor, alphabet, architecture et palette.
+- [x] Implémenté : bouton "Ajouter un ancrage visuel en anglais".
+- [x] Implémenté : détection locale de prompts vagues, affichée comme aide non bloquante.
+- [x] Implémenté : protocole de comparaison à seed fixe documenté.
+- [x] Implémenté : tests statiques ciblés sur les presets positifs et le périmètre V1.
 - [ ] Non implémenté : support backend Diffusers ou vrai `negative_prompt`.
 
-Conclusion : PRD prêt conceptuellement après cadrage UX. La prochaine étape raisonnable est une petite V1 frontend positive, compacte, sans toucher au backend MLX.
+Conclusion : V1 frontend compacte implémentée sur la branche `feature/prd-114-v1-compacte`, sans toucher au backend MLX. Les suites automatisées passent avec 64 tests.
 
 ## Vision
 
@@ -454,3 +454,4 @@ Protocole de validation manuelle :
 | 2026-04-27 | Alex + Codex | Élargissement aux décors, paysages, typographies et ancrages culturels positifs ; suppression des blocs négatifs copiables en backend MLX ; ajout de critères Mac Studio |
 | 2026-04-27 | Alex + Codex | Intégration hypothèse JP : désactivation d'un PE chinois quand disponible, et ancrage anglais local visible pour le backend MLX actuel |
 | 2026-04-27 | Alex + Codex | Validation UX par rapport à l'écran actuel : V1 compacte, 8 presets maximum, un champ libre, protocole seed fixe |
+| 2026-04-27 | Alex + Codex | Implémentation V1 compacte : accordéon, 8 presets, champ libre, injection `Visual anchor:`, tests statiques |

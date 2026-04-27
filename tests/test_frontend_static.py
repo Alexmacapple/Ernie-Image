@@ -25,7 +25,8 @@ def test_gallery_module_uses_one_cache_buster():
     assert "seed-workflow.js?v=20260427-lightbox-nav" in gallery
     assert "openImageLightbox, refresh as refreshGallery" in generator
     assert "gallery.js?v=20260427-lightbox-nav" in generator
-    assert 'src="./js/app.js?v=20260427-lightbox-nav"' in index
+    assert 'src="./js/app.js?v=20260427-prd114-v1"' in index
+    assert "representation-controls.js?v=20260427-prd114-v1" in app
 
 
 def test_frontend_uses_keycloak_auth_gate():
@@ -116,7 +117,7 @@ def test_main_headings_are_semantic():
     assert 'aria-labelledby="prompt-structure-button"' in index
     assert "Aide à la structure du prompt" in index
     assert '<h3 class="fr-h4 fr-mb-3w" id="gallery-title">Historique</h3>' in index
-    assert 'href="./css/app.css?v=20260427-lightbox-nav-contrast"' in index
+    assert 'href="./css/app.css?v=20260427-prd114-v1"' in index
     assert "Structure recommandée pour décrire l’image" in index
     assert "illustration éditoriale ..." in index
     assert "ambiance, contraste ..." in index
@@ -125,6 +126,7 @@ def test_main_headings_are_semantic():
     assert "backlight…" not in index
     assert "style typo</li>" not in index
     assert "initPromptAccordionFallback" in app
+    assert "querySelectorAll('[data-ernie-accordion-fallback]')" in prompt_accordion
     assert "fr-collapse--expanded" in prompt_accordion
     assert "aria-expanded" in prompt_accordion
     assert "function syncPanelHeight()" in prompt_accordion
@@ -135,6 +137,54 @@ def test_main_headings_are_semantic():
     assert "window.addEventListener('resize'" in prompt_accordion
     assert "#prompt-structure-panel.fr-collapse--expanded" not in css
     assert "max-height: none;" not in css
+
+
+def test_prd114_visual_representation_controls_are_compact_and_positive():
+    app = _read("frontend/js/app.js")
+    index = _read("frontend/index.html")
+    css = _read("frontend/css/app.css")
+    prompt_accordion = _read("frontend/js/prompt-accordion.js")
+    representation = _read("frontend/js/representation-controls.js")
+
+    assert "initRepresentationControls" in app
+    assert "representation-controls.js?v=20260427-prd114-v1" in app
+    assert "Représentation visuelle" in index
+    assert 'id="visual-representation-button"' in index
+    assert 'aria-expanded="false" aria-controls="visual-representation-panel"' in index
+    assert 'id="visual-representation-panel" role="region"' in index
+    assert 'aria-labelledby="visual-representation-button"' in index
+    assert 'id="visual-anchor-warning"' in index
+    assert 'aria-live="polite"' in index
+    assert 'id="visual-anchor-custom"' in index
+    assert 'id="visual-anchor-apply"' in index
+    assert "Ajouter un ancrage visuel en anglais" in index
+    assert index.count("data-visual-anchor-preset") == 8
+    assert "Portraits" in index
+    assert "Décors et texte" in index
+    assert "Prompt Enhancer" not in index
+    assert "negative_prompt" not in index
+    assert "use_pe" not in index
+
+    assert "export const VISUAL_ANCHOR_PRESETS = [" in representation
+    assert representation.count("id: '") == 8
+    assert "MAX_PROMPT_LENGTH = 8000" in representation
+    assert "Visual anchor:" in representation
+    assert "buildVisualIdentityBlock" in representation
+    assert "function _replaceVisualAnchorBlock(prompt, block)" in representation
+    assert "startsWith(VISUAL_ANCHOR_PREFIX)" in representation
+    assert "dispatchEvent(new Event('input', { bubbles: true }))" in representation
+    assert "dispatchEvent(new Event('change', { bubbles: true }))" in representation
+    assert "innerHTML" not in representation
+    assert "not Asian" not in representation
+    assert "no Asian" not in representation
+    assert "avoid Asian" not in representation
+    assert "Chinese characters" not in representation
+
+    assert ".visual-representation-content" in css
+    assert ".visual-anchor-groups" in css
+    assert ".visual-anchor-preset[aria-pressed=\"true\"]" in css
+    assert ".visual-anchor-preset--selected" in css
+    assert "querySelectorAll('[data-ernie-accordion-fallback]')" in prompt_accordion
 
 
 def test_footer_uses_dsfr_component_structure_with_existing_links_only():

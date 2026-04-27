@@ -102,7 +102,7 @@ pytest tests/
 Les PRD sont dans `prd/`.
 
 - `PRD-112` et `PRD-113` sont implémentés.
-- `PRD-114` est cadré pour une V1 compacte côté frontend : ancrage visuel anglais visible, 8 presets maximum, aucun changement backend MLX.
+- `PRD-114` V1 compacte est implémenté côté frontend : ancrage visuel anglais visible, 8 presets maximum, aucun changement backend MLX.
 - `PRD-115` reste un brouillon de cadrage pour le batch de prompts.
 
 ## Licence

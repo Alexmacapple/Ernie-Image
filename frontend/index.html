@@ -6,7 +6,7 @@
     <title>Ernie Studio</title>
     <link rel="stylesheet" href="./dsfr/dsfr/dsfr.min.css">
     <link rel="stylesheet" href="./dsfr/utility/utility.min.css">
-    <link rel="stylesheet" href="./css/app.css?v=20260427-lightbox-nav-contrast">
+    <link rel="stylesheet" href="./css/app.css?v=20260427-prd114-v1">
 </head>
 <body>
 
@@ -133,6 +133,99 @@
                                             <li><strong>Texture</strong> - matières, détails visibles, finition.</li>
                                             <li><strong>Texte</strong> - libellé exact entre guillemets, emplacement, style typographique.</li>
                                         </ol>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section class="fr-accordion">
+                                <h2 class="fr-accordion__title">
+                                    <button id="visual-representation-button" type="button" class="fr-accordion__btn"
+                                        aria-expanded="false" aria-controls="visual-representation-panel"
+                                        data-ernie-accordion-fallback>
+                                        Représentation visuelle
+                                    </button>
+                                </h2>
+                                <div class="fr-collapse" id="visual-representation-panel" role="region"
+                                    aria-labelledby="visual-representation-button">
+                                    <div class="fr-text--sm visual-representation-content">
+                                        <p class="fr-mb-2w">
+                                            Ajoutez un ancrage positif en anglais pour préciser les traits, le décor, l'alphabet et la palette sans changer le moteur MLX.
+                                        </p>
+                                        <p id="visual-anchor-warning" class="fr-hint-text fr-mb-2w"
+                                            aria-live="polite" hidden></p>
+
+                                        <div class="visual-anchor-groups">
+                                            <div class="visual-anchor-group" aria-labelledby="visual-anchor-portraits-title">
+                                                <p id="visual-anchor-portraits-title" class="fr-text--sm fr-text--bold fr-mb-1w">Portraits</p>
+                                                <div class="visual-anchor-presets">
+                                                    <button type="button" class="fr-btn fr-btn--sm fr-btn--secondary visual-anchor-preset"
+                                                        data-visual-anchor-preset="portrait-mediterranean" aria-pressed="false"
+                                                        title="Sélectionner l'ancrage Portrait méditerranéen contemporain">
+                                                        Portrait méditerranéen contemporain
+                                                    </button>
+                                                    <button type="button" class="fr-btn fr-btn--sm fr-btn--secondary visual-anchor-preset"
+                                                        data-visual-anchor-preset="portrait-western-european" aria-pressed="false"
+                                                        title="Sélectionner l'ancrage Portrait européen occidental éditorial">
+                                                        Portrait européen occidental éditorial
+                                                    </button>
+                                                    <button type="button" class="fr-btn fr-btn--sm fr-btn--secondary visual-anchor-preset"
+                                                        data-visual-anchor-preset="portrait-afro-caribbean" aria-pressed="false"
+                                                        title="Sélectionner l'ancrage Portrait afro-caribéen éditorial">
+                                                        Portrait afro-caribéen éditorial
+                                                    </button>
+                                                    <button type="button" class="fr-btn fr-btn--sm fr-btn--secondary visual-anchor-preset"
+                                                        data-visual-anchor-preset="portrait-latin-american" aria-pressed="false"
+                                                        title="Sélectionner l'ancrage Portrait latino-américain contemporain">
+                                                        Portrait latino-américain contemporain
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <div class="visual-anchor-group" aria-labelledby="visual-anchor-settings-title">
+                                                <p id="visual-anchor-settings-title" class="fr-text--sm fr-text--bold fr-mb-1w">Décors et texte</p>
+                                                <div class="visual-anchor-presets">
+                                                    <button type="button" class="fr-btn fr-btn--sm fr-btn--secondary visual-anchor-preset"
+                                                        data-visual-anchor-preset="setting-european-urban" aria-pressed="false"
+                                                        title="Sélectionner l'ancrage Décor urbain européen">
+                                                        Décor urbain européen
+                                                    </button>
+                                                    <button type="button" class="fr-btn fr-btn--sm fr-btn--secondary visual-anchor-preset"
+                                                        data-visual-anchor-preset="setting-iberian-mediterranean" aria-pressed="false"
+                                                        title="Sélectionner l'ancrage Décor méditerranéen ibérique">
+                                                        Décor méditerranéen ibérique
+                                                    </button>
+                                                    <button type="button" class="fr-btn fr-btn--sm fr-btn--secondary visual-anchor-preset"
+                                                        data-visual-anchor-preset="setting-french-public" aria-pressed="false"
+                                                        title="Sélectionner l'ancrage Institution publique française">
+                                                        Institution publique française
+                                                    </button>
+                                                    <button type="button" class="fr-btn fr-btn--sm fr-btn--secondary visual-anchor-preset"
+                                                        data-visual-anchor-preset="setting-french-poster" aria-pressed="false"
+                                                        title="Sélectionner l'ancrage Affiche française en alphabet latin">
+                                                        Affiche française en alphabet latin
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="fr-input-group visual-anchor-custom-group">
+                                            <label class="fr-label" for="visual-anchor-custom">
+                                                Ancrage personnalisé
+                                                <span class="fr-hint-text">Optionnel, en anglais de préférence.</span>
+                                            </label>
+                                            <input class="fr-input" type="text" id="visual-anchor-custom"
+                                                name="visual_anchor_custom" maxlength="500"
+                                                placeholder="Example: Marseille apartment, Latin alphabet signage, warm Mediterranean daylight">
+                                        </div>
+
+                                        <div class="visual-anchor-actions">
+                                            <button type="button" id="visual-anchor-apply" class="fr-btn fr-btn--secondary"
+                                                title="Ajouter un ancrage visuel en anglais">
+                                                Ajouter un ancrage visuel en anglais
+                                            </button>
+                                        </div>
+                                        <p id="visual-anchor-status" class="fr-hint-text fr-mt-1w"
+                                            aria-live="polite" aria-atomic="true"></p>
                                     </div>
                                 </div>
                             </section>
@@ -406,7 +499,7 @@
 
 <script type="module" src="./dsfr/dsfr/dsfr.module.min.js"></script>
 <script nomodule src="./dsfr/dsfr/dsfr.nomodule.min.js"></script>
-<script type="module" src="./js/app.js?v=20260427-lightbox-nav"></script>
+<script type="module" src="./js/app.js?v=20260427-prd114-v1"></script>
 
 </body>
 </html>

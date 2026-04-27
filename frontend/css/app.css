@@ -567,3 +567,60 @@ body.lightbox-scroll-locked {
 .prompt-structure-content ol {
     line-height: 1.6;
 }
+
+/* PRD-114 : représentation visuelle */
+
+.visual-representation-content {
+    padding: 0.75rem 0;
+}
+
+.visual-anchor-groups {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-bottom: 1rem;
+}
+
+.visual-anchor-group {
+    min-width: 0;
+}
+
+.visual-anchor-presets {
+    align-items: flex-start;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.visual-anchor-preset {
+    justify-content: flex-start;
+    min-height: 2rem;
+    white-space: normal;
+}
+
+.visual-anchor-preset[aria-pressed="true"],
+.visual-anchor-preset--selected {
+    background: var(--background-action-high-blue-france) !important;
+    color: var(--text-inverted-blue-france) !important;
+}
+
+.visual-anchor-custom-group {
+    margin-top: 0.5rem;
+}
+
+.visual-anchor-actions {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: 0.75rem;
+}
+
+@media (max-width: 48em) {
+    .visual-anchor-groups {
+        grid-template-columns: 1fr;
+    }
+
+    .visual-anchor-actions .fr-btn {
+        justify-content: center;
+        width: 100%;
+    }
+}

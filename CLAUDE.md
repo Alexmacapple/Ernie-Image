@@ -16,18 +16,18 @@ Version stable de retour : tag Git `MVP-V1`.
 
 - Garder MLX comme backend par défaut pour les prochaines étapes.
 - PRD-112 (contrat API enrichi) et PRD-113 (UX prompting guidé) sont implémentés.
-- PRD-114 est cadré mais non implémenté : V1 compacte côté frontend, sans changer le moteur.
+- PRD-114 V1 compacte est implémenté côté frontend, sans changer le moteur.
 - Ne pas remplacer `pipeline_mlx.py` par Diffusers dans ce cycle.
 - Diffusers est une piste valide mais à traiter comme spike séparé après retour : `ERNIE_BACKEND=mlx|diffusers`, benchmark temps/RAM/stabilité/qualité, puis décision.
 - Ne pas démarrer le chantier Diffusers tant qu'Alex n'a pas explicitement validé le retour attendu.
 - Le backend MLX actuel n'expose pas `use_pe`, `guidance_scale` ni vrai `negative_prompt`.
 - Ne pas ajouter dans l'UI de contrôle qui laisse croire que `use_pe=false` ou `negative_prompt` sont appliqués en MLX.
 
-## Prochaine priorité produit
+## PRD-114 V1 compacte
 
 PRD-114 : contrôle de représentation visuelle.
 
-- Ajouter un accordéon DSFR compact "Représentation visuelle" sous l'aide à la structure du prompt.
+- Accordéon DSFR compact "Représentation visuelle" sous l'aide à la structure du prompt.
 - V1 : 8 presets maximum, un champ libre, un bouton visible "Ajouter un ancrage visuel en anglais".
 - L'ancrage doit être injecté dans le textarea comme bloc visible `Visual anchor: ...`.
 - Si un bloc `Visual anchor:` existe déjà, le remplacer plutôt que l'empiler.
@@ -105,5 +105,5 @@ git clone --depth 1 https://github.com/treadon/mlx-ernie-image.git vendor/mlx-er
 - `prd/PRD-111-ernie-studio-fastapi-dsfr.MD` - décisions de conception initiales
 - `prd/PRD-112-ernie-api-enrichissement-contrat.MD` - contrat API enrichi, implémenté
 - `prd/PRD-113-ernie-studio-ux-prompting.MD` - UX prompting guidé, implémenté
-- `prd/PRD-114-ernie-studio-controle-representation-portraits.MD` - prochaine V1 compacte
+- `prd/PRD-114-ernie-studio-controle-representation-portraits.MD` - V1 compacte implémentée
 - `prd/PRD-115-ernie-studio-batch-prompts.MD` - brouillon batch prompts

@@ -1,6 +1,11 @@
 export function initPromptAccordionFallback() {
-    const button = document.querySelector('[data-ernie-accordion-fallback]');
-    if (!button) return;
+    const buttons = document.querySelectorAll('[data-ernie-accordion-fallback]');
+    buttons.forEach(_initAccordionButton);
+}
+
+function _initAccordionButton(button) {
+    if (button.dataset.ernieAccordionReady === 'true') return;
+    button.dataset.ernieAccordionReady = 'true';
 
     const panelId = button.getAttribute('aria-controls');
     const panel = panelId ? document.getElementById(panelId) : null;
