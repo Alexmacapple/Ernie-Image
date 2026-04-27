@@ -12,11 +12,13 @@
 - [x] Problème cadré : biais visuel perçu sur portraits, personnages, décors, typographies et paysages.
 - [x] Décision produit actée : conserver MLX pour l'instant.
 - [x] Diffusers identifié comme spike futur, seulement si l'UX de prompt ne suffit pas.
+- [x] Hypothèse JP intégrée : si un Prompt Enhancer chinois est actif dans un backend ERNIE, le désactiver ou le remplacer par un enrichisseur anglais devrait réduire le biais.
+- [x] Vérification locale : le backend MLX actuel n'expose pas de `use_pe` et encode le prompt directement ; aucun PE chinois visible à débrancher dans `pipeline_mlx.py` ou le vendor MLX.
 - [x] Negative prompt documenté comme piste future Diffusers, explicitement inactif en backend MLX.
 - [x] Documentation externe créée pour l'usage actuel : `docs/integrer-negative-prompt-mlx.md`.
 - [x] Prompts de test mélodrame pop espagnol documentés dans `docs/prompts-melodrame-pop-espagnol.md`.
 - [ ] Non implémenté : panneau UI "Représentation visuelle".
-- [ ] Non implémenté : module `representation-controls.js`.
+- [ ] Non implémenté : module `representation-controls.js`, incluant un PE anglais local maîtrisé.
 - [ ] Non implémenté : presets positifs de représentation, décor, alphabet, architecture et palette.
 - [ ] Non implémenté : bouton "Renforcer les traits et le décor décrits".
 - [ ] Non implémenté : détection locale de prompts vagues.
@@ -24,7 +26,7 @@
 - [ ] Non implémenté : tests statiques sur les presets positifs.
 - [ ] Non implémenté : support backend Diffusers ou vrai `negative_prompt`.
 
-Conclusion : PRD prêt conceptuellement, mais pas lancé. La prochaine étape raisonnable est une petite v1 frontend positive, sans toucher au backend MLX.
+Conclusion : PRD prêt conceptuellement, mais pas lancé. La prochaine étape raisonnable est une petite v1 frontend positive avec PE anglais local, sans toucher au backend MLX.
 
 ## Vision
 
@@ -49,9 +51,25 @@ Le pourquoi : ERNIE-Image semble produire, sur des prompts courts, un biais visu
 
 PRD-113 a livré une première couche de prompting guidé : templates, compteur, seed workflow et aide à la structure. Cette couche améliore les prompts génériques, mais elle ne cible pas explicitement les cas où le modèle choisit par défaut une représentation humaine, architecturale, paysagère ou typographique non voulue.
 
-Le pipeline MLX actuel ne donne pas accès à `negative_prompt`, `guidance_scale` ni à un interrupteur documenté de prompt enhancer. La réduction du biais doit donc d'abord passer par :
+Hypothèse complémentaire remontée par JP : sur les backends ERNIE qui activent un Prompt Enhancer
+chinois, ce PE peut réécrire ou enrichir un prompt court avec des priorités linguistiques et visuelles
+qui accentuent les motifs est-asiatiques. Dans ce cas, désactiver `use_pe` ou remplacer ce PE par un
+enrichisseur anglais devrait améliorer le contrôle de représentation.
+
+Dans Ernie Studio MLX actuel, cette option n'est pas exposée : le code encode directement le prompt
+fourni (`TextEncoder.encode(prompt)`) puis génère l'image. Aucun paramètre `use_pe` ni réécriture de
+prompt n'est visible dans `pipeline_mlx.py` ou dans le vendor MLX. Le PRD traite donc deux cas :
+
+- **MLX actuel** : ajouter un PE anglais local maîtrisé côté frontend, qui enrichit positivement le
+  prompt avant envoi ;
+- **Diffusers ou backend futur** : tester explicitement `use_pe=false`, puis éventuellement un PE
+  anglais contrôlé, un vrai `negative_prompt` et `guidance_scale`.
+
+Le pipeline MLX actuel ne donne pas accès à `negative_prompt`, `guidance_scale` ni à un interrupteur
+documenté de prompt enhancer. La réduction du biais doit donc d'abord passer par :
 
 - des prompts positifs plus précis ;
+- un enrichissement anglais local explicite, visible et modifiable par l'utilisateur ;
 - des presets de représentation et de décor visibles et modifiables ;
 - une stratégie de comparaison à seed fixe ;
 - une information claire dans l'UI sur les limites du moteur.
@@ -148,6 +166,17 @@ Le bouton doit :
 - dédupliquer le bloc si l'utilisateur clique plusieurs fois ;
 - indiquer clairement que le bloc est une formulation positive et non une contrainte négative.
 
+Ce bouton est le PE anglais local de la v1. Il ne doit pas appeler une IA externe, ne doit pas
+traduire le prompt en chinois et ne doit pas masquer le texte injecté. Le bloc ajouté doit rester
+visible dans le textarea, en anglais, afin que l'utilisateur puisse le relire, le modifier ou le
+supprimer.
+
+Exemple de bloc v1 :
+
+```text
+Visual anchor: contemporary Spanish / Mediterranean European setting, Latin alphabet signage, Madrid or Valencia urban architecture, European clothing, Iberian saturated color palette, French text exactly as written.
+```
+
 ### 5. Mode comparaison à seed fixe
 
 Ajouter une aide courte près du workflow seed :
@@ -179,7 +208,20 @@ Chinese characters, Chinese calligraphy, red lanterns, pagoda, hanfu, qipao, Tan
 
 Garde-fou : le negative prompt doit cibler des artefacts de décor, costume, signalétique ou style visuel. Il ne doit pas contenir de formulation qui exclut des personnes ou des identités humaines.
 
-### 8. Contraintes d'exécution Mac Studio MLX
+### 8. Prompt Enhancer et stratégie backend
+
+La stratégie PE dépend du backend :
+
+- backend MLX actuel : pas de `use_pe` exposé, donc rien à désactiver côté pipeline ;
+- v1 MLX : PE anglais local côté frontend, déterministe, visible et modifiable ;
+- backend Diffusers futur : premier test avec `use_pe=false` si disponible ;
+- backend Diffusers futur : deuxième test avec PE anglais contrôlé si le mode sans PE manque de détails.
+
+Critère de décision : garder MLX si le PE anglais local réduit suffisamment le biais sur des tests à
+seed fixe. Déclencher le spike Diffusers seulement si le biais persiste malgré des prompts enrichis
+positivement.
+
+### 9. Contraintes d'exécution Mac Studio MLX
 
 Le PRD doit rester aligné avec l'optimisation matérielle existante du Mac Studio M1 Ultra 64 Go :
 
@@ -188,7 +230,7 @@ Le PRD doit rester aligné avec l'optimisation matérielle existante du Mac Stud
 - `ERNIE_COMPILE=0` par défaut, activation seulement pour benchmark ponctuel ;
 - pas de quantization sur M1 Ultra 64 Go ;
 - presets de résolution existants uniquement (`square`, `landscape`, `portrait`, `landscape-soft`, `portrait-soft`, `cinema`, `vertical`) ;
-- aucun appel IA supplémentaire côté UI pour analyser le prompt ;
+- aucun appel IA supplémentaire côté UI pour analyser ou réécrire le prompt ;
 - aucune migration Diffusers dans ce PRD.
 
 ---
@@ -197,7 +239,7 @@ Le PRD doit rester aligné avec l'optimisation matérielle existante du Mac Stud
 
 ### Option A retenue : UX de prompt structurée, backend MLX inchangé
 
-Ajouter des contrôles frontend et des templates spécialisés.
+Ajouter des contrôles frontend, des presets spécialisés et un PE anglais local déterministe.
 
 Avantages :
 
@@ -205,6 +247,7 @@ Avantages :
 - cohérent avec PRD-113 ;
 - testable rapidement avec les seeds fixes ;
 - pas de dépendance à Diffusers.
+- teste l'hypothèse "PE anglais mieux contrôlé que PE chinois" sans changer de moteur.
 - optimisé pour le Mac Studio : pipeline chaud, mémoire unifiée suffisante, pas de parallélisme GPU.
 
 Inconvénients :
@@ -220,6 +263,7 @@ Remplacer MLX par un backend Diffusers exposant `negative_prompt`, `guidance_sca
 Avantages :
 
 - contrôle plus fin ;
+- possibilité de tester `use_pe=false` si le backend expose réellement le Prompt Enhancer ;
 - meilleure base pour des expérimentations avancées.
 
 Inconvénients :
@@ -246,9 +290,11 @@ Inconvénients :
 
 ## Décision
 
-Option A. On conserve MLX. On ajoute un contrôle de représentation visuelle explicite dans l'UI et on mesure si les prompts enrichis réduisent suffisamment le biais perçu.
+Option A. On conserve MLX. On ajoute un contrôle de représentation visuelle explicite dans l'UI et un
+PE anglais local visible. On mesure si les prompts enrichis réduisent suffisamment le biais perçu.
 
-Diffusers reste un spike futur, déclenché uniquement si les tests avec seed fixe montrent que l'UX de prompt ne suffit pas.
+Diffusers reste un spike futur, déclenché uniquement si les tests avec seed fixe montrent que l'UX de
+prompt ne suffit pas. Dans ce spike, le premier test doit être `use_pe=false` si l'option existe.
 
 ---
 
@@ -257,7 +303,7 @@ Diffusers reste un spike futur, déclenché uniquement si les tests avec seed fi
 1. `frontend/index.html` - ajouter un accordéon DSFR "Représentation visuelle" fermé par défaut.
 2. `frontend/js/representation-controls.js` - créer un module dédié, initialisé depuis `app.js`.
 3. `frontend/js/representation-controls.js` - définir les presets, champs optionnels et ancrages de décor.
-4. `frontend/js/representation-controls.js` - ajouter la fonction `buildVisualIdentityBlock()` qui produit un bloc texte positif.
+4. `frontend/js/representation-controls.js` - ajouter la fonction `buildVisualIdentityBlock()` qui produit un bloc texte positif en anglais.
 5. `frontend/js/representation-controls.js` - au clic "Renforcer les traits et le décor décrits", ajouter le bloc au textarea sans écraser le contenu existant.
 6. `frontend/js/generator.js` - exposer ou réutiliser un événement `input` standard pour mettre à jour le compteur et nettoyer l'erreur prompt.
 7. `frontend/js/seed-workflow.js` - conserver le fonctionnement actuel ; pas de nouvelle dépendance circulaire.
@@ -265,9 +311,11 @@ Diffusers reste un spike futur, déclenché uniquement si les tests avec seed fi
 9. `frontend/css/app.css` - styles compacts, DSFR, sans carte imbriquée.
 10. `tests/test_frontend_static.py` - ajouter des assertions sur les nouveaux modules, intitulés visibles, absence de formulations négatives dans les presets.
 11. Préparer la donnée `negativePrompt` dans `representation-controls.js`, mais ne pas l'afficher comme bloc copiable et ne pas l'inclure dans le payload `/api/generate` tant que `ERNIE_BACKEND=mlx`.
-12. Si un backend Diffusers est ajouté plus tard, étendre `GenerateRequest` avec `negative_prompt: str | None`, le propager dans le pipeline Diffusers uniquement et tester que MLX l'ignore explicitement avec une note UI.
-13. Ajouter des tests statiques garantissant que les presets MLX contiennent seulement des ancrages positifs de représentation, décor, alphabet, vêtement et architecture.
-14. Ajouter une vérification visuelle manuelle avec seed fixe : prompt vague, prompt enrichi portrait, prompt enrichi décor.
+12. Ajouter une note développeur dans le module : le PE local ne remplace pas un vrai `use_pe=false`, car MLX n'expose pas ce paramètre.
+13. Si un backend Diffusers est ajouté plus tard, étendre `GenerateRequest` avec `negative_prompt: str | None`, le propager dans le pipeline Diffusers uniquement et tester que MLX l'ignore explicitement avec une note UI.
+14. Dans le spike Diffusers futur, tester dans cet ordre : `use_pe=false`, puis PE anglais contrôlé, puis `negative_prompt` et `guidance_scale`.
+15. Ajouter des tests statiques garantissant que les presets MLX contiennent seulement des ancrages positifs de représentation, décor, alphabet, vêtement et architecture.
+16. Ajouter une vérification visuelle manuelle avec seed fixe : prompt vague, prompt enrichi portrait, prompt enrichi décor.
 
 ---
 
@@ -276,6 +324,7 @@ Diffusers reste un spike futur, déclenché uniquement si les tests avec seed fi
 - Le panneau "Représentation visuelle" est accessible au clavier et fermé par défaut.
 - Tous les boutons ont un intitulé visible.
 - Le bouton "Renforcer les traits et le décor décrits" injecte un texte dans le prompt sans l'effacer.
+- Le texte injecté est en anglais, visible dans le textarea et modifiable.
 - Le compteur de caractères est mis à jour après injection.
 - Les presets ne contiennent pas "not Asian", "no Asian", "avoid Asian" ou équivalents.
 - Les presets MLX ne contiennent pas de listes d'objets indésirables ; ils utilisent seulement des ancrages positifs.
@@ -283,6 +332,7 @@ Diffusers reste un spike futur, déclenché uniquement si les tests avec seed fi
 - Un prompt avec texte à rendre peut être renforcé par `texte français en alphabet latin` ou équivalent positif.
 - La méthode recommande une seed fixe pour comparer.
 - Aucun changement backend ni pipeline MLX.
+- Aucun contrôle UI ne laisse croire que `use_pe=false` est disponible en MLX.
 - Aucun nouveau `innerHTML` alimenté par des données utilisateur.
 - Le negative prompt est préparé comme donnée technique pour Diffusers futur, mais aucun bloc négatif copiable ni aucun contrôle UI ne prétend l'appliquer en MLX.
 - Sur Mac Studio M1 Ultra 64 Go, une génération `square`, 8 steps, prompt enrichi, reste dans l'enveloppe cible existante de moins de 55 secondes.
@@ -308,6 +358,8 @@ Diffusers reste un spike futur, déclenché uniquement si les tests avec seed fi
 - Formuler les aides comme des descriptions visuelles volontaires pour une image générée.
 - Ne pas pousser une représentation par défaut.
 - Ne pas utiliser d'exclusions négatives comme mécanisme principal.
+- Ne pas masquer un enrichissement automatique : tout bloc ajouté au prompt doit être visible.
+- Ne pas présenter le PE anglais local comme une garantie de neutralité ; c'est une aide de contrôle visuel.
 - Ne pas invisibiliser la diversité : les presets sont des raccourcis descriptifs modifiables, pas des normes.
 - Pour les scènes sans personnages, privilégier les ancrages de décor, architecture, alphabet et palette plutôt que des traits humains.
 
@@ -318,6 +370,7 @@ Diffusers reste un spike futur, déclenché uniquement si les tests avec seed fi
 - Avec une seed fixe, un prompt vague et son prompt enrichi produisent une différence visible dans la direction demandée.
 - Avec une seed fixe, un prompt de rue ou paysage vague et son prompt enrichi produisent une différence visible dans le décor, l'alphabet ou l'architecture demandés.
 - Au moins 8 presets produisent un bloc de prompt cohérent sous 8000 caractères.
+- À seed fixe, le prompt enrichi par le PE anglais local réduit les motifs est-asiatiques non demandés dans les scènes méditerranéennes de test.
 - Aucun warning RGAA évident sur les nouveaux contrôles.
 - Les tests statiques frontend passent.
 - L'utilisateur peut comprendre la méthode sans lire une documentation externe.
@@ -332,3 +385,4 @@ Diffusers reste un spike futur, déclenché uniquement si les tests avec seed fi
 | 2026-04-27 | Alex + Codex | Création du PRD après constat de biais portrait sur ERNIE-Image |
 | 2026-04-27 | Alex + Codex | Ajout d'une stratégie `negative_prompt` préparée pour Diffusers et explicitement inactive en MLX |
 | 2026-04-27 | Alex + Codex | Élargissement aux décors, paysages, typographies et ancrages culturels positifs ; suppression des blocs négatifs copiables en backend MLX ; ajout de critères Mac Studio |
+| 2026-04-27 | Alex + Codex | Intégration hypothèse JP : désactivation d'un PE chinois quand disponible, et PE anglais local visible pour le backend MLX actuel |
