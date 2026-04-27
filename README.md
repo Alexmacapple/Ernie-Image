@@ -26,7 +26,7 @@ uv venv .venv --python 3.12 --seed && source .venv/bin/activate
 uv pip install torch torchvision torchaudio
 uv pip install "git+https://github.com/huggingface/diffusers"
 uv pip install transformers accelerate sentencepiece protobuf pillow
-uv pip install "mlx>=0.20.0" "mlx-lm>=0.20.0" fastapi "uvicorn[standard]" sse-starlette pydantic
+uv pip install "mlx>=0.20.0" "mlx-lm>=0.20.0" fastapi "uvicorn[standard]" sse-starlette pydantic httpx "python-jose[cryptography]"
 
 # 3. Cloner la dépendance MLX (repo externe)
 git clone --depth 1 https://github.com/treadon/mlx-ernie-image.git vendor/mlx-ernie-image
@@ -60,12 +60,24 @@ Les modèles (~20 Go) sont téléchargés automatiquement depuis HuggingFace au 
 
 | Méthode | Route | Description |
 |---------|-------|-------------|
+| POST | `/api/auth/login` | Connexion Keycloak |
+| POST | `/api/auth/token/refresh` | Renouvellement du token |
+| POST | `/api/auth/logout` | Déconnexion best effort |
 | GET | `/api/health` | 200 si pipeline prêt, 503 sinon |
 | GET | `/api/status` | `{loaded, loading_elapsed_s, generating}` |
 | GET | `/api/presets` | 7 formats avec dimensions |
 | POST | `/api/generate` | SSE : `started` → `progress` → `done\|error` |
-| GET | `/api/outputs` | Liste JSON des PNG (anti-chronologique) |
-| GET | `/api/outputs/{filename}` | Sert le PNG |
+| GET | `/api/outputs` | Liste JSON des PNG, pagination optionnelle `page`/`page_size` |
+| GET | `/api/outputs/{filename}` | Sert le PNG, Bearer ou `?token=...` |
+| DELETE | `/api/outputs/{filename}` | Supprime le PNG et son sidecar JSON |
+
+Les routes de génération et d'historique sont protégées par JWT Keycloak. Les routes `/api/health`, `/api/status`, `/api/presets` et `/api/auth/*` restent publiques.
+
+## Historique
+
+- Le front utilise `GET /api/outputs?page=1&page_size=18`.
+- En desktop, la galerie affiche 18 images par page, soit 6 colonnes sur 3 lignes.
+- Les anciennes images sans sidecar restent listées ; la seed est extraite du nom de fichier quand possible.
 
 ## Presets disponibles
 
@@ -101,6 +113,7 @@ pytest tests/
 
 Les PRD sont dans `prd/`.
 
+- `PRD-111` est implémenté : FastAPI, DSFR, Keycloak, historique, lightbox et routes de base.
 - `PRD-112` et `PRD-113` sont implémentés.
 - `PRD-114` V1 compacte est implémenté côté frontend : ancrage visuel anglais visible, 8 presets maximum, aucun changement backend MLX.
 - `PRD-115` reste un brouillon de cadrage pour le batch de prompts.

@@ -30,8 +30,8 @@
 ## Vision
 
 Le quoi : transformer le formulaire de génération en surface de prompting guidé, sans refonte de
-page - templates prêts-à-l'emploi, aide à la structure, compteur de caractères, workflow seed
-explicite.
+page - aide à la structure, compteur de caractères et workflow seed explicite. Les templates
+initialement envisagés ont été retirés du front à la demande utilisateur.
 
 Le pourquoi : les bonnes pratiques ERNIE (prompt structuré long, seed fixe en phase de
 raffinement, exploration multi-seeds avant engagement) sont documentées mais invisibles dans
@@ -41,16 +41,14 @@ première session.
 
 ## Exemple bout-en-bout (projeté)
 
-1. Alex ouvre Ernie Studio, clique "Templates" dans le formulaire.
-2. Un panneau DSFR rétractable liste 8 templates (poster, photo réaliste, UI mockup, BD, infographie...).
-3. Il clique "Poster de conférence IA" - le textarea se remplit avec le template structuré.
-4. Il modifie uniquement le titre entre guillemets, laisse le reste.
-5. Il clique "Générer" avec seed aléatoire - 3 images générées successivement (3 clics).
-6. Il choisit la meilleure via la galerie, clique "Fixer cette seed" → le champ seed passe en mode
-   Raffinement.
-7. Il modifie un seul mot du prompt (lumière "dorée" → "froide"), régénère - la composition reste
-   stable, seule la lumière change.
-8. Le compteur affiche "342 caractères sur 2000 - structuré" avec un état visuel DSFR non ambigu.
+1. Alex ouvre Ernie Studio après login Keycloak.
+2. Il ouvre l'accordéon "Aide à la structure du prompt" pour relire les blocs recommandés.
+3. Il saisit un prompt structuré dans le textarea.
+4. Le compteur affiche l'état `court`, `acceptable` ou `structuré` jusqu'à 8000 caractères.
+5. Il clique "Générer une image" avec seed aléatoire.
+6. Il choisit la meilleure image via l'historique, colle sa seed, puis le champ passe en mode Raffinement.
+7. Il modifie un seul élément du prompt et régénère avec la même seed.
+8. Le compteur, le badge seed et le placeholder restent synchronisés après génération réussie.
 
 ---
 
@@ -65,9 +63,7 @@ publiées qui ne sont pas reflétées dans l'UI :
 Notes :
 - `use_pe`, `negative_prompt` et `guidance_scale` ne sont pas supportés par le pipeline MLX vendor
   actuel (cf. PRD-112 analyse). Les améliorations de ce PRD sont donc exclusivement UI/UX.
-- Le backend actuel limite `prompt` à 2000 caractères. PRD-112 prévoit 8000 caractères. PRD-113
-  peut être livré avant PRD-112, mais le compteur doit refléter la limite effective du backend au
-  moment de l'implémentation.
+- PRD-112 est implémenté : le backend et le compteur acceptent désormais 8000 caractères.
 - La galerie importe déjà la lightbox et le générateur importe la galerie. Le workflow seed ne doit
   pas introduire de dépendance circulaire entre `gallery.js` et `generator.js`.
 
@@ -80,7 +76,7 @@ L'UI actuelle n'aide pas l'utilisateur à prompter efficacement ERNIE :
 - Textarea vide sans structure ni exemple → l'utilisateur produit des prompts courts et génériques
 - Seed peu visible (champ discret, pas de notion "phase exploration vs raffinement") → itération non contrôlée
 - Pas de compteur de caractères → l'utilisateur ne sait pas si son prompt est "assez long"
-- Pas de templates → chaque session repart de zéro
+- Les templates ont été retirés du scope livré pour garder l'écran compact et éviter une bibliothèque de prompts en dur
 - Le bouton actuel "Coller le seed" remplit le champ, mais ne rend pas explicite le passage en phase
   de raffinement
 
@@ -88,19 +84,18 @@ L'UI actuelle n'aide pas l'utilisateur à prompter efficacement ERNIE :
 
 ## Solution
 
-Quatre ajouts UX dans `frontend/` (HTML/CSS/JS DSFR), plus un petit module technique pour éviter le
+Trois ajouts UX dans `frontend/` (HTML/CSS/JS DSFR), plus un petit module technique pour éviter le
 couplage circulaire, sans changement du pipeline MLX :
 
-1. **Bibliothèque de templates** : bouton "Templates" ouvre un panneau avec 8 templates structurés
-   couvrant poster, photo réaliste, UI mockup, BD/comic, infographie, affiche événementielle,
-   portrait éditorial, scène architecturale. Un clic injecte le template dans le textarea, déclenche
-   l'événement `input` et place le focus dans le textarea.
+1. **Templates retirés du scope livré** : aucun `templates.js`, aucun panneau templates et aucun bouton
+   "Templates" dans l'UI actuelle. La décision produit est de garder le guidage léger et de s'appuyer
+   sur l'aide à la structure et, ensuite, sur PRD-114 pour les ancrages visuels.
 
 2. **Compteur de caractères avec zones visuelles** : sous le textarea, afficher "N car." avec
    trois zones de couleur DSFR et un texte compréhensible sans dépendre de la couleur :
    - < 100 : "court"
    - 100-199 : "acceptable"
-   - 200-2000 ou 200-8000 selon la limite backend : "structuré"
+   - 200-8000 selon la limite backend actuelle : "structuré"
    Le compteur affiche aussi la limite maximale effective.
 
 3. **Workflow seed explicite** : remplacer le champ seed discret par deux modes clairs :
@@ -125,7 +120,7 @@ couplage circulaire, sans changement du pipeline MLX :
 ### Option A (retenue) : ajouts progressifs dans le formulaire existant, sans refonte
 
 Ajouter les éléments dans `frontend/index.html` et `frontend/js/` sans changer la structure de page.
-Chaque ajout doit rester isolé : compteur, templates, seed workflow et aide structure peuvent être
+Chaque ajout doit rester isolé : compteur, seed workflow et aide structure peuvent être
 livrés et testés séparément.
 
 **Avantages** :
@@ -136,7 +131,7 @@ livrés et testés séparément.
 
 **Inconvénients** :
 - Le formulaire peut devenir chargé si on ajoute tout en même temps
-- Les templates sont en dur dans le JS - pas de persistance utilisateur ni de CRUD
+- Les prompts restent saisis manuellement ; la bibliothèque de templates est hors scope livré
 
 ### Option B : panneau latéral dédié "Atelier prompt"
 
@@ -155,9 +150,9 @@ aide structure, compteur, historique seeds. Le formulaire de génération est da
 
 ## Décision
 
-Option A. Usage solo local, pas besoin d'extensibilité. Les 4 ajouts UX sont indépendants et
-non-bloquants. On livre dans l'ordre : compteur (le plus simple) → templates → module seed workflow
-→ workflow seed → aide structure.
+Option A. Usage solo local, pas besoin d'extensibilité. Les ajouts UX sont indépendants et
+non-bloquants. Le périmètre livré retire les templates et conserve l'ordre : compteur → module seed
+workflow → workflow seed → aide structure.
 
 La priorité de design est la densité utile, pas une page éditoriale : les aides doivent rester
 rétractables, les libellés des boutons doivent être visibles, et aucun bouton icône seul ne doit
@@ -168,18 +163,14 @@ rétractables, les libellés des boutons doivent être visibles, et aucun bouton
 ## Plan d'implémentation
 
 1. `frontend/index.html` - ajouter un compteur sous le textarea : `id="prompt-counter"`,
-   `aria-live="polite"`, avec texte initial "0 caractère sur 2000" ou "0 caractère sur 8000" selon
-   la limite backend effective.
+   `aria-live="polite"`, avec texte initial "0 car. sur 8000 - court".
 2. `frontend/js/generator.js` - centraliser la mise à jour du compteur dans `updatePromptCounter()`
-   et l'appeler au chargement, à chaque `input`, et après injection d'un template.
+   et l'appeler au chargement, à chaque `input`, et après reset du prompt.
 3. `frontend/css/app.css` - ajouter des classes sobres pour les états du compteur avec tokens DSFR,
    sans se reposer uniquement sur la couleur : `prompt-counter--short`, `--ok`, `--structured`.
-4. `frontend/js/templates.js` (nouveau) - tableau de 8 templates `{id, name, description, prompt}`,
-   sans `innerHTML` non échappé. Les prompts doivent rester sous la limite backend effective.
-5. `frontend/index.html` - ajouter un bouton visible "Templates" (`button`, pas lien) et un panneau
-   DSFR rétractable contenant la liste. Chaque template est un bouton avec intitulé visible.
-6. `frontend/js/templates.js` - au clic template : remplir le textarea, déclencher `input` et
-   `change`, fermer le panneau si le comportement DSFR le permet, puis focus textarea.
+4. Retiré : ne pas créer `frontend/js/templates.js` dans le périmètre livré.
+5. Retiré : ne pas ajouter de bouton visible "Templates" ni de panneau templates.
+6. Retiré : aucune injection de template dans le textarea.
 7. `frontend/js/seed-workflow.js` (nouveau) - module propriétaire de l'état seed :
    `initSeedWorkflow()`, `lockSeed(seed)`, `unlockSeed()`, `getSeedForSubmit()`.
 8. `frontend/index.html` - conserver l'`input#seed`, ajouter un badge d'état et un bouton
@@ -190,47 +181,45 @@ rétractables, les libellés des boutons doivent être visibles, et aucun bouton
    "Fixer cette seed" et appeler `lockSeed(seed)` depuis les cartes et la lightbox.
 11. `frontend/index.html` - ajouter l'accordéon DSFR "Aide à la structure" avec les 6 blocs
    recommandés. Contenu court, scannable, fermé par défaut.
-12. `frontend/js/app.js` - initialiser `templates.js` et `seed-workflow.js` une seule fois au
-   démarrage, avec cache-busting cohérent.
+12. `frontend/js/app.js` - initialiser `seed-workflow.js` une seule fois au démarrage, avec
+   cache-busting cohérent.
 13. `tests/` - si Playwright n'est pas disponible, ajouter au minimum `node --check` sur les nouveaux
-   modules et un test manuel documenté : injection template, compteur, fixation/libération seed,
+   modules et un test manuel documenté : compteur, fixation/libération seed,
    génération avec seed fixée.
 
 ---
 
 ## Métriques de succès
 
-- Les 8 templates injectent un prompt non vide dans le textarea en un clic
+- Aucun template n'est exposé dans le frontend courant : pas de `templates.js`, pas de panneau templates
 - Le compteur affiche le bon texte et la bonne classe CSS pour les seuils 0 / 150 / 250 caractères
 - "Fixer cette seed" depuis la galerie passe en mode Raffinement et affiche le badge "Seed fixée : XXXX"
 - "Libérer" repasse le champ en mode Exploration (seed vide)
 - L'accordéon "Aide à la structure" s'ouvre et se ferme sans erreur console
 - Aucune régression sur le flux de génération SSE existant (started → progress → done)
 - Aucun nouveau lien ou bouton sans intitulé visible
-- Aucun `innerHTML` alimenté par les prompts/templates sans échappement explicite
+- Aucun `innerHTML` alimenté par les prompts sans échappement explicite
 
 ---
 
 ## Contraintes RGAA / DSFR
 
-- Les actions "Templates", "Utiliser ce template", "Fixer cette seed" et "Libérer la seed" sont des
+- Les actions "Fixer cette seed" et "Libérer la seed" sont des
   boutons avec intitulé visible.
 - Le compteur ne transmet pas l'information uniquement par la couleur : il expose aussi un texte
   ("court", "acceptable", "structuré").
 - Les panneaux rétractables utilisent les classes et attributs DSFR attendus (`aria-controls`,
   état ouvert/fermé géré par DSFR quand possible).
-- Le focus est maîtrisé après injection d'un template : retour dans le textarea, pas dans un élément
-  masqué.
-- Les templates ne doivent pas contenir de texte qui pousse les boutons ou badges à déborder sur
-  mobile.
+- Le focus reste maîtrisé après les actions seed et après génération réussie.
+- Les libellés ajoutés ne doivent pas pousser les boutons ou badges à déborder sur mobile.
 
 ---
 
 ## Dépendances et ordre recommandé
 
-- PRD-113 peut être livré sans PRD-112 si les templates restent sous 2000 caractères.
-- Si PRD-112 est implémenté avant, fixer la limite du compteur à 8000 et prévoir des templates plus
-  riches.
+- PRD-112 est implémenté : la limite effective du prompt et du compteur est 8000 caractères.
+- Les templates ne sont pas livrés dans PRD-113. Si le besoin revient, créer un nouveau PRD ou une
+  révision explicite plutôt que réintroduire silencieusement `templates.js`.
 - Le module `seed-workflow.js` doit être introduit avant de modifier les actions de galerie afin
   d'éviter une dépendance circulaire `gallery.js` ↔ `generator.js`.
 
@@ -242,3 +231,4 @@ rétractables, les libellés des boutons doivent être visibles, et aucun bouton
 |------|--------|------------|
 | 2026-04-27 | Alex + Claude | Création du PRD |
 | 2026-04-27 | Alex + Codex | Clarification périmètre frontend, limite prompt liée à PRD-112, module `seed-workflow.js`, contraintes RGAA/DSFR et plan testable |
+| 2026-04-27 | Alex + Codex | Mise à jour du PRD pour refléter le périmètre livré sans templates frontend |

@@ -23,7 +23,7 @@
 - [ ] Non implémenté : badges batch dans l'historique et la lightbox.
 - [ ] Non implémenté : tests backend batch.
 
-Conclusion : PRD non démarré. À garder en brouillon tant que PRD-114 n'est pas tranché ou tant que le besoin batch n'est pas prioritaire.
+Conclusion : PRD non démarré. PRD-114 est maintenant tranché et livré en V1 compacte ; ce PRD reste à garder en brouillon tant que le besoin batch n'est pas prioritaire.
 
 ## Vision
 
@@ -51,6 +51,7 @@ Ernie Studio dispose déjà :
 - d'un verrou de génération qui empêche les doubles générations ;
 - d'un historique paginé avec sidecars JSON ;
 - d'une authentification Keycloak ;
+- d'un accordéon "Représentation visuelle" qui injecte un bloc `Visual anchor:` visible dans le prompt ;
 - d'un pipeline MLX chaud mais fragile en mémoire si plusieurs traitements concurrents sont lancés.
 
 Le mode batch doit donc composer avec l'existant au lieu de créer un deuxième chemin de génération divergent.
@@ -61,7 +62,8 @@ Contraintes importantes :
 - le navigateur ne doit pas être responsable de l'orchestration longue ;
 - l'annulation ne peut pas interrompre proprement une génération MLX déjà lancée ;
 - les sorties batch doivent rester compatibles avec l'historique actuel ;
-- le batch ne doit pas prétendre appliquer un vrai `negative_prompt` tant que le backend reste MLX.
+- le batch ne doit pas prétendre appliquer un vrai `negative_prompt` tant que le backend reste MLX ;
+- si un prompt contient déjà un bloc `Visual anchor:`, le batch doit le traiter comme partie intégrante du prompt final, sans essayer de le régénérer ni de l'interpréter côté backend.
 
 ## Problème
 
@@ -87,7 +89,7 @@ Ajouter un mode batch séquentiel, appuyé par une file backend simple, sans Cel
 
 ### 1. Panneau UI "Batch de prompts"
 
-Ajouter un accordéon DSFR fermé par défaut sous le formulaire principal.
+Ajouter un accordéon DSFR fermé par défaut sous les aides de prompting existantes, sans ouvrir de panneau par défaut.
 
 Champs :
 
@@ -96,6 +98,7 @@ Champs :
 - aide de séparation : une ligne `---` sépare deux prompts ;
 - bouton secondaire "Importer un CSV", optionnel ;
 - bloc commun optionnel ajouté à chaque prompt ;
+- compatibilité explicite avec les blocs `Visual anchor:` déjà présents dans les prompts collés ;
 - stratégie seed ;
 - bouton visible "Prévisualiser le batch" ;
 - bouton visible "Lancer le batch".
@@ -111,7 +114,8 @@ Règles v1 :
 - les lignes vides autour d'un bloc sont ignorées ;
 - le bloc commun est ajouté à la fin de chaque prompt, séparé par deux retours ligne ;
 - limite : 20 prompts par batch ;
-- chaque prompt final doit respecter la limite backend actuelle de 8000 caractères.
+- chaque prompt final doit respecter la limite backend actuelle de 8000 caractères ;
+- un bloc `Visual anchor:` est conservé tel quel dans chaque prompt ; si un bloc commun en contient un autre, la prévisualisation doit signaler le risque de doublon au lieu de remplacer silencieusement le texte.
 
 Format accepté :
 
@@ -441,3 +445,4 @@ La v1 reste volontairement simple :
 |------|--------|------------|
 | 2026-04-27 | Alex + Codex | Création du PRD batch prompts séquentiels |
 | 2026-04-27 | Alex + Codex | Ajout import CSV optionnel, le copier-coller restant le chemin principal |
+| 2026-04-27 | Alex + Codex | Mise à jour après PRD-114 V1 : compatibilité attendue avec les blocs `Visual anchor:` existants |

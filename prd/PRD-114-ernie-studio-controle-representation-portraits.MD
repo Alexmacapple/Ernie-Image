@@ -28,7 +28,7 @@
 - [x] Implémenté : tests statiques ciblés sur les presets positifs et le périmètre V1.
 - [ ] Non implémenté : support backend Diffusers ou vrai `negative_prompt`.
 
-Conclusion : V1 frontend compacte implémentée sur la branche `feature/prd-114-v1-compacte`, sans toucher au backend MLX. Les suites automatisées passent avec 64 tests.
+Conclusion : V1 frontend compacte implémentée dans l'état courant du dépôt, sans toucher au backend MLX. Les suites automatisées passent avec le périmètre de tests actuel.
 
 ## Vision
 
@@ -51,7 +51,7 @@ Le pourquoi : ERNIE-Image semble produire, sur des prompts courts, un biais visu
 
 ## Contexte
 
-PRD-113 a livré une première couche de prompting guidé : templates, compteur, seed workflow et aide à la structure. Cette couche améliore les prompts génériques, mais elle ne cible pas explicitement les cas où le modèle choisit par défaut une représentation humaine, architecturale, paysagère ou typographique non voulue.
+PRD-113 a livré une première couche de prompting guidé : compteur, seed workflow et aide à la structure. Les templates initialement envisagés ont été retirés du front. Cette couche améliore les prompts génériques, mais elle ne cible pas explicitement les cas où le modèle choisit par défaut une représentation humaine, architecturale, paysagère ou typographique non voulue.
 
 Hypothèse complémentaire remontée par JP : sur les backends ERNIE qui activent un Prompt Enhancer
 chinois, ce PE peut réécrire ou enrichir un prompt court avec des priorités linguistiques et visuelles
@@ -233,7 +233,7 @@ Ajouter une aide courte près du workflow seed :
 
 `Pour comparer un prompt, fixez la seed et gardez le même format et les mêmes étapes.`
 
-Le bouton "Fixer la seed" existe déjà dans l'historique. La V1 ne rajoute pas de bouton dans la lightbox. Un bouton "Comparer avec cette seed" peut être étudié en V2 seulement si le flux actuel reste insuffisant.
+Les actions de seed existent déjà dans l'historique et la lightbox via le workflow PRD-113. La V1 ne rajoute pas de nouveau bouton spécifique "Comparer avec cette seed". Ce bouton peut être étudié en V2 seulement si le flux actuel reste insuffisant.
 
 ### 8. Documentation UX dans l'accordéon
 
@@ -459,3 +459,4 @@ Protocole de validation manuelle :
 | 2026-04-27 | Alex + Codex | Implémentation V1 compacte : accordéon, 8 presets, champ libre, injection `Visual anchor:`, tests statiques |
 | 2026-04-27 | Alex + Codex | Correction UX : le bouton d'ancrage ajoute un bloc générique même sans preset sélectionné |
 | 2026-04-27 | Alex + Codex | Renforcement des presets : libellés plus précis et ancrages visuels plus concrets |
+| 2026-04-27 | Alex + Codex | Mise à jour du PRD pour refléter PRD-113 sans templates livrés et l'état courant du dépôt |
