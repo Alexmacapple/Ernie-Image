@@ -187,15 +187,18 @@
 
 /* Lightbox */
 .lightbox {
-    position: fixed;
-    inset: 0;
+    align-items: center;
     background: rgba(0, 0, 0, 0.88);
-    z-index: 9999;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    inset: 0;
+    justify-content: flex-start;
+    overflow-y: auto;
+    overscroll-behavior: contain;
     padding: 2rem;
+    position: fixed;
+    -webkit-overflow-scrolling: touch;
+    z-index: 9999;
 }
 
 .lightbox[hidden] {
@@ -229,6 +232,7 @@
 .lightbox-image {
     max-width: 100%;
     max-height: 70vh;
+    margin-top: auto;
     border-radius: 4px;
     object-fit: contain;
 }
@@ -286,6 +290,7 @@
     gap: 0.75rem;
     justify-content: center;
     margin-top: 1rem;
+    margin-bottom: auto;
 }
 
 .lightbox-seed,
@@ -327,6 +332,42 @@
 
 .lightbox-delete:active {
     background: var(--background-contrast-red-marianne) !important;
+}
+
+body.lightbox-scroll-locked {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
+@media (max-width: 48em) {
+    .lightbox {
+        align-items: stretch;
+        padding: 4.5rem 1rem 1.5rem;
+    }
+
+    .lightbox-image {
+        margin-top: 0;
+        max-height: 65dvh;
+        width: 100%;
+    }
+
+    .lightbox-meta {
+        max-width: none;
+    }
+
+    .lightbox-actions {
+        align-items: stretch;
+        flex-direction: column;
+        margin-bottom: 0;
+    }
+
+    .lightbox-seed,
+    .lightbox-download,
+    .lightbox-delete {
+        justify-content: center;
+        width: 100%;
+    }
 }
 
 /* Footer statut */

@@ -2,8 +2,8 @@
 
 Application web de génération d'images via [ERNIE-Image Turbo](https://github.com/Sandjab/Ernie), optimisée pour Apple Silicon (M1 Ultra / 64 Go).
 
-**Stack** : FastAPI · DSFR · MLX · Keycloak  
-**Port** : 8300  
+**Stack** : FastAPI · DSFR · MLX · Keycloak
+**Port** : 8300
 **Pipeline** : text encoder PyTorch+MPS (Mistral-3, < 0,1 s) + DiT 8 B + VAE MLX (~41 s/image)
 
 ---
@@ -40,7 +40,7 @@ Les modèles (~20 Go) sont téléchargés automatiquement depuis HuggingFace au 
 ./scripts/stop.sh
 ```
 
-> Toujours utiliser `start.sh` (il exporte `HF_HUB_CACHE` vers `models/`).  
+> Toujours utiliser `start.sh` (il exporte `HF_HUB_CACHE` vers `models/`).
 > Ne pas lancer `uvicorn` directement.
 
 ## Variables d'environnement
@@ -49,7 +49,7 @@ Les modèles (~20 Go) sont téléchargés automatiquement depuis HuggingFace au 
 |----------|--------|------|
 | `ERNIE_PORT` | 8300 | Port d'écoute |
 | `ERNIE_COMPILE` | 0 | `1` = mx.compile sur le DiT |
-| `ERNIE_QUANTIZE` | — | 4 ou 8 bits (inutile sur M1 Ultra) |
+| `ERNIE_QUANTIZE` | - | 4 ou 8 bits (inutile sur M1 Ultra) |
 | `ERNIE_RELOAD` | 0 | `1` = hot-reload uvicorn (dev) |
 | `KEYCLOAK_URL` | http://localhost:8082 | Serveur Keycloak |
 | `KEYCLOAK_REALM` | harmonia | Realm Keycloak |

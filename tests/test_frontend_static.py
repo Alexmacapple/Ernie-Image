@@ -140,6 +140,22 @@ def test_prompt_counter_uses_dsfr_text_tokens():
     assert "var(--text-default-success)" in css
 
 
+def test_lightbox_locks_page_scroll_and_scrolls_overlay():
+    css = _read("frontend/css/app.css")
+    gallery = _read("frontend/js/gallery.js")
+
+    assert "overflow-y: auto;" in css
+    assert "overscroll-behavior: contain;" in css
+    assert "body.lightbox-scroll-locked" in css
+    assert "position: fixed;" in css
+    assert "max-height: 65dvh;" in css
+    assert "function _lockPageScroll()" in gallery
+    assert "function _unlockPageScroll()" in gallery
+    assert "document.body.classList.add('lightbox-scroll-locked')" in gallery
+    assert "document.body.classList.remove('lightbox-scroll-locked')" in gallery
+    assert "lightbox.scrollTop = 0;" in gallery
+
+
 def test_owned_text_files_do_not_use_em_or_en_dashes():
     excluded_parts = {
         ".git",

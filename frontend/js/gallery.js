@@ -34,6 +34,21 @@ let currentImage = null;
 let currentPage = 1;
 let currentTotalPages = 1;
 let onLightboxKey = null;
+let lightboxScrollY = 0;
+
+function _lockPageScroll() {
+    if (document.body.classList.contains('lightbox-scroll-locked')) return;
+    lightboxScrollY = window.scrollY;
+    document.body.classList.add('lightbox-scroll-locked');
+    document.body.style.top = `-${lightboxScrollY}px`;
+}
+
+function _unlockPageScroll() {
+    if (!document.body.classList.contains('lightbox-scroll-locked')) return;
+    document.body.classList.remove('lightbox-scroll-locked');
+    document.body.style.top = '';
+    window.scrollTo(0, lightboxScrollY);
+}
 
 export function openImageLightbox(img) {
     currentImage = img;
@@ -51,6 +66,8 @@ export function openImageLightbox(img) {
     lbDelete.disabled     = false;
     lbSeedPaste.disabled  = _getSeed(img) == null;
     lightbox.hidden = false;
+    _lockPageScroll();
+    lightbox.scrollTop = 0;
     lbClose.focus();
 
     if (onLightboxKey) document.removeEventListener('keydown', onLightboxKey);
@@ -61,9 +78,11 @@ export function openImageLightbox(img) {
 }
 
 function _closeLightbox() {
+    if (lightbox.hidden) return;
     lightbox.hidden = true;
     lbImage.src = EMPTY_IMAGE_SRC;
     currentImage = null;
+    _unlockPageScroll();
     if (onLightboxKey) {
         document.removeEventListener('keydown', onLightboxKey);
         onLightboxKey = null;
