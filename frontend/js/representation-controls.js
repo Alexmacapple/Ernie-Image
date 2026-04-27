@@ -5,43 +5,43 @@ const DEFAULT_VISUAL_ANCHOR_TEXT = 'coherent visible traits when characters are 
 export const VISUAL_ANCHOR_PRESETS = [
     {
         id: 'portrait-mediterranean',
-        label: 'Portrait méditerranéen ibérique contemporain',
-        text: 'contemporary Iberian Mediterranean portrait, Spanish or southern French adult, olive to warm light skin tone, dark brown wavy hair, hazel or brown eyes, oval face, straight or softly arched nose, natural Iberian facial proportions, modern Madrid or Valencia clothing, warm window daylight, realistic editorial photography',
+        label: 'Méditerranéen ibérique',
+        text: 'contemporary Iberian Mediterranean editorial portrait, Spanish or southern French adult, olive to warm light skin tone, dark brown wavy hair, hazel or brown eyes, oval face, softly arched brows, straight or softly arched nose, subtle cheekbones, contemporary Madrid or Valencia clothing, plaster wall or tiled interior, Latin alphabet signage, warm window daylight, realistic photography',
     },
     {
         id: 'portrait-western-european',
-        label: 'Portrait européen occidental naturel',
-        text: 'contemporary Western European portrait, fair to light skin tone, light brown or dark blond hair, blue, green or hazel eyes, oval or square face, defined brow, straight nose, natural Western European facial proportions, understated modern European clothing, neutral studio background, realistic photography',
+        label: 'Europe occidentale',
+        text: 'contemporary Western European editorial portrait, French, Belgian or Dutch adult, fair to light skin tone, light brown or dark blond hair, blue, green or hazel eyes, oval or square face, defined brow, straight nose, natural skin texture, understated wool or cotton clothing, neutral studio or European apartment background, cool soft daylight, realistic photography',
     },
     {
         id: 'portrait-afro-caribbean',
-        label: 'Portrait afro-caribéen éditorial',
-        text: 'Afro-Caribbean editorial portrait, deep warm brown skin tone, natural coiled or curly hair texture, dark brown eyes, defined cheekbones, full lips, natural facial proportions, contemporary elegant clothing, soft studio light, realistic editorial photography',
+        label: 'Afro-caribéen',
+        text: 'Afro-Caribbean editorial portrait, French Caribbean or Caribbean adult, deep warm brown skin tone, natural coiled or curly hair texture, dark brown eyes, defined cheekbones, full lips, natural skin texture, contemporary elegant clothing, matte studio backdrop or tropical-modern interior, soft key light, realistic editorial photography',
     },
     {
         id: 'portrait-latin-american',
-        label: 'Portrait latino-méditerranéen contemporain',
-        text: 'contemporary Latin Mediterranean portrait, warm tan skin tone, dark brown hair, brown or hazel eyes, expressive natural face, soft cheekbones, straight or gently curved nose, modern urban clothing, European or Latin city background, soft daylight, realistic photography',
+        label: 'Latino-méditerranéen',
+        text: 'contemporary Latin Mediterranean editorial portrait, Latin American or southern European adult, warm tan to olive skin tone, dark brown hair, brown or hazel eyes, expressive natural face, soft cheekbones, straight or gently curved nose, contemporary urban clothing, Madrid, Marseille or Latin city background with Latin alphabet signage, soft daylight, realistic photography',
     },
     {
         id: 'setting-european-urban',
-        label: 'Rue européenne en alphabet latin',
-        text: 'contemporary European street scene, Latin alphabet street signs and storefronts, stone or plaster facades, compact sidewalks, European cars and street furniture, modern European clothing, natural city daylight, realistic architecture',
+        label: 'Rue européenne',
+        text: 'contemporary Western European street scene, Latin alphabet storefronts and street signs, stone or plaster facades, compact sidewalks, compact European cars, EU-style license plates, bus stop signage, cafe awnings, restrained street furniture, neutral daylight, realistic architecture, controlled natural color palette',
     },
     {
         id: 'setting-iberian-mediterranean',
-        label: 'Décor ibérique Madrid-Valence',
-        text: 'Iberian Mediterranean setting, Madrid or Valencia architecture, ceramic tiles, wrought iron balconies, painted plaster walls, saturated red, turquoise and saffron palette, Spanish Latin alphabet signs, warm late afternoon daylight',
+        label: 'Ville ibérique',
+        text: 'Iberian Mediterranean city setting, Madrid or Valencia street, ceramic azulejo tiles, wrought iron balconies, painted plaster walls, compact stone pavement, orange trees or potted plants, Spanish Latin alphabet street signs and shopfront lettering, cafe tables, saturated red, turquoise and saffron palette, warm shop-window or late afternoon light',
     },
     {
         id: 'setting-french-public',
-        label: 'Institution publique française contemporaine',
-        text: 'contemporary French public institution interior, French Latin alphabet signage, Marianne-inspired civic colors, sober administrative furniture, glass partitions, waiting area chairs, modern European public service setting, neutral daylight',
+        label: 'Institution française',
+        text: 'contemporary French public service interior, French Latin alphabet signage, Marianne-inspired civic colors, reception counter, glass partitions, queue ticket display, paper forms, waiting chairs, blue-white-red civic notice board, sober administrative furniture, neutral daylight, clean realistic composition',
     },
     {
         id: 'setting-french-poster',
-        label: 'Affiche française typographie latine',
-        text: 'French poster design, exact French text in Latin alphabet, European cinema typography, clean readable lettering, accents preserved, balanced composition, controlled graphic palette, print poster layout',
+        label: 'Affiche en français',
+        text: 'French poster design, exact French text in Latin alphabet, accents preserved, clean readable lettering, European cinema typography, printed paper grain, balanced title area, controlled red, blue, cream and black palette, clear hierarchy, poster layout',
     },
 ];
 

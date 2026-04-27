@@ -25,8 +25,8 @@ def test_gallery_module_uses_one_cache_buster():
     assert "seed-workflow.js?v=20260427-lightbox-nav" in gallery
     assert "openImageLightbox, refresh as refreshGallery" in generator
     assert "gallery.js?v=20260427-lightbox-nav" in generator
-    assert 'src="./js/app.js?v=20260427-prd114-v1c"' in index
-    assert "representation-controls.js?v=20260427-prd114-v1c" in app
+    assert 'src="./js/app.js?v=20260427-prd114-v1f"' in index
+    assert "representation-controls.js?v=20260427-prd114-v1f" in app
 
 
 def test_frontend_uses_keycloak_auth_gate():
@@ -147,8 +147,8 @@ def test_prd114_visual_representation_controls_are_compact_and_positive():
     representation = _read("frontend/js/representation-controls.js")
 
     assert "initRepresentationControls" in app
-    assert 'src="./js/app.js?v=20260427-prd114-v1c"' in index
-    assert "representation-controls.js?v=20260427-prd114-v1c" in app
+    assert 'src="./js/app.js?v=20260427-prd114-v1f"' in index
+    assert "representation-controls.js?v=20260427-prd114-v1f" in app
     assert "Représentation visuelle" in index
     assert 'id="visual-representation-button"' in index
     assert 'aria-expanded="false" aria-controls="visual-representation-panel"' in index
@@ -163,15 +163,15 @@ def test_prd114_visual_representation_controls_are_compact_and_positive():
     assert "Le bouton ajoute un ancrage générique si aucun preset n'est sélectionné." in index
     assert "Ajouter un ancrage visuel en anglais" in index
     assert index.count("data-visual-anchor-preset") == 8
-    assert "Portrait méditerranéen ibérique contemporain" in index
-    assert "Portrait européen occidental naturel" in index
-    assert "Portrait latino-méditerranéen contemporain" in index
-    assert "Rue européenne en alphabet latin" in index
-    assert "Décor ibérique Madrid-Valence" in index
-    assert "Institution publique française contemporaine" in index
-    assert "Affiche française typographie latine" in index
+    assert "Méditerranéen ibérique" in index
+    assert "Europe occidentale" in index
+    assert "Latino-méditerranéen" in index
+    assert "Rue européenne" in index
+    assert "Ville ibérique" in index
+    assert "Institution française" in index
+    assert "Affiche en français" in index
     assert "Portraits" in index
-    assert "Décors et texte" in index
+    assert "Lieux et typographie" in index
     assert "Prompt Enhancer" not in index
     assert "negative_prompt" not in index
     assert "use_pe" not in index
@@ -184,10 +184,16 @@ def test_prd114_visual_representation_controls_are_compact_and_positive():
     assert "Visual anchor:" in representation
     assert "buildVisualIdentityBlock" in representation
     assert "dark brown wavy hair" in representation
+    assert "plaster wall or tiled interior" in representation
     assert "blue, green or hazel eyes" in representation
     assert "defined cheekbones" in representation
-    assert "European cars and street furniture" in representation
-    assert "Spanish Latin alphabet signs" in representation
+    assert "compact European cars, EU-style license plates" in representation
+    assert "bus stop signage" in representation
+    assert "cafe awnings" in representation
+    assert "Spanish Latin alphabet street signs and shopfront lettering" in representation
+    assert "queue ticket display" in representation
+    assert "blue-white-red civic notice board" in representation
+    assert "printed paper grain" in representation
     assert "accents preserved" in representation
     assert "function _replaceVisualAnchorBlock(prompt, block)" in representation
     assert "startsWith(VISUAL_ANCHOR_PREFIX)" in representation

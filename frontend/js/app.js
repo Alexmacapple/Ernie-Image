@@ -5,7 +5,7 @@ import { refresh as refreshGallery } from './gallery.js?v=20260427-lightbox-nav'
 import { updateFooter } from './status-footer.js?v=20260427-lightbox-nav';
 import { initSeedWorkflow } from './seed-workflow.js?v=20260427-lightbox-nav';
 import { initPromptAccordionFallback } from './prompt-accordion.js?v=20260427-prd114-v1c';
-import { initRepresentationControls } from './representation-controls.js?v=20260427-prd114-v1c';
+import { initRepresentationControls } from './representation-controls.js?v=20260427-prd114-v1f';
 
 const loginScreen = document.getElementById('login-screen');
 const appScreen = document.getElementById('app-screen');
