@@ -1,4 +1,4 @@
-import { apiGet } from './api-client.js?v=20260427-prd112-113';
+import { apiGet } from './api-client.js?v=20260427-lightbox-nav';
 
 const badge   = document.getElementById('footer-status-badge');
 const label   = document.getElementById('footer-status-label');

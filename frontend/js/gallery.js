@@ -1,6 +1,6 @@
-import { apiDelete, apiGet } from './api-client.js?v=20260427-prd112-113';
+import { apiDelete, apiGet } from './api-client.js?v=20260427-lightbox-nav';
 import { authenticatedUrl } from './auth.js?v=20260427-auth';
-import { lockSeed } from './seed-workflow.js?v=20260427-prd112-113';
+import { lockSeed } from './seed-workflow.js?v=20260427-lightbox-nav';
 
 const grid       = document.getElementById('gallery-grid');
 const loading    = document.getElementById('gallery-loading');
@@ -13,6 +13,7 @@ const paginationList = pagination.querySelector('.fr-pagination__list');
 const lightbox   = document.getElementById('lightbox');
 const lbImage    = document.getElementById('lightbox-image');
 const lbCaption  = document.getElementById('lightbox-caption');
+const lbPosition = document.getElementById('lightbox-position');
 const lbPrompt   = document.getElementById('lightbox-prompt');
 const lbSeed     = document.getElementById('lb-seed');
 const lbSteps    = document.getElementById('lb-steps');
@@ -20,6 +21,9 @@ const lbDims     = document.getElementById('lb-dims');
 const lbDownload = document.getElementById('lightbox-download');
 const lbDelete   = document.getElementById('lightbox-delete');
 const lbSeedPaste = document.getElementById('lightbox-seed-paste');
+const lbPromptCopy = document.getElementById('lightbox-prompt-copy');
+const lbPrev     = document.getElementById('lightbox-prev');
+const lbNext     = document.getElementById('lightbox-next');
 const lbClose    = document.getElementById('lightbox-close');
 const seedInput   = document.getElementById('seed');
 
@@ -29,12 +33,26 @@ const resultDownload = document.getElementById('result-download');
 
 const EMPTY_IMAGE_SRC = 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==';
 const PAGE_SIZE = 18;
+const FOCUSABLE_SELECTOR = [
+    'a[href]',
+    'button:not([disabled])',
+    'input:not([disabled])',
+    'select:not([disabled])',
+    'textarea:not([disabled])',
+    '[tabindex]:not([tabindex="-1"])',
+].join(',');
 
 let currentImage = null;
+let currentImages = [];
 let currentPage = 1;
 let currentTotalPages = 1;
+let currentPageSize = PAGE_SIZE;
+let currentTotal = 0;
 let onLightboxKey = null;
 let lightboxScrollY = 0;
+let previousFocus = null;
+let promptCopyResetTimer = null;
+let lightboxNavLoading = false;
 
 function _lockPageScroll() {
     if (document.body.classList.contains('lightbox-scroll-locked')) return;
@@ -50,7 +68,108 @@ function _unlockPageScroll() {
     window.scrollTo(0, lightboxScrollY);
 }
 
-export function openImageLightbox(img) {
+function _lightboxFocusableElements() {
+    return Array.from(lightbox.querySelectorAll(FOCUSABLE_SELECTOR))
+        .filter(el => !el.closest('[hidden]') && el.getAttribute('aria-hidden') !== 'true');
+}
+
+function _trapLightboxFocus(e) {
+    if (lightbox.hidden || e.key !== 'Tab') return;
+
+    const focusable = _lightboxFocusableElements();
+    if (!focusable.length) {
+        e.preventDefault();
+        lightbox.focus();
+        return;
+    }
+
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+    const active = document.activeElement;
+
+    if (e.shiftKey && (active === first || !lightbox.contains(active))) {
+        e.preventDefault();
+        last.focus();
+    } else if (!e.shiftKey && active === last) {
+        e.preventDefault();
+        first.focus();
+    }
+}
+
+function _setPromptCopyButton(label = 'Copier le prompt') {
+    lbPromptCopy.textContent = label;
+    if (currentImage?.prompt) {
+        lbPromptCopy.disabled = false;
+        lbPromptCopy.title = `Copier le prompt de ${currentImage.filename}`;
+        lbPromptCopy.setAttribute('aria-label', `${label} - ${currentImage.filename}`);
+    } else {
+        lbPromptCopy.disabled = true;
+        lbPromptCopy.title = 'Aucun prompt à copier';
+        lbPromptCopy.setAttribute('aria-label', `${label} - aucun prompt disponible`);
+    }
+}
+
+function _currentImageIndex() {
+    if (!currentImage) return -1;
+    return currentImages.findIndex(img => img.filename === currentImage.filename);
+}
+
+function _lightboxPosition() {
+    const index = _currentImageIndex();
+    if (index < 0 || currentTotal === 0) return null;
+    return {
+        index,
+        absolute: ((currentPage - 1) * currentPageSize) + index + 1,
+    };
+}
+
+function _setNavButton(button, label, enabled, filename) {
+    button.disabled = !enabled || lightboxNavLoading;
+    button.setAttribute('aria-disabled', String(button.disabled));
+    button.title = enabled && filename ? `${label} - ${filename}` : `${label} indisponible`;
+    button.setAttribute('aria-label', enabled && filename ? `${label} - ${filename}` : `${label} indisponible`);
+}
+
+function _syncLightboxNavigation() {
+    const position = _lightboxPosition();
+    const index = position?.index ?? -1;
+    const hasPrevious = index >= 0 && (index > 0 || currentPage > 1);
+    const hasNext = index >= 0 && (index < currentImages.length - 1 || currentPage < currentTotalPages);
+    const previousLabel = index > 0
+        ? currentImages[index - 1]?.filename
+        : 'page précédente de l’historique';
+    const nextLabel = index >= 0 && index < currentImages.length - 1
+        ? currentImages[index + 1]?.filename
+        : 'page suivante de l’historique';
+
+    if (lightboxNavLoading) {
+        lbPosition.textContent = 'Chargement de l’image dans l’historique';
+    } else if (position) {
+        lbPosition.textContent = `Image ${position.absolute} sur ${currentTotal} dans l’historique`;
+    } else {
+        lbPosition.textContent = 'Image ouverte hors pagination de l’historique';
+    }
+
+    _setNavButton(lbPrev, 'Image précédente', hasPrevious, previousLabel);
+    _setNavButton(lbNext, 'Image suivante', hasNext, nextLabel);
+}
+
+function _focusLightboxNav(direction) {
+    const preferred = direction < 0 ? lbPrev : lbNext;
+    const fallback = direction < 0 ? lbNext : lbPrev;
+    if (!preferred.disabled) {
+        preferred.focus({ preventScroll: true });
+    } else if (!fallback.disabled) {
+        fallback.focus({ preventScroll: true });
+    } else {
+        lbClose.focus({ preventScroll: true });
+    }
+}
+
+export function openImageLightbox(img, options = {}) {
+    if (!options.preservePreviousFocus) {
+        previousFocus = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    }
     currentImage = img;
     const imageUrl = authenticatedUrl(img.url);
     lbImage.src = imageUrl;
@@ -65,28 +184,60 @@ export function openImageLightbox(img) {
     lbDownload.download   = img.filename;
     lbDelete.disabled     = false;
     lbSeedPaste.disabled  = _getSeed(img) == null;
+    _setPromptCopyButton();
+    _syncLightboxNavigation();
     lightbox.hidden = false;
     _lockPageScroll();
     lightbox.scrollTop = 0;
-    lbClose.focus();
+    if (options.focusNav) {
+        _focusLightboxNav(options.focusNav);
+    } else {
+        lbClose.focus();
+    }
 
     if (onLightboxKey) document.removeEventListener('keydown', onLightboxKey);
     onLightboxKey = (e) => {
-        if (e.key === 'Escape') _closeLightbox();
+        if (e.key === 'Escape') {
+            _closeLightbox();
+            return;
+        }
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            _navigateLightbox(-1);
+            return;
+        }
+        if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            _navigateLightbox(1);
+            return;
+        }
+        _trapLightboxFocus(e);
     };
     document.addEventListener('keydown', onLightboxKey);
 }
 
-function _closeLightbox() {
+function _closeLightbox({ restoreFocus = true } = {}) {
     if (lightbox.hidden) return;
     lightbox.hidden = true;
     lbImage.src = EMPTY_IMAGE_SRC;
     currentImage = null;
+    lightboxNavLoading = false;
+    lightbox.removeAttribute('aria-busy');
     _unlockPageScroll();
     if (onLightboxKey) {
         document.removeEventListener('keydown', onLightboxKey);
         onLightboxKey = null;
     }
+    if (restoreFocus && previousFocus?.isConnected) {
+        previousFocus.focus({ preventScroll: true });
+    }
+    if (promptCopyResetTimer) {
+        window.clearTimeout(promptCopyResetTimer);
+        promptCopyResetTimer = null;
+    }
+    _setPromptCopyButton();
+    _syncLightboxNavigation();
+    previousFocus = null;
 }
 
 function _clearGalleryItems() {
@@ -177,6 +328,88 @@ function _pasteSeed(img) {
     if (!lightbox.hidden) _closeLightbox();
     seedInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
     seedInput.focus();
+}
+
+async function _writeClipboardText(text) {
+    if (navigator.clipboard?.writeText) {
+        try {
+            await navigator.clipboard.writeText(text);
+            return;
+        } catch {
+            // Fallback pour les contextes qui refusent l'API Clipboard.
+        }
+    }
+
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.setAttribute('readonly', '');
+    textarea.style.position = 'fixed';
+    textarea.style.top = '-1000px';
+    document.body.appendChild(textarea);
+    textarea.select();
+    const copied = document.execCommand('copy');
+    textarea.remove();
+    if (!copied) throw new Error('Impossible de copier le prompt.');
+}
+
+async function _copyPrompt() {
+    if (!currentImage?.prompt) return;
+
+    try {
+        lbPromptCopy.disabled = true;
+        await _writeClipboardText(currentImage.prompt);
+        _setPromptCopyButton('Prompt copié');
+        lbPromptCopy.disabled = true;
+        promptCopyResetTimer = window.setTimeout(() => {
+            promptCopyResetTimer = null;
+            if (!lightbox.hidden) _setPromptCopyButton();
+        }, 1600);
+    } catch (err) {
+        lbPromptCopy.disabled = false;
+        alert(err.message || 'Impossible de copier le prompt.');
+    }
+}
+
+function _setLightboxNavLoading(isLoading) {
+    lightboxNavLoading = isLoading;
+    if (isLoading) {
+        lightbox.setAttribute('aria-busy', 'true');
+    } else {
+        lightbox.removeAttribute('aria-busy');
+    }
+    _syncLightboxNavigation();
+}
+
+async function _navigateLightbox(direction) {
+    if (lightboxNavLoading || !currentImage) return;
+
+    const index = _currentImageIndex();
+    if (index < 0) return;
+
+    const targetInPage = currentImages[index + direction];
+    if (targetInPage) {
+        openImageLightbox(targetInPage, { preservePreviousFocus: true, focusNav: direction });
+        return;
+    }
+
+    const targetPage = currentPage + direction;
+    if (targetPage < 1 || targetPage > currentTotalPages) return;
+
+    _setLightboxNavLoading(true);
+    const refreshed = await refresh(targetPage);
+    if (!refreshed) {
+        _setLightboxNavLoading(false);
+        _focusLightboxNav(direction);
+        return;
+    }
+    const targetImage = direction < 0 ? currentImages[currentImages.length - 1] : currentImages[0];
+    _setLightboxNavLoading(false);
+
+    if (targetImage) {
+        openImageLightbox(targetImage, { preservePreviousFocus: true, focusNav: direction });
+    } else {
+        _focusLightboxNav(direction);
+    }
 }
 
 function _renderItem(img) {
@@ -339,7 +572,12 @@ lbDelete.addEventListener('click', () => {
 lbSeedPaste.addEventListener('click', () => {
     if (currentImage) _pasteSeed(currentImage);
 });
+lbPromptCopy.addEventListener('click', _copyPrompt);
+lbPrev.addEventListener('click', () => _navigateLightbox(-1));
+lbNext.addEventListener('click', () => _navigateLightbox(1));
 lightbox.addEventListener('click', (e) => { if (e.target === lightbox) _closeLightbox(); });
+window.addEventListener('pagehide', () => _closeLightbox({ restoreFocus: false }));
+window.addEventListener('popstate', () => _closeLightbox({ restoreFocus: false }));
 
 export async function refresh(page = currentPage) {
     _clearGalleryItems();
@@ -350,7 +588,7 @@ export async function refresh(page = currentPage) {
         data = await apiGet(`/api/outputs?page=${page}&page_size=${PAGE_SIZE}`);
     } catch (err) {
         _showGalleryError(err.message || 'Impossible de charger les images générées.');
-        return;
+        return false;
     }
 
     const images = Array.isArray(data) ? data : data.items;
@@ -360,12 +598,14 @@ export async function refresh(page = currentPage) {
     const responsePage = Array.isArray(data) ? page : data.page;
 
     if (total > 0 && responsePage > totalPages) {
-        await refresh(totalPages);
-        return;
+        return refresh(totalPages);
     }
 
     currentPage = responsePage;
     currentTotalPages = totalPages;
+    currentImages = images;
+    currentPageSize = pageSize;
+    currentTotal = total;
     _setLoading(false);
     errorBox.hidden = true;
     _syncEmptyState(total);
@@ -374,4 +614,5 @@ export async function refresh(page = currentPage) {
     });
     _renderSummary(currentPage, pageSize, total, images.length);
     _renderPagination(currentPage, currentTotalPages);
+    return true;
 }

@@ -1,11 +1,31 @@
 # PRD-111 : Ernie Studio - serveur FastAPI + front DSFR pour ERNIE-Image Turbo
 
-**Statut** : Brouillon
+**Statut** : Implémenté - stabilisation UX/RGAA en cours
 **Date** : 2026-04-26
 **Auteur** : Alex
 **Source** : conversation - conception architecture ernie-studio
 
 ---
+
+## État d'implémentation au 2026-04-27
+
+- [x] Serveur FastAPI sur port 8300.
+- [x] Pipeline MLX chargé une seule fois et conservé chaud.
+- [x] Verrou de génération pour éviter deux générations concurrentes.
+- [x] Routes `health`, `status`, `presets`, `generate`, `outputs`, suppression image.
+- [x] Sidecars JSON pour tracer prompt, seed, dimensions, durée et métadonnées.
+- [x] Front DSFR servi par FastAPI.
+- [x] Formulaire de génération avec prompt, format, étapes et seed.
+- [x] Progression SSE `started`, `progress`, `done`.
+- [x] Historique paginé accessible, 18 images par page, soit 6 colonnes sur 3 lignes en desktop.
+- [x] Lightbox commune pour historique et dernière génération.
+- [x] Actions image : afficher, télécharger, supprimer, fixer la seed, copier le prompt.
+- [x] Navigation dans la lightbox : image précédente, image suivante, raccourcis flèches, statut `aria-live`.
+- [x] Footer DSFR avec les liens existants et modale de statut.
+- [x] Authentification ajoutée comme l'environnement hébergé l'exige, même si le PRD initial prévoyait un usage local sans Keycloak.
+- [x] Déploiement local via scripts `scripts/start.sh` et `scripts/stop.sh`.
+- [x] Tests backend et contrats frontend : `63 passed`.
+- [ ] À finir hors PRD-111 : durcir encore les tests navigateur si un vrai runner Playwright est ajouté plus tard. Pas prioritaire pour l'instant.
 
 ## Vision
 

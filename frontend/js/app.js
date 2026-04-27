@@ -1,10 +1,10 @@
-import { apiGet } from './api-client.js?v=20260427-prd112-113';
+import { apiGet } from './api-client.js?v=20260427-lightbox-nav';
 import { isAuthenticated, login, logout, onAuthStateChange, scheduleTokenRefresh } from './auth.js?v=20260427-auth';
-import { loadPresets, enableForm, disableForm } from './generator.js?v=20260427-prd112-113';
-import { refresh as refreshGallery } from './gallery.js?v=20260427-prd112-113';
-import { updateFooter } from './status-footer.js?v=20260427-prd112-113';
-import { initSeedWorkflow } from './seed-workflow.js?v=20260427-prd112-113';
-import { initPromptAccordionFallback } from './prompt-accordion.js?v=20260427-prd112-113';
+import { loadPresets, enableForm, disableForm } from './generator.js?v=20260427-lightbox-nav';
+import { refresh as refreshGallery } from './gallery.js?v=20260427-lightbox-nav';
+import { updateFooter } from './status-footer.js?v=20260427-lightbox-nav';
+import { initSeedWorkflow } from './seed-workflow.js?v=20260427-lightbox-nav';
+import { initPromptAccordionFallback } from './prompt-accordion.js?v=20260427-lightbox-nav';
 
 const loginScreen = document.getElementById('login-screen');
 const appScreen = document.getElementById('app-screen');

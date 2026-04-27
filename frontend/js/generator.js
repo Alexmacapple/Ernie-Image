@@ -1,7 +1,7 @@
-import { apiGet, fetchSSE } from './api-client.js?v=20260427-prd112-113';
+import { apiGet, fetchSSE } from './api-client.js?v=20260427-lightbox-nav';
 import { authenticatedUrl } from './auth.js?v=20260427-auth';
-import { openImageLightbox, refresh as refreshGallery } from './gallery.js?v=20260427-prd112-113';
-import { getSeedForSubmit } from './seed-workflow.js?v=20260427-prd112-113';
+import { openImageLightbox, refresh as refreshGallery } from './gallery.js?v=20260427-lightbox-nav';
+import { getSeedForSubmit } from './seed-workflow.js?v=20260427-lightbox-nav';
 
 const form        = document.getElementById('generate-form');
 const promptEl    = document.getElementById('prompt');
@@ -194,10 +194,19 @@ function _outputsItems(data) {
     return Array.isArray(data) ? data : (data.items ?? []);
 }
 
+function _isWithinActiveRequestWindow(item) {
+    if (!_activeRequest?.startedAt) return true;
+    if (typeof item.created_at !== 'number') return true;
+    return item.created_at >= _activeRequest.startedAt - 5;
+}
+
 function _matchesActiveRequest(item) {
     if (!_activeRequest) return false;
     if (_activeRequest.clientRequestId && item.client_request_id === _activeRequest.clientRequestId) return true;
-    return item.seed === _activeRequest.seed && item.prompt === _activeRequest.prompt;
+    if (item.client_request_id) return false;
+    return item.seed === _activeRequest.seed
+        && item.prompt === _activeRequest.prompt
+        && _isWithinActiveRequestWindow(item);
 }
 
 function _eventFromRecoveredOutput(item) {
@@ -218,10 +227,11 @@ async function _pollRecoveredOutput(token) {
         if (token !== _recoveryToken) return null;
 
         try {
-            const data = await apiGet('/api/outputs?page=1&page_size=18');
+            const data = await apiGet('/api/outputs?page=1&page_size=100');
             const found = _outputsItems(data).find(_matchesActiveRequest);
             if (found) return found;
-        } catch {
+        } catch (err) {
+            console.warn('[ernie] recovery polling failed', err);
             // Le polling est un filet de récupération : on réessaie sans masquer l'état principal.
         }
 
@@ -298,6 +308,7 @@ form.addEventListener('submit', (e) => {
         clientRequestId: body.client_request_id,
         prompt,
         seed: body.seed,
+        startedAt: Math.floor(Date.now() / 1000),
     };
 
     _clearGenerateAlert();

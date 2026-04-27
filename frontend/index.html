@@ -6,7 +6,7 @@
     <title>Ernie Studio</title>
     <link rel="stylesheet" href="./dsfr/dsfr/dsfr.min.css">
     <link rel="stylesheet" href="./dsfr/utility/utility.min.css">
-    <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet" href="./css/app.css?v=20260427-lightbox-nav-contrast">
 </head>
 <body>
 
@@ -124,14 +124,14 @@
                                 <div class="fr-collapse" id="prompt-structure-panel" role="region"
                                     aria-labelledby="prompt-structure-button">
                                     <div class="fr-text--sm prompt-structure-content">
-                                        <p class="fr-mb-1w">Structure recommandée pour ERNIE-Image :</p>
+                                        <p class="fr-mb-1w">Structure recommandée pour décrire l’image :</p>
                                         <ol class="fr-pl-3w fr-mb-0">
-                                            <li><strong>Type</strong> - photo, poster, comic panel, illustration éditoriale…</li>
-                                            <li><strong>Sujet</strong> - personnage, objet, scène et action principale</li>
-                                            <li><strong>Composition</strong> - cadrage, angle, position, profondeur</li>
-                                            <li><strong>Lumière</strong> - source, heure, ambiance (golden hour, backlight…)</li>
-                                            <li><strong>Texture</strong> - matières, détails visuels, finition</li>
-                                            <li><strong>Texte</strong> - libellé exact entre guillemets, emplacement, style typo</li>
+                                            <li><strong>Type</strong> - photo, affiche, case de bande dessinée, illustration éditoriale ...</li>
+                                            <li><strong>Sujet</strong> - personnage, objet, scène et action principale.</li>
+                                            <li><strong>Composition</strong> - cadrage, angle de vue, position du sujet, profondeur.</li>
+                                            <li><strong>Lumière</strong> - source, heure, ambiance, contraste ...</li>
+                                            <li><strong>Texture</strong> - matières, détails visibles, finition.</li>
+                                            <li><strong>Texte</strong> - libellé exact entre guillemets, emplacement, style typographique.</li>
                                         </ol>
                                     </div>
                                 </div>
@@ -358,12 +358,25 @@
 </dialog>
 
 <!-- Lightbox -->
-<div id="lightbox" class="lightbox" hidden role="dialog" aria-modal="true" aria-label="Image agrandie">
+<div id="lightbox" class="lightbox" hidden role="dialog" aria-modal="true" aria-label="Image agrandie" tabindex="-1">
     <button id="lightbox-close" class="lightbox-close fr-btn fr-btn--tertiary-no-outline fr-btn--icon-left fr-icon-close-line"
         aria-label="Fermer" title="Fermer l'image agrandie">Fermer</button>
-    <img id="lightbox-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="" class="lightbox-image">
+    <div class="lightbox-stage">
+        <button id="lightbox-prev" type="button" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-arrow-left-s-line lightbox-nav lightbox-nav-prev"
+            title="Image précédente" aria-controls="lightbox-image" aria-describedby="lightbox-position"
+            aria-keyshortcuts="ArrowLeft">
+            Image précédente
+        </button>
+        <img id="lightbox-image" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw==" alt="" class="lightbox-image">
+        <button id="lightbox-next" type="button" class="fr-btn fr-btn--secondary fr-btn--icon-right fr-icon-arrow-right-s-line lightbox-nav lightbox-nav-next"
+            title="Image suivante" aria-controls="lightbox-image" aria-describedby="lightbox-position"
+            aria-keyshortcuts="ArrowRight">
+            Image suivante
+        </button>
+    </div>
     <div class="lightbox-meta">
         <p id="lightbox-caption" class="lightbox-caption"></p>
+        <p id="lightbox-position" class="lightbox-position" aria-live="polite" aria-atomic="true"></p>
         <p id="lightbox-prompt" class="lightbox-prompt"></p>
         <dl class="lightbox-params">
             <div class="lightbox-param"><dt>Seed</dt><dd id="lb-seed">-</dd></div>
@@ -372,6 +385,10 @@
         </dl>
     </div>
     <div class="lightbox-actions">
+        <button id="lightbox-prompt-copy" type="button" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-file-copy-line lightbox-prompt-copy"
+            title="Copier le prompt">
+            Copier le prompt
+        </button>
         <button id="lightbox-seed-paste" type="button" class="fr-btn fr-btn--secondary fr-btn--icon-left fr-icon-clipboard-line lightbox-seed"
             title="Coller le seed dans le formulaire">
             Coller le seed
@@ -389,7 +406,7 @@
 
 <script type="module" src="./dsfr/dsfr/dsfr.module.min.js"></script>
 <script nomodule src="./dsfr/dsfr/dsfr.nomodule.min.js"></script>
-<script type="module" src="./js/app.js?v=20260427-prd112-113"></script>
+<script type="module" src="./js/app.js?v=20260427-lightbox-nav"></script>
 
 </body>
 </html>

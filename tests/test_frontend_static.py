@@ -20,12 +20,12 @@ def test_gallery_module_uses_one_cache_buster():
     assert "gallery.js?v=20260427-gallery-pagination" not in generator
     assert "app.js?v=20260427-gallery-pagination" not in index
     assert "20260427-gallery-pagination" not in status_footer
-    assert "seed-workflow.js?v=20260427-prd112-113" in app
-    assert "seed-workflow.js?v=20260427-prd112-113" in generator
-    assert "seed-workflow.js?v=20260427-prd112-113" in gallery
+    assert "seed-workflow.js?v=20260427-lightbox-nav" in app
+    assert "seed-workflow.js?v=20260427-lightbox-nav" in generator
+    assert "seed-workflow.js?v=20260427-lightbox-nav" in gallery
     assert "openImageLightbox, refresh as refreshGallery" in generator
-    assert "gallery.js?v=20260427-prd112-113" in generator
-    assert 'src="./js/app.js?v=20260427-prd112-113"' in index
+    assert "gallery.js?v=20260427-lightbox-nav" in generator
+    assert 'src="./js/app.js?v=20260427-lightbox-nav"' in index
 
 
 def test_frontend_uses_keycloak_auth_gate():
@@ -116,13 +116,25 @@ def test_main_headings_are_semantic():
     assert 'aria-labelledby="prompt-structure-button"' in index
     assert "Aide à la structure du prompt" in index
     assert '<h3 class="fr-h4 fr-mb-3w" id="gallery-title">Historique</h3>' in index
+    assert 'href="./css/app.css?v=20260427-lightbox-nav-contrast"' in index
+    assert "Structure recommandée pour décrire l’image" in index
+    assert "illustration éditoriale ..." in index
+    assert "ambiance, contraste ..." in index
+    assert "style typographique" in index
+    assert "illustration éditoriale…" not in index
+    assert "backlight…" not in index
+    assert "style typo</li>" not in index
     assert "initPromptAccordionFallback" in app
     assert "fr-collapse--expanded" in prompt_accordion
     assert "aria-expanded" in prompt_accordion
-    assert "isExpanded !== wasExpanded" in prompt_accordion
-    assert "#prompt-structure-panel.fr-collapse--expanded" in css
-    assert "max-height: none;" in css
-    assert "overflow: visible;" in css
+    assert "function syncPanelHeight()" in prompt_accordion
+    assert "panel.style.maxHeight = `${panel.scrollHeight}px`;" in prompt_accordion
+    assert "new MutationObserver(() => syncPanelHeight())" in prompt_accordion
+    assert "attributeFilter: ['aria-expanded']" in prompt_accordion
+    assert "attributeFilter: ['class', 'style']" in prompt_accordion
+    assert "window.addEventListener('resize'" in prompt_accordion
+    assert "#prompt-structure-panel.fr-collapse--expanded" not in css
+    assert "max-height: none;" not in css
 
 
 def test_footer_uses_dsfr_component_structure_with_existing_links_only():
@@ -183,6 +195,11 @@ def test_interrupted_generation_stream_is_recovered_from_history():
     assert "_recoverFromInterruptedStream(err)" in generator
     assert "_pollRecoveredOutput(token)" in generator
     assert "item.client_request_id === _activeRequest.clientRequestId" in generator
+    assert "item.client_request_id) return false" in generator
+    assert "item.created_at >= _activeRequest.startedAt - 5" in generator
+    assert "startedAt: Math.floor(Date.now() / 1000)" in generator
+    assert "/api/outputs?page=1&page_size=100" in generator
+    assert "console.warn('[ernie] recovery polling failed', err)" in generator
     assert "Connexion interrompue" in generator
     assert "fr-alert--${type}" in generator
     assert "'warning'" in generator
@@ -204,9 +221,37 @@ def test_prompt_counter_uses_dsfr_text_tokens():
 
 
 def test_lightbox_locks_page_scroll_and_scrolls_overlay():
+    index = _read("frontend/index.html")
     css = _read("frontend/css/app.css")
     gallery = _read("frontend/js/gallery.js")
 
+    assert 'role="dialog"' in index
+    assert 'aria-modal="true"' in index
+    assert 'tabindex="-1"' in index
+    assert 'id="lightbox-prompt-copy"' in index
+    assert 'id="lightbox-prev"' in index
+    assert 'id="lightbox-next"' in index
+    assert 'id="lightbox-position" class="lightbox-position" aria-live="polite" aria-atomic="true"' in index
+    assert 'aria-keyshortcuts="ArrowLeft"' in index
+    assert 'aria-keyshortcuts="ArrowRight"' in index
+    assert 'aria-controls="lightbox-image"' in index
+    assert "Image précédente" in index
+    assert "Image suivante" in index
+    assert "Copier le prompt" in index
+    assert "background: rgba(0, 0, 0, 0.96);" in css
+    assert "background: rgba(0, 0, 0, 0.72);" in css
+    assert ".lightbox-stage" in css
+    assert ".lightbox-nav" in css
+    assert ".lightbox-nav:hover" in css
+    assert ".lightbox-nav:focus-visible" in css
+    assert ".lightbox-nav:active" in css
+    assert ".lightbox-nav:disabled" in css
+    assert '.lightbox-nav[aria-disabled="true"]' in css
+    assert "background: rgba(255, 255, 255, 0.18) !important;" in css
+    assert "color: rgba(255, 255, 255, 0.86) !important;" in css
+    assert "opacity: 1;" in css
+    assert ".lightbox-position" in css
+    assert ".lightbox-prompt-copy" in css
     assert "overflow-y: auto;" in css
     assert "overscroll-behavior: contain;" in css
     assert "body.lightbox-scroll-locked" in css
@@ -217,6 +262,26 @@ def test_lightbox_locks_page_scroll_and_scrolls_overlay():
     assert "document.body.classList.add('lightbox-scroll-locked')" in gallery
     assert "document.body.classList.remove('lightbox-scroll-locked')" in gallery
     assert "lightbox.scrollTop = 0;" in gallery
+    assert "let previousFocus = null;" in gallery
+    assert "function _trapLightboxFocus(e)" in gallery
+    assert "e.key !== 'Tab'" in gallery
+    assert "previousFocus.focus({ preventScroll: true })" in gallery
+    assert "window.addEventListener('pagehide'" in gallery
+    assert "window.addEventListener('popstate'" in gallery
+    assert "const lbPromptCopy = document.getElementById('lightbox-prompt-copy')" in gallery
+    assert "const lbPrev     = document.getElementById('lightbox-prev')" in gallery
+    assert "const lbNext     = document.getElementById('lightbox-next')" in gallery
+    assert "let currentImages = [];" in gallery
+    assert "function _syncLightboxNavigation()" in gallery
+    assert "Image ${position.absolute} sur ${currentTotal} dans l’historique" in gallery
+    assert "aria-disabled" in gallery
+    assert "e.key === 'ArrowLeft'" in gallery
+    assert "e.key === 'ArrowRight'" in gallery
+    assert "async function _navigateLightbox(direction)" in gallery
+    assert "await refresh(targetPage)" in gallery
+    assert "function _copyPrompt()" in gallery
+    assert "await _writeClipboardText(currentImage.prompt)" in gallery
+    assert "Prompt copié" in gallery
 
 
 def test_owned_text_files_do_not_use_em_or_en_dashes():

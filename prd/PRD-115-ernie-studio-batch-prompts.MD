@@ -5,6 +5,26 @@
 **Auteur** : Alex
 **Source** : besoin d'exécuter plusieurs prompts les uns à la suite des autres dans Ernie Studio
 
+## État d'implémentation au 2026-04-27
+
+- [x] Besoin cadré : lancer plusieurs prompts les uns à la suite des autres.
+- [x] Choix de principe : génération strictement séquentielle, pas de parallélisme GPU.
+- [x] Choix UX : copier-coller d'une liste comme chemin principal, CSV optionnel.
+- [x] Contraintes connues : un seul batch actif, arrêt après l'image en cours, pas de reprise automatique.
+- [x] Endpoints, manifeste JSON, sidecars batch et suivi SSE décrits dans le PRD.
+- [ ] Non implémenté : accordéon UI "Batch de prompts".
+- [ ] Non implémenté : parsing de liste collée avec séparateur `---`.
+- [ ] Non implémenté : import CSV.
+- [ ] Non implémenté : routes `/api/batches`.
+- [ ] Non implémenté : worker batch backend.
+- [ ] Non implémenté : manifestes `outputs/batches/{batch_id}.json`.
+- [ ] Non implémenté : métadonnées batch dans les sidecars image.
+- [ ] Non implémenté : table de suivi et annulation après l'image en cours.
+- [ ] Non implémenté : badges batch dans l'historique et la lightbox.
+- [ ] Non implémenté : tests backend batch.
+
+Conclusion : PRD non démarré. À garder en brouillon tant que PRD-114 n'est pas tranché ou tant que le besoin batch n'est pas prioritaire.
+
 ## Vision
 
 Le quoi : ajouter un mode batch à Ernie Studio pour lancer une liste de prompts en génération séquentielle, avec suivi de progression, annulation contrôlée et rattachement des images produites à un même lot.
