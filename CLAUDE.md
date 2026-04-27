@@ -2,6 +2,7 @@
 
 App web FastAPI + DSFR, génération d'images ERNIE-Image Turbo via MLX, M1 Ultra 64 Go.
 Port 8300. Auth Keycloak realm `harmonia`, client `omnistudio` par défaut. Repo source : https://github.com/Sandjab/Ernie
+Version stable de retour : tag Git `MVP-V1`.
 
 ---
 
@@ -14,10 +15,24 @@ Port 8300. Auth Keycloak realm `harmonia`, client `omnistudio` par défaut. Repo
 ## Décision backend image
 
 - Garder MLX comme backend par défaut pour les prochaines étapes.
-- Implémenter d'abord PRD-112 (contrat API enrichi) et PRD-113 (UX prompting guidé) sans changer le moteur.
+- PRD-112 (contrat API enrichi) et PRD-113 (UX prompting guidé) sont implémentés.
+- PRD-114 est cadré mais non implémenté : V1 compacte côté frontend, sans changer le moteur.
 - Ne pas remplacer `pipeline_mlx.py` par Diffusers dans ce cycle.
 - Diffusers est une piste valide mais à traiter comme spike séparé après retour : `ERNIE_BACKEND=mlx|diffusers`, benchmark temps/RAM/stabilité/qualité, puis décision.
 - Ne pas démarrer le chantier Diffusers tant qu'Alex n'a pas explicitement validé le retour attendu.
+- Le backend MLX actuel n'expose pas `use_pe`, `guidance_scale` ni vrai `negative_prompt`.
+- Ne pas ajouter dans l'UI de contrôle qui laisse croire que `use_pe=false` ou `negative_prompt` sont appliqués en MLX.
+
+## Prochaine priorité produit
+
+PRD-114 : contrôle de représentation visuelle.
+
+- Ajouter un accordéon DSFR compact "Représentation visuelle" sous l'aide à la structure du prompt.
+- V1 : 8 presets maximum, un champ libre, un bouton visible "Ajouter un ancrage visuel en anglais".
+- L'ancrage doit être injecté dans le textarea comme bloc visible `Visual anchor: ...`.
+- Si un bloc `Visual anchor:` existe déjà, le remplacer plutôt que l'empiler.
+- Aucun appel IA externe, aucune traduction chinoise, aucune migration Diffusers.
+- Tester léger : statique frontend et vérification manuelle à seed fixe. Pas de surengineering.
 
 ## Comment je travaille
 
@@ -81,4 +96,14 @@ git clone --depth 1 https://github.com/treadon/mlx-ernie-image.git vendor/mlx-er
 
 - `docs/ernie-image-explique.md` - modèle ERNIE, scripts JP Gavini, benchmarks détaillés
 - `docs/serveur-headless-ernie.md` - décision architecture, alternatives écartées
-- `PRD-111-ernie-studio-fastapi-dsfr.MD` - décisions de conception, plan d'implémentation
+- `docs/API-REFERENCE-TECHNIQUE.md` - référence API détaillée
+- `docs/SPECS-MODELES.md` - modèles, formats et contraintes
+- `docs/integrer-negative-prompt-mlx.md` - note sur le negative prompt avec MLX
+- `docs/prompts-melodrame-pop-espagnol.md` - prompts de test
+- `docs/EXPLORATION-REPO-SANDJAB.md` - exploration du repo Sandjab
+- `docs/PIÈGES-TECHNIQUES.md` - pièges techniques connus
+- `prd/PRD-111-ernie-studio-fastapi-dsfr.MD` - décisions de conception initiales
+- `prd/PRD-112-ernie-api-enrichissement-contrat.MD` - contrat API enrichi, implémenté
+- `prd/PRD-113-ernie-studio-ux-prompting.MD` - UX prompting guidé, implémenté
+- `prd/PRD-114-ernie-studio-controle-representation-portraits.MD` - prochaine V1 compacte
+- `prd/PRD-115-ernie-studio-batch-prompts.MD` - brouillon batch prompts

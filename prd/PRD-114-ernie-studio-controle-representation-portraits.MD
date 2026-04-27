@@ -17,16 +17,18 @@
 - [x] Negative prompt documenté comme piste future Diffusers, explicitement inactif en backend MLX.
 - [x] Documentation externe créée pour l'usage actuel : `docs/integrer-negative-prompt-mlx.md`.
 - [x] Prompts de test mélodrame pop espagnol documentés dans `docs/prompts-melodrame-pop-espagnol.md`.
-- [ ] Non implémenté : panneau UI "Représentation visuelle".
-- [ ] Non implémenté : module `representation-controls.js`, incluant un PE anglais local maîtrisé.
-- [ ] Non implémenté : presets positifs de représentation, décor, alphabet, architecture et palette.
-- [ ] Non implémenté : bouton "Renforcer les traits et le décor décrits".
-- [ ] Non implémenté : détection locale de prompts vagues.
-- [ ] Non implémenté : aide spécifique à la comparaison avec seed fixe au-delà du workflow seed existant.
-- [ ] Non implémenté : tests statiques sur les presets positifs.
+- [x] Validation UX effectuée par rapport à l'écran actuel : formulaire déjà dense, V1 à limiter strictement.
+- [x] Périmètre V1 ajusté : accordéon compact, 8 presets maximum, un champ libre, un bouton d'injection.
+- [ ] Non implémenté : panneau UI "Représentation visuelle" compact.
+- [ ] Non implémenté : module `representation-controls.js`, incluant un ancrage visuel anglais local maîtrisé.
+- [ ] Non implémenté : 8 presets positifs maximum de représentation, décor, alphabet, architecture et palette.
+- [ ] Non implémenté : bouton "Ajouter un ancrage visuel en anglais".
+- [ ] Non implémenté : détection locale de prompts vagues, affichée comme aide non bloquante.
+- [ ] Non implémenté : protocole de comparaison à seed fixe.
+- [ ] Non implémenté : tests statiques ciblés sur les presets positifs et le périmètre V1.
 - [ ] Non implémenté : support backend Diffusers ou vrai `negative_prompt`.
 
-Conclusion : PRD prêt conceptuellement, mais pas lancé. La prochaine étape raisonnable est une petite v1 frontend positive avec PE anglais local, sans toucher au backend MLX.
+Conclusion : PRD prêt conceptuellement après cadrage UX. La prochaine étape raisonnable est une petite V1 frontend positive, compacte, sans toucher au backend MLX.
 
 ## Vision
 
@@ -39,7 +41,7 @@ Le pourquoi : ERNIE-Image semble produire, sur des prompts courts, un biais visu
 1. Alex saisit un prompt court : "editorial portrait of a woman" ou "cinematic poster in a colorful city street".
 2. L'interface signale que le prompt est trop vague pour contrôler la représentation visuelle.
 3. Il ouvre le panneau "Représentation visuelle".
-4. Il choisit un preset "Méditerranéen contemporain" ou renseigne manuellement des traits visibles, un décor, une architecture, une typographie et un contexte photo.
+4. Il choisit un preset compact ou renseigne un ancrage personnalisé court.
 5. L'interface ajoute au prompt un bloc descriptif positif et cohérent.
 6. Alex fixe une seed depuis l'historique.
 7. Il génère plusieurs variantes avec la même seed pour comparer uniquement l'effet du prompt enrichi.
@@ -60,7 +62,7 @@ Dans Ernie Studio MLX actuel, cette option n'est pas exposée : le code encode d
 fourni (`TextEncoder.encode(prompt)`) puis génère l'image. Aucun paramètre `use_pe` ni réécriture de
 prompt n'est visible dans `pipeline_mlx.py` ou dans le vendor MLX. Le PRD traite donc deux cas :
 
-- **MLX actuel** : ajouter un PE anglais local maîtrisé côté frontend, qui enrichit positivement le
+- **MLX actuel** : ajouter un ancrage visuel anglais local maîtrisé côté frontend, qui enrichit positivement le
   prompt avant envoi ;
 - **Diffusers ou backend futur** : tester explicitement `use_pe=false`, puis éventuellement un PE
   anglais contrôlé, un vrai `negative_prompt` et `guidance_scale`.
@@ -75,6 +77,27 @@ documenté de prompt enhancer. La réduction du biais doit donc d'abord passer p
 - une information claire dans l'UI sur les limites du moteur.
 
 Diffusers reste une piste séparée si le besoin persiste malgré l'amélioration UX. Ce PRD ne remplace pas MLX.
+
+## Validation UX par rapport à l'existant
+
+L'écran actuel contient déjà :
+
+- un accordéon "Aide à la structure du prompt" placé au-dessus du champ prompt ;
+- un textarea avec placeholder structuré, compteur et validation inline ;
+- trois contrôles principaux alignés : format, étapes, seed ;
+- un bouton primaire "Générer une image" ;
+- une dernière génération, puis l'historique paginé et la lightbox.
+
+La V1 ne doit donc pas ajouter un formulaire complet de représentation visuelle. Le bon niveau UX est une divulgation progressive courte :
+
+- un second accordéon fermé par défaut, placé sous l'aide à la structure du prompt ;
+- un contenu scannable en moins de 10 secondes ;
+- 8 presets maximum, regroupés par usage ;
+- un seul champ libre "Ancrage personnalisé" ;
+- un seul bouton principal d'action dans cet accordéon ;
+- aucun onglet, aucune carte imbriquée, aucun panneau latéral.
+
+Verdict UX : conforme sous conditions. La V1 est acceptable si elle reste compacte. Le PRD devient non conforme si les champs détaillés listés plus bas sont tous livrés en première passe.
 
 ---
 
@@ -98,7 +121,40 @@ Conséquence : l'utilisateur peut attribuer à la seed ou au hasard un comportem
 
 Ajouter une couche UX dédiée à la représentation visuelle dans le formulaire existant, sans refonte de page.
 
-### 1. Détection légère des prompts à risque de représentation implicite
+### 1. Placement dans l'UI actuelle
+
+Ajouter un accordéon DSFR "Représentation visuelle" fermé par défaut, sous l'accordéon existant "Aide à la structure du prompt" et avant le champ `Prompt`.
+
+Raison UX : l'aide à la structure répond à "comment écrire un prompt", le nouveau panneau répond à "comment ancrer la représentation visuelle". Les deux aides sont liées au même champ et doivent rester proches de lui.
+
+Contraintes :
+
+- ne pas déplacer le champ prompt ;
+- ne pas ajouter de section visible ouverte par défaut ;
+- ne pas ajouter de carte dans la carte formulaire ;
+- ne pas ajouter d'onglets ;
+- conserver le chemin principal : prompt, format, étapes, seed, générer.
+
+### 2. Périmètre V1 compact
+
+La V1 contient uniquement :
+
+- un texte d'aide court ;
+- 8 presets maximum ;
+- un champ libre "Ancrage personnalisé" ;
+- un bouton "Ajouter un ancrage visuel en anglais" ;
+- une aide non bloquante si le prompt semble vague ;
+- une note courte sur la comparaison à seed fixe.
+
+Hors V1 :
+
+- formulaire détaillé avec teint, yeux, cheveux, focale, architecture, palette et densité de personnages ;
+- bouton supplémentaire dans la lightbox ;
+- `negative_prompt` visible ;
+- réglage `use_pe` visible ;
+- migration Diffusers.
+
+### 3. Détection légère des prompts à risque de représentation implicite
 
 Si le prompt contient des indices simples de personne (`portrait`, `person`, `woman`, `man`, `face`, `headshot`, `editorial portrait`, etc.) et moins de 4 attributs physiques ou contextuels, afficher une aide non bloquante :
 
@@ -110,66 +166,59 @@ Si le prompt contient des indices simples de décor ou d'affiche (`city street`,
 
 Cette détection est locale, déterministe et sans appel IA.
 
-### 2. Panneau "Représentation visuelle"
+La détection ne doit pas déclencher d'erreur, ne doit pas empêcher la soumission et ne doit pas modifier automatiquement le prompt.
 
-Ajouter un accordéon DSFR fermé par défaut sous l'aide à la structure du prompt.
+### 4. Panneau "Représentation visuelle"
 
-Champs proposés :
+Contenu V1 :
 
-- Type de portrait : photo réaliste, portrait éditorial, headshot, illustration ;
-- Représentation visuelle : Europe occidentale, méditerranéenne, afro-descendante, maghrébine, latino-américaine, sud-asiatique, diverse ou personnalisée ;
-- Teint ;
-- Yeux ;
-- Cheveux ;
-- Forme du visage ;
-- Style vestimentaire ;
-- Contexte photo : lumière, focale, arrière-plan.
-- Géographie visuelle : Madrid, Valence, Marseille, Lisbonne, Andalousie, Méditerranée, Europe urbaine, institution française, personnalisée ;
-- Architecture et décor : rue madrilène, patio andalou, gare européenne, appartement méditerranéen, hôpital européen, bureau administratif français, studio TV français ;
-- Typographie et alphabet : texte français en alphabet latin, affiche européenne, signalétique française, lettrage condensé de cinéma ;
-- Palette et direction artistique : mélodrame pop méditerranéen, baroque domestique, palette ibérique saturée, rouge laqué, rose bougainvillier, turquoise céramique, jaune safran ;
-- Densité de personnages : aucun personnage, un seul personnage, deux personnages maximum, groupe explicitement décrit.
+- paragraphe d'aide de 2 lignes maximum ;
+- groupe "Portraits" avec 4 presets maximum ;
+- groupe "Décors et texte" avec 4 presets maximum ;
+- champ texte court "Ancrage personnalisé" ;
+- bouton d'injection.
 
-Les champs doivent rester optionnels. L'utilisateur garde le contrôle du texte final.
+Les champs détaillés restent une V2. L'utilisateur garde le contrôle du texte final, car l'ancrage injecté est visible dans le textarea.
 
-### 3. Presets positifs de représentation et d'ancrage visuel
+### 5. Presets positifs de représentation et d'ancrage visuel
 
-Ajouter des presets qui injectent des blocs descriptifs positifs :
+Ajouter 8 presets maximum qui injectent des blocs descriptifs positifs :
 
-- Europe occidentale ;
-- Méditerranéen contemporain ;
-- Afro-descendant ;
-- Maghrébin ;
-- Latino ;
-- Sud-asiatique ;
-- Diversifié sans défaut implicite ;
+Presets V1 recommandés :
+
+- Portrait méditerranéen contemporain ;
+- Portrait européen occidental éditorial ;
+- Portrait afro-caribéen éditorial ;
+- Portrait latino-américain contemporain ;
 - Décor urbain européen ;
 - Décor méditerranéen ibérique ;
 - Institution publique française ;
-- Affiche française en alphabet latin ;
-- Mélodrame pop méditerranéen.
+- Affiche française en alphabet latin.
 
 Chaque preset doit être formulé en attributs visibles et cohérents. Aucun preset ne doit utiliser une exclusion du type "not Asian", "no pagoda", "avoid calligraphy" ou équivalent. Pour MLX, les termes négatifs sont remplacés par des ancrages positifs : `Madrid urban street`, `French Latin alphabet poster typography`, `contemporary European clothing`, `Mediterranean architecture`, `Iberian saturated palette`.
 
-### 4. Bouton "Renforcer les traits et le décor décrits"
+Libellés UX : éviter les catégories trop abstraites seules comme "Europe occidentale" ou "Maghrébin". Préférer des formulations orientées image, par exemple "Portrait méditerranéen contemporain" ou "Décor urbain européen".
+
+### 6. Bouton "Ajouter un ancrage visuel en anglais"
 
 Ajouter un bouton avec intitulé visible qui enrichit le prompt courant en ajoutant un bloc :
 
-`Visual identity details: ...`
+`Visual anchor: ...`
 
 Le bouton doit :
 
 - préserver le prompt existant ;
-- ajouter les détails à la fin ou dans une zone dédiée ;
+- ajouter ou remplacer un bloc délimité `Visual anchor:` ;
 - déclencher `input` et `change` pour mettre à jour le compteur ;
-- ne jamais remplacer silencieusement le prompt complet.
-- dédupliquer le bloc si l'utilisateur clique plusieurs fois ;
-- indiquer clairement que le bloc est une formulation positive et non une contrainte négative.
+- ne jamais remplacer silencieusement le prompt complet ;
+- éviter l'empilement de plusieurs blocs d'ancrage ;
+- vérifier que le prompt enrichi reste sous 8000 caractères ;
+- indiquer clairement que le bloc est une formulation positive et non une contrainte négative ;
+- conserver le focus dans le formulaire après injection.
 
-Ce bouton est le PE anglais local de la v1. Il ne doit pas appeler une IA externe, ne doit pas
-traduire le prompt en chinois et ne doit pas masquer le texte injecté. Le bloc ajouté doit rester
-visible dans le textarea, en anglais, afin que l'utilisateur puisse le relire, le modifier ou le
-supprimer.
+Ce bouton correspond techniquement au PE anglais local de la V1. Dans l'UI, ne pas employer le terme "PE" ou "Prompt Enhancer", car il ressemble à une option moteur. Le libellé utilisateur reste "Ajouter un ancrage visuel en anglais".
+
+Le module ne doit pas appeler une IA externe, ne doit pas traduire le prompt en chinois et ne doit pas masquer le texte injecté. Le bloc ajouté doit rester visible dans le textarea, en anglais, afin que l'utilisateur puisse le relire, le modifier ou le supprimer.
 
 Exemple de bloc v1 :
 
@@ -177,21 +226,23 @@ Exemple de bloc v1 :
 Visual anchor: contemporary Spanish / Mediterranean European setting, Latin alphabet signage, Madrid or Valencia urban architecture, European clothing, Iberian saturated color palette, French text exactly as written.
 ```
 
-### 5. Mode comparaison à seed fixe
+### 7. Mode comparaison à seed fixe
 
 Ajouter une aide courte près du workflow seed :
 
 `Pour comparer un prompt, fixez la seed et gardez le même format et les mêmes étapes.`
 
-Option acceptable : un bouton "Comparer avec cette seed" dans la lightbox qui fixe la seed et ramène le focus au prompt.
+Le bouton "Fixer la seed" existe déjà dans l'historique. La V1 ne rajoute pas de bouton dans la lightbox. Un bouton "Comparer avec cette seed" peut être étudié en V2 seulement si le flux actuel reste insuffisant.
 
-### 6. Documentation UX dans l'accordéon
+### 8. Documentation UX dans l'accordéon
 
 Ajouter un paragraphe court :
 
 `Pour reprendre le contrôle, décrivez positivement ce que l'image doit montrer : traits visibles, vêtements, décor, géographie visuelle, architecture, alphabet, lumière et palette. Les prompts vagues et les exclusions négatives sont moins fiables avec le backend MLX.`
 
-### 7. Negative prompt préparé, mais non actif en MLX
+Le texte doit rester court. Ne pas expliquer le modèle, Diffusers ou `use_pe` dans l'interface principale.
+
+### 9. Negative prompt préparé, mais non actif en MLX
 
 Le backend MLX actuel ne supporte pas de vrai `negative_prompt`. Le PRD ne doit donc pas ajouter un champ qui laisserait croire que le moteur applique une contrainte négative.
 
@@ -208,20 +259,20 @@ Chinese characters, Chinese calligraphy, red lanterns, pagoda, hanfu, qipao, Tan
 
 Garde-fou : le negative prompt doit cibler des artefacts de décor, costume, signalétique ou style visuel. Il ne doit pas contenir de formulation qui exclut des personnes ou des identités humaines.
 
-### 8. Prompt Enhancer et stratégie backend
+### 10. Prompt Enhancer et stratégie backend
 
 La stratégie PE dépend du backend :
 
 - backend MLX actuel : pas de `use_pe` exposé, donc rien à désactiver côté pipeline ;
-- v1 MLX : PE anglais local côté frontend, déterministe, visible et modifiable ;
+- V1 MLX : ancrage visuel anglais local côté frontend, déterministe, visible et modifiable ;
 - backend Diffusers futur : premier test avec `use_pe=false` si disponible ;
 - backend Diffusers futur : deuxième test avec PE anglais contrôlé si le mode sans PE manque de détails.
 
-Critère de décision : garder MLX si le PE anglais local réduit suffisamment le biais sur des tests à
+Critère de décision : garder MLX si l'ancrage visuel anglais local réduit suffisamment le biais sur des tests à
 seed fixe. Déclencher le spike Diffusers seulement si le biais persiste malgré des prompts enrichis
 positivement.
 
-### 9. Contraintes d'exécution Mac Studio MLX
+### 11. Contraintes d'exécution Mac Studio MLX
 
 Le PRD doit rester aligné avec l'optimisation matérielle existante du Mac Studio M1 Ultra 64 Go :
 
@@ -237,17 +288,18 @@ Le PRD doit rester aligné avec l'optimisation matérielle existante du Mac Stud
 
 ## Options évaluées
 
-### Option A retenue : UX de prompt structurée, backend MLX inchangé
+### Option A retenue : UX de prompt compacte, backend MLX inchangé
 
-Ajouter des contrôles frontend, des presets spécialisés et un PE anglais local déterministe.
+Ajouter un accordéon compact, 8 presets maximum et un ancrage visuel anglais local déterministe.
 
 Avantages :
 
 - aucun coût de migration ;
 - cohérent avec PRD-113 ;
 - testable rapidement avec les seeds fixes ;
-- pas de dépendance à Diffusers.
-- teste l'hypothèse "PE anglais mieux contrôlé que PE chinois" sans changer de moteur.
+- pas de dépendance à Diffusers ;
+- respecte l'écran actuel sans ajouter un formulaire complet ;
+- teste l'hypothèse "anglais mieux contrôlé que PE chinois" sans changer de moteur ;
 - optimisé pour le Mac Studio : pipeline chaud, mémoire unifiée suffisante, pas de parallélisme GPU.
 
 Inconvénients :
@@ -290,41 +342,45 @@ Inconvénients :
 
 ## Décision
 
-Option A. On conserve MLX. On ajoute un contrôle de représentation visuelle explicite dans l'UI et un
-PE anglais local visible. On mesure si les prompts enrichis réduisent suffisamment le biais perçu.
+Option A. On conserve MLX. On ajoute un contrôle de représentation visuelle compact dans l'UI et un
+ancrage visuel anglais visible. On mesure si les prompts enrichis réduisent suffisamment le biais perçu.
 
 Diffusers reste un spike futur, déclenché uniquement si les tests avec seed fixe montrent que l'UX de
 prompt ne suffit pas. Dans ce spike, le premier test doit être `use_pe=false` si l'option existe.
+
+La V1 doit rester compatible avec la checklist UX appliquée à l'écran actuel : divulgation progressive, moins de 9 choix visibles, pas de poids visuel égal entre trop de contrôles, et pas de changement de contexte.
 
 ---
 
 ## Plan d'implémentation
 
-1. `frontend/index.html` - ajouter un accordéon DSFR "Représentation visuelle" fermé par défaut.
+1. `frontend/index.html` - ajouter un accordéon DSFR "Représentation visuelle" fermé par défaut sous "Aide à la structure du prompt".
 2. `frontend/js/representation-controls.js` - créer un module dédié, initialisé depuis `app.js`.
-3. `frontend/js/representation-controls.js` - définir les presets, champs optionnels et ancrages de décor.
+3. `frontend/js/representation-controls.js` - définir 8 presets maximum et un champ libre `visualAnchorCustom`.
 4. `frontend/js/representation-controls.js` - ajouter la fonction `buildVisualIdentityBlock()` qui produit un bloc texte positif en anglais.
-5. `frontend/js/representation-controls.js` - au clic "Renforcer les traits et le décor décrits", ajouter le bloc au textarea sans écraser le contenu existant.
+5. `frontend/js/representation-controls.js` - au clic "Ajouter un ancrage visuel en anglais", ajouter ou remplacer le bloc `Visual anchor:` dans le textarea sans écraser le contenu principal.
 6. `frontend/js/generator.js` - exposer ou réutiliser un événement `input` standard pour mettre à jour le compteur et nettoyer l'erreur prompt.
 7. `frontend/js/seed-workflow.js` - conserver le fonctionnement actuel ; pas de nouvelle dépendance circulaire.
-8. `frontend/js/gallery.js` - si retenu, ajouter "Comparer avec cette seed" dans la lightbox ou renommer l'action existante sans multiplier les boutons.
-9. `frontend/css/app.css` - styles compacts, DSFR, sans carte imbriquée.
-10. `tests/test_frontend_static.py` - ajouter des assertions sur les nouveaux modules, intitulés visibles, absence de formulations négatives dans les presets.
-11. Préparer la donnée `negativePrompt` dans `representation-controls.js`, mais ne pas l'afficher comme bloc copiable et ne pas l'inclure dans le payload `/api/generate` tant que `ERNIE_BACKEND=mlx`.
-12. Ajouter une note développeur dans le module : le PE local ne remplace pas un vrai `use_pe=false`, car MLX n'expose pas ce paramètre.
-13. Si un backend Diffusers est ajouté plus tard, étendre `GenerateRequest` avec `negative_prompt: str | None`, le propager dans le pipeline Diffusers uniquement et tester que MLX l'ignore explicitement avec une note UI.
-14. Dans le spike Diffusers futur, tester dans cet ordre : `use_pe=false`, puis PE anglais contrôlé, puis `negative_prompt` et `guidance_scale`.
-15. Ajouter des tests statiques garantissant que les presets MLX contiennent seulement des ancrages positifs de représentation, décor, alphabet, vêtement et architecture.
-16. Ajouter une vérification visuelle manuelle avec seed fixe : prompt vague, prompt enrichi portrait, prompt enrichi décor.
+8. `frontend/js/prompt-accordion.js` - réutiliser ou généraliser le fallback d'accordéon existant pour éviter une régression DSFR.
+9. `frontend/css/app.css` - styles compacts, DSFR, sans carte imbriquée, sans onglets, sans panneau latéral.
+10. `tests/test_frontend_static.py` - ajouter des assertions sur les nouveaux modules, intitulés visibles, nombre maximal de presets, absence de formulations négatives dans les presets.
+11. Préparer la donnée `negativePrompt` dans `representation-controls.js` uniquement si cela reste invisible en MLX et sans payload `/api/generate`.
+12. Ajouter une note développeur dans le module : l'ancrage local ne remplace pas un vrai `use_pe=false`, car MLX n'expose pas ce paramètre.
+13. Ajouter une vérification manuelle avec seed fixe : prompt vague, prompt enrichi portrait, prompt enrichi décor.
+14. Reporter en V2 : bouton lightbox "Comparer avec cette seed", champs détaillés, backend Diffusers, vrai `negative_prompt`.
 
 ---
 
 ## Critères d'acceptation
 
 - Le panneau "Représentation visuelle" est accessible au clavier et fermé par défaut.
+- Le panneau est placé sous l'aide à la structure du prompt et ne déplace pas le chemin principal de génération.
+- Le panneau contient 8 presets maximum et un seul champ libre.
 - Tous les boutons ont un intitulé visible.
-- Le bouton "Renforcer les traits et le décor décrits" injecte un texte dans le prompt sans l'effacer.
+- Le bouton "Ajouter un ancrage visuel en anglais" injecte un texte dans le prompt sans l'effacer.
 - Le texte injecté est en anglais, visible dans le textarea et modifiable.
+- Si un bloc `Visual anchor:` existe déjà, il est remplacé plutôt qu'empilé.
+- L'injection est bloquée ou signalée clairement si elle dépasse 8000 caractères.
 - Le compteur de caractères est mis à jour après injection.
 - Les presets ne contiennent pas "not Asian", "no Asian", "avoid Asian" ou équivalents.
 - Les presets MLX ne contiennent pas de listes d'objets indésirables ; ils utilisent seulement des ancrages positifs.
@@ -333,6 +389,7 @@ prompt ne suffit pas. Dans ce spike, le premier test doit être `use_pe=false` s
 - La méthode recommande une seed fixe pour comparer.
 - Aucun changement backend ni pipeline MLX.
 - Aucun contrôle UI ne laisse croire que `use_pe=false` est disponible en MLX.
+- Aucun libellé UI ne parle de "PE" ou de "Prompt Enhancer".
 - Aucun nouveau `innerHTML` alimenté par des données utilisateur.
 - Le negative prompt est préparé comme donnée technique pour Diffusers futur, mais aucun bloc négatif copiable ni aucun contrôle UI ne prétend l'appliquer en MLX.
 - Sur Mac Studio M1 Ultra 64 Go, une génération `square`, 8 steps, prompt enrichi, reste dans l'enveloppe cible existante de moins de 55 secondes.
@@ -348,6 +405,8 @@ prompt ne suffit pas. Dans ce spike, le premier test doit être `use_pe=false` s
 - Le focus reste dans le formulaire après injection.
 - Aucun texte ne doit déborder sur mobile.
 - Les champs de représentation et de décor restent compacts : pas de carte imbriquée, pas de panneau latéral obligatoire, pas de surcharge du chemin principal de génération.
+- L'accordéon réutilise le fallback existant pour éviter les artefacts d'ouverture déjà observés.
+- Les presets restent scannables sans imposer un mur de boutons : deux groupes de 4 au maximum.
 
 ---
 
@@ -359,7 +418,7 @@ prompt ne suffit pas. Dans ce spike, le premier test doit être `use_pe=false` s
 - Ne pas pousser une représentation par défaut.
 - Ne pas utiliser d'exclusions négatives comme mécanisme principal.
 - Ne pas masquer un enrichissement automatique : tout bloc ajouté au prompt doit être visible.
-- Ne pas présenter le PE anglais local comme une garantie de neutralité ; c'est une aide de contrôle visuel.
+- Ne pas présenter l'ancrage visuel anglais local comme une garantie de neutralité ; c'est une aide de contrôle visuel.
 - Ne pas invisibiliser la diversité : les presets sont des raccourcis descriptifs modifiables, pas des normes.
 - Pour les scènes sans personnages, privilégier les ancrages de décor, architecture, alphabet et palette plutôt que des traits humains.
 
@@ -369,12 +428,20 @@ prompt ne suffit pas. Dans ce spike, le premier test doit être `use_pe=false` s
 
 - Avec une seed fixe, un prompt vague et son prompt enrichi produisent une différence visible dans la direction demandée.
 - Avec une seed fixe, un prompt de rue ou paysage vague et son prompt enrichi produisent une différence visible dans le décor, l'alphabet ou l'architecture demandés.
-- Au moins 8 presets produisent un bloc de prompt cohérent sous 8000 caractères.
-- À seed fixe, le prompt enrichi par le PE anglais local réduit les motifs est-asiatiques non demandés dans les scènes méditerranéennes de test.
+- Les 8 presets V1 produisent un bloc de prompt cohérent sous 8000 caractères.
+- À seed fixe, le prompt enrichi par l'ancrage visuel anglais local réduit les motifs est-asiatiques non demandés dans les scènes méditerranéennes de test.
 - Aucun warning RGAA évident sur les nouveaux contrôles.
 - Les tests statiques frontend passent.
 - L'utilisateur peut comprendre la méthode sans lire une documentation externe.
 - Sur Mac Studio M1 Ultra 64 Go, aucune régression de performance n'est attendue : le changement est frontend, sans appel IA ni changement de backend.
+
+Protocole de validation manuelle :
+
+- sélectionner 5 prompts de référence : portrait vague, portrait méditerranéen, affiche avec texte français, rue européenne, décor institutionnel français ;
+- utiliser 3 seeds fixes par prompt ;
+- générer chaque cas en version brute puis avec ancrage visuel ;
+- noter chaque paire : amélioré, inchangé ou dégradé ;
+- considérer la V1 utile si au moins 60 % des paires sont améliorées sans dégrader la lisibilité du texte demandé.
 
 ---
 
@@ -385,4 +452,5 @@ prompt ne suffit pas. Dans ce spike, le premier test doit être `use_pe=false` s
 | 2026-04-27 | Alex + Codex | Création du PRD après constat de biais portrait sur ERNIE-Image |
 | 2026-04-27 | Alex + Codex | Ajout d'une stratégie `negative_prompt` préparée pour Diffusers et explicitement inactive en MLX |
 | 2026-04-27 | Alex + Codex | Élargissement aux décors, paysages, typographies et ancrages culturels positifs ; suppression des blocs négatifs copiables en backend MLX ; ajout de critères Mac Studio |
-| 2026-04-27 | Alex + Codex | Intégration hypothèse JP : désactivation d'un PE chinois quand disponible, et PE anglais local visible pour le backend MLX actuel |
+| 2026-04-27 | Alex + Codex | Intégration hypothèse JP : désactivation d'un PE chinois quand disponible, et ancrage anglais local visible pour le backend MLX actuel |
+| 2026-04-27 | Alex + Codex | Validation UX par rapport à l'écran actuel : V1 compacte, 8 presets maximum, un champ libre, protocole seed fixe |

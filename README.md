@@ -5,6 +5,7 @@ Application web de génération d'images via [ERNIE-Image Turbo](https://github.
 **Stack** : FastAPI · DSFR · MLX · Keycloak
 **Port** : 8300
 **Pipeline** : text encoder PyTorch+MPS (Mistral-3, < 0,1 s) + DiT 8 B + VAE MLX (~41 s/image)
+**Point de retour stable** : tag Git `MVP-V1`
 
 ---
 
@@ -84,6 +85,25 @@ Les modèles (~20 Go) sont téléchargés automatiquement depuis HuggingFace au 
 source .venv/bin/activate
 pytest tests/
 ```
+
+## Documentation
+
+- `docs/API-REFERENCE-TECHNIQUE.md` - référence API détaillée
+- `docs/SPECS-MODELES.md` - modèles, formats et contraintes
+- `docs/ernie-image-explique.md` - modèle ERNIE et benchmarks
+- `docs/serveur-headless-ernie.md` - architecture serveur headless
+- `docs/integrer-negative-prompt-mlx.md` - note sur le negative prompt avec MLX
+- `docs/prompts-melodrame-pop-espagnol.md` - prompts de test
+- `docs/EXPLORATION-REPO-SANDJAB.md` - exploration du repo Sandjab
+- `docs/PIÈGES-TECHNIQUES.md` - pièges techniques connus
+
+## PRD
+
+Les PRD sont dans `prd/`.
+
+- `PRD-112` et `PRD-113` sont implémentés.
+- `PRD-114` est cadré pour une V1 compacte côté frontend : ancrage visuel anglais visible, 8 presets maximum, aucun changement backend MLX.
+- `PRD-115` reste un brouillon de cadrage pour le batch de prompts.
 
 ## Licence
 
