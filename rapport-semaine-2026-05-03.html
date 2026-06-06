@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ernie Studio — Rapport semaine du 27 avril au 3 mai 2026</title>
+</head>
+<body style="margin:0;padding:0;background-color:#f6f6f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:15px;line-height:1.6;color:#1a1a1a;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background-color:#f6f6f6;">
+<tr><td align="center" style="padding:32px 16px;">
+<table role="presentation" width="640" cellpadding="0" cellspacing="0" style="background-color:#ffffff;border-radius:8px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,0.08);">
+
+<!-- Header -->
+<tr>
+<td style="background-color:#000091;padding:24px 32px;">
+<h1 style="margin:0;font-size:22px;font-weight:700;color:#ffffff;">Ernie Studio</h1>
+<p style="margin:4px 0 0;font-size:13px;color:#cacafb;">Rapport d'activit&eacute; — 27 avril au 3 mai 2026</p>
+</td>
+</tr>
+
+<!-- KPI Banner -->
+<tr>
+<td style="padding:20px 32px;background-color:#f5f5fe;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td align="center" style="padding:8px;width:25%;">
+<p style="margin:0;font-size:28px;font-weight:700;color:#000091;">16</p>
+<p style="margin:2px 0 0;font-size:11px;color:#666;text-transform:uppercase;">commits</p>
+</td>
+<td align="center" style="padding:8px;width:25%;">
+<p style="margin:0;font-size:28px;font-weight:700;color:#000091;">52</p>
+<p style="margin:2px 0 0;font-size:11px;color:#666;text-transform:uppercase;">fichiers</p>
+</td>
+<td align="center" style="padding:8px;width:25%;">
+<p style="margin:0;font-size:28px;font-weight:700;color:#000091;">+18,5K</p>
+<p style="margin:2px 0 0;font-size:11px;color:#666;text-transform:uppercase;">lignes</p>
+</td>
+<td align="center" style="padding:8px;width:25%;">
+<p style="margin:0;font-size:28px;font-weight:700;color:#000091;">0</p>
+<p style="margin:2px 0 0;font-size:11px;color:#666;text-transform:uppercase;">bloquants</p>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<!-- TL;DR -->
+<tr>
+<td style="padding:24px 32px 16px;">
+<p style="margin:0;font-size:15px;line-height:1.6;color:#333;"><strong>TL;DR</strong> — Ernie Studio est pass&eacute; d'une initialisation &agrave; un produit fonctionnel complet en une semaine : backend IA, frontend DSFR stabilis&eacute;, syst&egrave;me de presets visuels, pipeline de prompts structur&eacute;, et 4 skills Claude Code embarqu&eacute;s.</p>
+</td>
+</tr>
+
+<!-- Divider -->
+<tr><td style="padding:0 32px;"><hr style="border:none;border-top:1px solid #e5e5e5;margin:0;"></td></tr>
+
+<!-- Section: Features -->
+<tr>
+<td style="padding:20px 32px 8px;">
+<h2 style="margin:0;font-size:16px;font-weight:700;color:#000091;">Fonctionnalit&eacute;s livr&eacute;es</h2>
+</td>
+</tr>
+<tr>
+<td style="padding:0 32px 16px;">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0">
+<tr>
+<td style="padding:10px 0;border-bottom:1px solid #f0f0f0;">
+<strong style="color:#000091;">Ancrage visuel (PRD-114)</strong><br>
+<span style="color:#555;">Les presets visuels guident la g&eacute;n&eacute;ration sans negative_prompt ni guidance_scale. Pipeline : ajout &rarr; renforcement &rarr; rechargement module &rarr; toujours actionnable. 5 commits de stabilisation.</span>
+</td>
+</tr>
+<tr>
+<td style="padding:10px 0;border-bottom:1px solid #f0f0f0;">
+<strong style="color:#000091;">Pipeline de prompts ERNIE</strong><br>
+<span style="color:#555;">Architecture compl&egrave;te : pipeline court (1 passe) et pipeline long (multi-passes avec raffinement). Cha&icirc;nage document&eacute; dans <code>docs/chainage-prompts-ernie-studio.md</code>.</span>
+</td>
+</tr>
+<tr>
+<td style="padding:10px 0;border-bottom:1px solid #f0f0f0;">
+<strong style="color:#000091;">4 skills Claude Code embarqu&eacute;s</strong><br>
+<span style="color:#555;"><code>ernie-image</code> (prompts MLX), <code>ernie-studio-presets</code> (audit presets), <code>lexique-precis</code> (graines s&eacute;mantiques), <code>prompt-image</code> (pipeline 6 &eacute;tapes, 10 presets de style). Avec dictionnaires et r&eacute;f&eacute;rences compl&egrave;tes.</span>
+</td>
+</tr>
+<tr>
+<td style="padding:10px 0;border-bottom:1px solid #f0f0f0;">
+<strong style="color:#000091;">Lightbox et galerie</strong><br>
+<span style="color:#555;">Stabilisation desktop + mobile, suivi PRD. R&eacute;cup&eacute;ration automatique apr&egrave;s coupure SSE.</span>
+</td>
+</tr>
+<tr>
+<td style="padding:10px 0;">
+<strong style="color:#000091;">UI DSFR align&eacute;e</strong><br>
+<span style="color:#555;">Footer structur&eacute; en composant DSFR, d&eacute;connexion dans les acc&egrave;s rapides, accord&eacute;on d'aide au prompt restaur&eacute;.</span>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+
+<!-- Divider -->
+<tr><td style="padding:0 32px;"><hr style="border:none;border-top:1px solid #e5e5e5;margin:0;"></td></tr>
+
+<!-- Section: Fixes -->
+<tr>
+<td style="padding:20px 32px 8px;">
+<h2 style="margin:0;font-size:16px;font-weight:700;color:#000091;">Corrections (8 fixes)</h2>
+</td>
+</tr>
+<tr>
+<td style="padding:0 32px 16px;color:#555;">
+<ul style="margin:0;padding-left:20px;">
+<li>Lightbox mobile corrig&eacute;e</li>
+<li>R&eacute;cup&eacute;ration g&eacute;n&eacute;rations apr&egrave;s coupure SSE</li>
+<li>D&eacute;connexion align&eacute;e acc&egrave;s rapides DSFR</li>
+<li>Footer structur&eacute; composant DSFR</li>
+<li>Accord&eacute;on d'aide restaur&eacute;</li>
+<li>Ancrage visuel rendu toujours actionnable</li>
+<li>Rechargement module PRD-114 forc&eacute;</li>
+<li>Presets visuels renforc&eacute;s</li>
+</ul>
+</td>
+</tr>
+
+<!-- Divider -->
+<tr><td style="padding:0 32px;"><hr style="border:none;border-top:1px solid #e5e5e5;margin:0;"></td></tr>
+
+<!-- Section: Documentation -->
+<tr>
+<td style="padding:20px 32px 8px;">
+<h2 style="margin:0;font-size:16px;font-weight:700;color:#000091;">Documentation produite</h2>
+</td>
+</tr>
+<tr>
+<td style="padding:0 32px 16px;color:#555;">
+<ul style="margin:0;padding-left:20px;">
+<li><code>API-REFERENCE-TECHNIQUE.md</code> — r&eacute;f&eacute;rence API compl&egrave;te</li>
+<li><code>SPECS-MODELES.md</code> — sp&eacute;cifications des mod&egrave;les</li>
+<li><code>docs/chainage-prompts-ernie-studio.md</code> — architecture pipeline</li>
+<li><code>docs/ernie-image-explique.md</code> — guide du syst&egrave;me de prompts</li>
+<li><code>docs/integrer-negative-prompt-mlx.md</code> — strat&eacute;gie PE alternative</li>
+<li><code>docs/serveur-headless-ernie.md</code> — d&eacute;ploiement sans interface</li>
+<li>5 r&eacute;f&eacute;rences prompt-image (Nano Banana 2, Qwen-Image 2, guide, m&eacute;thode raffinement, sch&eacute;ma style)</li>
+</ul>
+</td>
+</tr>
+
+<!-- Divider -->
+<tr><td style="padding:0 32px;"><hr style="border:none;border-top:1px solid #e5e5e5;margin:0;"></td></tr>
+
+<!-- Section: Prochaine étape -->
+<tr>
+<td style="padding:20px 32px 8px;">
+<h2 style="margin:0;font-size:16px;font-weight:700;color:#000091;">Prochaine &eacute;tape</h2>
+</td>
+</tr>
+<tr>
+<td style="padding:0 32px 24px;color:#555;">
+Rien de bloqu&eacute;. Le produit est fonctionnel. &Agrave; toi de dire o&ugrave; on pousse ensuite.
+</td>
+</tr>
+
+<!-- Footer -->
+<tr>
+<td style="background-color:#f9f9f9;padding:16px 32px;border-top:1px solid #e5e5e5;">
+<p style="margin:0;font-size:12px;color:#888888;">G&eacute;n&eacute;r&eacute; par useless-report &mdash; 3 mai 2026 | Profil : ambiguity_tolerant</p>
+</td>
+</tr>
+
+</table>
+</td></tr>
+</table>
+</body>
+</html>

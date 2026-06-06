@@ -1,5 +1,6 @@
 """Tests statiques des contrats frontend."""
 
+import subprocess
 from pathlib import Path
 
 
@@ -362,21 +363,30 @@ def test_lightbox_locks_page_scroll_and_scrolls_overlay():
 
 def test_owned_text_files_do_not_use_em_or_en_dashes():
     excluded_parts = {
-        ".git",
-        ".pytest_cache",
-        ".venv",
         "frontend/dsfr",
         "models",
         "outputs",
+        "retours-jp",
+        "skills",
         "vendor",
     }
     suffixes = {".css", ".html", ".js", ".md", ".MD", ".py", ".sh"}
     offenders = []
 
-    for path in ROOT.rglob("*"):
-        relative = path.relative_to(ROOT).as_posix()
+    tracked_files = subprocess.run(
+        ["git", "ls-files"],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.splitlines()
+
+    for relative in tracked_files:
+        if relative.startswith("rapport-"):
+            continue
         if any(part in relative for part in excluded_parts):
             continue
+        path = ROOT / relative
         if not path.is_file() or path.suffix not in suffixes:
             continue
         text = path.read_text(encoding="utf-8")

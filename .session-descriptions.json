@@ -1,0 +1,7 @@
+{
+  "9dc7427f": "Genese : exploration repo Sandjab/Ernie, messages WhatsApp de JP Gavini, decision FastAPI + MLX headless, deplacement vers projets-heberges",
+  "4ddc7141": "Session marathon : construction complete de l'app (CLAUDE.md, PRD-111, clone repo, pipeline MLX, front DSFR, UX checklist, auth Keycloak, galerie, lightbox, API complete)",
+  "e2c9d7a2": "Enrichissement API : PRD-112 contrat API (seed, guidance, steps), PRD-113 UX prompting, question sur necessite MLX",
+  "d0eddbf7": "Mise en production : versionnement git, push vers github.com/Alexmacapple/Ernie-Image, droits collaborateur pour Sandjab (JP Gavini)",
+  "aa79177e": "Pipeline de prompts : test prompt femme au ukulele, amelioration skill prompt-image, creation chaine de prompts (lexique-precis + prompt-image + ernie-image), commit et push final"
+}

@@ -1,0 +1,229 @@
+{
+  "schema_version": "1.0",
+  "id": "whiteboard-sketch-dsfr-v1.0",
+  "project": "Whiteboard sketch institutionnel DSFR, lisible, sobre, accessible, texte fidèle",
+  "version": "1.1",
+  "language_convention": "FR pour les descriptions, EN pour les tokens injectables dans les prompts image",
+  "PDG-LARGE-FILE-JUSTIFICATION": "Ce preset reste dense parce qu'il regroupe la source portable du style, les contraintes DSFR, l'adaptation ERNIE et les règles de vérification dans un seul JSON réutilisé par le skill source et la copie embarquée.",
+  "quick_spec": {
+    "description": "Sketchnote/whiteboard pour la structure ; DSFR pour typographie, couleurs, contrastes et sobriété.",
+    "colors": {
+      "background_default": "#FFFFFF",
+      "background_alt": "#F6F6F6",
+      "background_contrast": "#EEEEEE",
+      "text_default": "#161616",
+      "text_mention": "#666666",
+      "blue_france": "#000091",
+      "blue_france_low": "#F5F5FE",
+      "red_marianne": "#E1000F",
+      "border_default": "#DDDDDD"
+    },
+    "typography": {
+      "title": "Marianne-like sans-serif, 32-40px, bold, #161616",
+      "section": "Marianne-like sans-serif, 24-32px, bold",
+      "body": "Marianne-like sans-serif, 16-20px, regular, 1.5 line-height",
+      "editorial_optional": "Spectral-like serif only for long quote or callout"
+    },
+    "component_rules": {
+      "numbered_badges": "Numbers are optically centered inside perfect circular badges, with equal top and bottom visual padding.",
+      "tags": "Badge and tag labels are centered horizontally and vertically, with generous bottom padding below the text baseline.",
+      "technical_metadata": "Never render style names, prompt notes, generator labels or production metadata in the final image.",
+      "top_identity": "No decorative blue-red top liseret; DSFR identity comes from typography, grid, spacing, cards and semantic color."
+    },
+    "pictograms_natural_language": {
+      "intent": "For ERNIE/Bernie-style raster generation, describe pictograms as a visual language, not as official DSFR artwork.",
+      "style": "Small civic line pictograms, 32-56px, monoline 2px stroke, rounded caps and corners, simple geometric construction, front-facing orthographic view, dark grey outline, one DSFR semantic accent at most.",
+      "construction": "Use no more than three visible ideas per pictogram; prefer document, checklist, warning triangle, arrow, target, code window, shield, folder, calendar, chart, public counter or simple building.",
+      "placement": "Pictograms sit inside light grey square or circular containers with DSFR spacing; they are decorative accents and never replace readable text.",
+      "avoid": "Do not imitate the official République Française logo, do not create mascot icons, no emoji style, no childish doodles, no detailed illustration."
+    },
+    "golden_rule": "Le texte exact prime sur le rendu génératif : pour une affiche dense, composer le texte en HTML/SVG/Pillow puis styliser autour."
+  },
+  "style_weight": {
+    "critical": [
+      "DSFR typography discipline: Marianne-like sans-serif first",
+      "DSFR color tokens and contrast logic",
+      "accessible text fidelity and readable hierarchy",
+      "whiteboard sketch composition with rounded boxes, arrows, separators and numbered sections",
+      "natural-language pictogram discipline for ERNIE: DSFR-inspired civic line symbols, not official DSFR artwork unless real SVG assets are supplied",
+      "institutional sobriety, no playful handwritten typography for production text"
+    ],
+    "important": [
+      "slight hand-drawn imperfection limited to contours and connectors",
+      "maximum one institutional accent per logical section",
+      "numbered circles, badges and tags use optical centering and generous internal padding",
+      "text remains dark grey on light backgrounds or white on Bleu France",
+      "conclusion or key takeaway anchored at the bottom when useful"
+    ],
+    "usage": "Infographies administratives, supports de formation, notes de doctrine, schémas de procédure et posters explicatifs où la lisibilité du français est prioritaire."
+  },
+  "style": {
+    "genre": "whiteboard-sketch-dsfr",
+    "genre_description": "Sketchnote institutionnel inspiré du DSFR : structure whiteboard pédagogique, mais typographie, couleurs, contraste et sobriété alignés avec le Design System de l'État Français.",
+    "positioning": "entre tableau blanc pédagogique, fiche DSFR, support de formation administration publique et infographie accessible",
+    "tone": ["institutionnel", "pédagogique", "sobre", "clair", "accessible", "opérationnel", "crédible"]
+  },
+  "priority_hierarchy": [
+    {
+      "rank": 1,
+      "domain": "text_fidelity",
+      "rule": "Le texte français exact et les accents sont prioritaires sur le style. Si le générateur déforme le texte, utiliser une composition déterministe."
+    },
+    {
+      "rank": 2,
+      "domain": "accessibility",
+      "rule": "Contraste WCAG AA : texte #161616 sur fonds clairs ou blanc sur Bleu France."
+    },
+    {
+      "rank": 3,
+      "domain": "dsfr_identity",
+      "rule": "Marianne-like sans-serif, Bleu France, Rouge Marianne, gris DSFR, espacements réguliers et sobriété administrative."
+    },
+    {
+      "rank": 4,
+      "domain": "component_precision",
+      "rule": "Numéros centrés dans les cercles, tags centrés avec padding vertical, aucun footer technique, aucun liseret décoratif non demandé."
+    },
+    {
+      "rank": 5,
+      "domain": "whiteboard_structure",
+      "rule": "Boîtes arrondies, flèches simples, sections numérotées et séparation visuelle claire."
+    }
+  ],
+  "rendering": {
+    "linework": [
+      "clean DSFR-like layout with subtly hand-drawn rounded contours",
+      "dark grey contour lines, never pure black",
+      "straight-on orthographic diagram view",
+      "simple arrows and dashed separators with slight marker irregularity",
+      "natural-language DSFR-inspired civic pictograms: monoline, rounded stroke endings, simple geometric silhouettes, front-facing",
+      "pictograms are semantic accents only; text carries the meaning"
+    ],
+    "color": [
+      "dominant white and DSFR light greys: #FFFFFF, #F6F6F6, #EEEEEE",
+      "primary institutional accent: Bleu France #000091",
+      "critical/error accent: Rouge Marianne #E1000F",
+      "functional accents only when meaningful: info, success, warning, error",
+      "color is semantic, never decorative"
+    ],
+    "shading": [
+      "flat fills, no gradients",
+      "separation comes from borders, spacing and light grey backgrounds",
+      "subtle paper or whiteboard grain allowed below 5 percent visual weight",
+      "high contrast text over every colored area"
+    ],
+    "typography": [
+      "Marianne-like sans-serif for all titles, labels, body text and UI-like components",
+      "Spectral-like serif only for an editorial quote, legal excerpt or long institutional citation",
+      "no handwritten text for content that must be read exactly",
+      "clear heading scale inspired by fr-h1, fr-h2, fr-h3",
+      "line-height around 1.5 for body text"
+    ]
+  },
+  "composition": {
+    "framing": [
+      "title at top, content in DSFR-like grid, conclusion or action banner at bottom",
+      "12-column grid feeling with generous margins and gutters",
+      "sections grouped as cards, callouts, notices or badges",
+      "numbered section circles use optical center alignment for digits",
+      "badge and tag labels use center alignment plus extra bottom padding",
+      "no decorative blue-red liseret at the top unless explicitly requested",
+      "no technical style footer or generator metadata in the image",
+      "whiteboard arrows clarify causality, never decoration"
+    ],
+    "templates": {
+      "poster": "title | short chapo | numbered DSFR cards | comparison or flow section | bottom takeaway banner",
+      "procedure": "notice strip | ordered steps | warning callout | success condition",
+      "comparison": "left risk/error column in red Marianne logic | right target/success column in blue France or success logic",
+      "dashboard": "summary badges | DSFR card grid | small explanatory flow | action conclusion"
+    }
+  },
+  "format": {
+    "aspect_ratio": "4:3",
+    "aspect_ratio_options": ["4:3", "16:9", "4:5", "1:1", "9:16"]
+  },
+  "subject_logic": {
+    "default_type": "administrative process diagrams, training posters, policy explainers, public-service workflows, accessibility-first infographics",
+    "allowed_forms": [
+      "DSFR-inspired explanatory posters",
+      "step-by-step administrative procedures",
+      "risk/control matrices",
+      "before/after compliance diagrams",
+      "public-service dashboards and metric summaries",
+      "training sheets with exact French text"
+    ],
+    "forbidden_forms": [
+      "fake official government logo",
+      "photorealistic public-service scene",
+      "decorative mascot",
+      "playful handwritten lettering for exact text",
+      "marketing landing-page hero"
+    ]
+  },
+  "text_policy": {
+    "short_labels": "Image model can render short French labels in quotes, but exactness must be checked.",
+    "dense_text": "Use deterministic text layout from Markdown, HTML, SVG or Pillow. The image model may generate background, boxes, pictogram-style accents and style only.",
+    "ui_prompt": "For ERNIE UI, request only titles and short labels; keep full bullet text outside generation or overlay it afterward.",
+    "acceptance": "All French accents, punctuation and section titles must match the source text before delivery."
+  },
+  "pictogram_policy": {
+    "html_or_dsfr_ui": "If the output is real HTML or DSFR UI, use official fr-icon-* classes or official fr-artwork SVG pictograms with their DSFR accessibility rules.",
+    "ernie_or_raster_prompt": "If the output is a generated raster image, use natural-language DSFR-inspired pictogram style and do not claim official DSFR pictogram compliance.",
+    "natural_language_style": "minimal civic line pictograms, 32-56px, monoline 2px dark grey stroke, rounded caps, rounded joins, simple geometric silhouettes, front-facing orthographic view, placed inside pale grey DSFR containers, one Bleu France or Rouge Marianne semantic accent only when meaningful",
+    "semantic_examples": {
+      "hypothesis": "small target circle with one clean arrow, monoline dark grey stroke, pale grey container",
+      "validation": "small checklist document with two check marks, monoline dark grey stroke, one Bleu France accent",
+      "risk": "small warning triangle with restrained Rouge Marianne accent, no cartoon expression",
+      "code": "small code window or terminal rectangle, monoline dark grey stroke, simple brackets",
+      "goal": "small flag or destination marker, monoline dark grey stroke, one Bleu France accent"
+    }
+  },
+  "color_policy": {
+    "dominant": "white and DSFR greys",
+    "semantic_accents": {
+      "primary_action": "Bleu France #000091",
+      "error_or_blocker": "Rouge Marianne #E1000F",
+      "neutral_structure": "DSFR grey #EEEEEE and border #DDDDDD",
+      "text": "default grey #161616",
+      "metadata": "mention grey #666666"
+    },
+    "rules": [
+      "one primary accent per section",
+      "colored text must meet contrast requirements",
+      "light accent backgrounds carry dark text",
+      "Bleu France filled areas carry white text"
+    ],
+    "forbidden": ["neon", "pastel low-contrast text", "rainbow palette", "brand colors outside DSFR without reason"]
+  },
+  "mood": {
+    "allowed": ["administrative clarity", "public-service trust", "training-room pedagogy", "calm operational explanation", "accessibility-first documentation"],
+    "forbidden": ["startup SaaS polish", "Canva template", "cartoon playfulness", "dramatic poster", "dark cyber interface"],
+    "brand_voice": "service public, clair, utile, accessible, sobre, précis"
+  },
+  "avoid": ["photorealism", "3D rendering", "fake République Française logo", "official DSFR pictogram claims when only natural-language icons are generated", "handwritten body text", "low contrast typography", "off-center numbered circles", "under-padded tags", "decorative blue-red top liseret", "technical style footer", "neon colors", "decorative gradients", "heavy drop shadows", "cartoon mascot", "marketing hero composition"],
+  "prompt_core": "DSFR-inspired whiteboard sketch infographic, Marianne-like sans-serif typography, white and light grey administrative canvas, Bleu France #000091 and Rouge Marianne #E1000F semantic accents, rounded DSFR card-like boxes, natural-language civic line pictograms with monoline rounded strokes, accessible high-contrast French text, subtle hand-drawn contours only on shapes.",
+  "compressed_inference_prompt": "DSFR whiteboard sketch infographic, Marianne-like sans-serif text, white and light grey canvas, Bleu France and Rouge Marianne accents, rounded DSFR cards, civic monoline pictograms, accessible high-contrast layout.",
+  "negative_short": "photorealism, 3D, fake government logo, handwritten body text, low contrast text, off-center badges, under-padded tags, technical footer, top tricolor stripe, neon, gradients, cartoon, Canva template",
+  "negative_core": {
+    "flat_string": "photorealism, 3D rendering, fake government logo, handwritten body text, low contrast text, off-center numbered badges, under-padded tags, technical style footer, decorative top tricolor stripe, neon colors, gradients, cartoon mascot, Canva template, startup SaaS polish"
+  },
+  "visual_signature": ["DSFR-like Marianne typography", "Bleu France and Rouge Marianne semantic accents", "rounded public-service cards with slight marker contour", "white and light grey accessible canvas", "natural-language civic pictograms, not fake official artwork", "text fidelity before generative style"],
+  "signature": {
+    "seed_phrase": "A public-service whiteboard where every French word remains exact, every color follows DSFR semantics, and sketch imperfection appears only in the explanatory structure.",
+    "manifesto": "The warmth of a whiteboard, the rigor of a public service design system.",
+    "tyrannical_rule": "For text-heavy images, exact text is deterministic; the generator is allowed to style structure, not invent words."
+  },
+  "model_adaptation": {
+    "ernie_mlx": {
+      "strategy": "Use the prompt for structure, color, short labels and natural-language pictogram style only. For dense French text, generate or preserve a deterministic image from the source text.",
+      "risks": "texte: élevé | layout: modéré | DSFR color fidelity: modéré",
+      "tip": "Seed fixe, même ratio, 8 steps. Décrire les pictogrammes comme monoline civic icons. Si un libellé est déformé, revenir à la version texte fidèle et styliser autour."
+    },
+    "deterministic_overlay": {
+      "strategy": "Recommended for posters, playbooks and any Markdown source. Compose text in HTML, SVG or Pillow, then use generated assets only for background or illustration.",
+      "risks": "style less organic, but text exact",
+      "tip": "This is the preferred workflow for DSFR training sheets."
+    }
+  },
+  "quality_checks": ["all French text is exact, accents included", "typography reads as Marianne-like sans-serif, not handwritten", "colors stay within DSFR logic: white, grey, Bleu France, Rouge Marianne, functional accents", "contrast remains accessible on every text block", "sketch effect is limited to contours, arrows and natural-language civic pictograms", "pictograms are not presented as official DSFR artwork unless real DSFR SVG assets are used", "numbered circles and tags are optically centered", "no decorative top liseret or technical footer", "no fake government logo or misleading official branding", "layout feels like a DSFR training document, not a marketing poster"]
+}

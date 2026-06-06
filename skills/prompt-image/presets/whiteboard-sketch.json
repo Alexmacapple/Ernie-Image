@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
-  "id": "whiteboard-sketch-v2.1",
+  "id": "whiteboard-sketch-v2.2",
   "project": "Preset signature -- diagramme technique style whiteboard premium, faux-handmade controle, palette semantique restreinte, pedagogie visuelle argumentative",
-  "version": "2.1",
+  "version": "2.2",
   "language_convention": "FR pour les meta-descriptions et notes d'usage, EN pour les tokens injectables dans les prompts IA",
 
   "quick_spec": {
@@ -22,16 +22,16 @@
       "arrow": "2px, dark gray, hand-drawn slight curve"
     },
     "typography": {
-      "title": "28-36px, handwritten bold (Virgil/Caveat), centered, dark gray",
-      "label": "16-20px, handwritten regular, colored by semantic role",
-      "annotation": "12-14px, handwritten light, dark gray, near arrows"
+      "title": "28-36px, Arial-like sans-serif bold, centered, dark gray",
+      "label": "16-20px, Arial-like sans-serif regular, colored by semantic role",
+      "annotation": "12-14px, Arial-like sans-serif regular, dark gray, near arrows"
     },
     "master_components": ["system_card (rounded rect, gray fill, label)", "data_container (large rect, small blocks inside)", "metric_badge (capsule, colored fill, number)", "conclusion_banner (wide rect, blue fill, bottom)", "flow_arrow (hand-drawn, annotated)"],
     "golden_rule": "Chaque couleur = un sens. Pas de couleur decorative."
   },
 
   "style_weight": {
-    "critical": ["off-white warm background", "hand-drawn rounded shapes", "semantic color coding", "handwritten typography", "generous whitespace", "no corporate polish"],
+    "critical": ["off-white warm background", "hand-drawn rounded shapes", "semantic color coding", "Arial-like sans-serif typography", "generous whitespace", "no corporate polish"],
     "important": ["controlled imperfection in linework", "soft muted desaturated accents", "vertical narrative flow within sections", "maximum 4-5 colors per image", "conclusion/takeaway anchored at bottom"],
     "flexible": ["background texture grain intensity", "arrow style (straight vs curved)", "border style (solid vs dashed)", "accent saturation level", "composition template choice"],
     "usage": "En cas de conflit entre regles, la priorite descend de critical vers flexible. Le critical definit l'ADN whiteboard-sketch -- sans ces elements, ce n'est plus ce preset. La signature est le faux-handmade controle : propre et maitrise mais jamais geometriquement parfait."
@@ -74,12 +74,12 @@
       "extremely faint depth suggestion through slight tone variation between foreground and background elements"
     ],
     "typography": [
-      "handwritten-style rounded casual typeface throughout -- Virgil, Caveat, Patrick Hand aesthetic",
-      "title: large, confident, centered, dark gray to black",
-      "section labels: medium size, colored according to semantic role (red/green)",
-      "annotations: small, dark gray, placed near arrows or connectors",
-      "metrics/KPI: medium, centered inside colored badge/capsule shapes",
-      "never condensed, never ultra-bold, never serif, never sans-serif corporate"
+      "clean Arial-like sans-serif typography throughout -- simple, readable, neutral, not decorative",
+      "title: large, confident, centered, dark gray to black, Arial-like bold",
+      "section labels: medium size, Arial-like regular or semibold, colored according to semantic role (red/green)",
+      "annotations: small, Arial-like regular, dark gray, placed near arrows or connectors",
+      "metrics/KPI: medium, Arial-like semibold, centered inside colored badge/capsule shapes",
+      "never condensed, never ultra-bold, never serif, never handwritten or decorative"
     ]
   },
 
@@ -87,7 +87,7 @@
     "description": "Vocabulaire de composants reutilisables. Chaque diagramme est assemble a partir de ce kit restreint -- pas d'elements ad hoc.",
     "system_card": {
       "description": "Rectangle arrondi representant un acteur, outil ou point d'entree",
-      "style": "rounded rectangle, light gray fill, dark contour, centered handwritten label",
+      "style": "rounded rectangle, light gray fill, dark contour, centered Arial-like label",
       "usage": "designate an agent, tool, system or entry point"
     },
     "data_container": {
@@ -102,12 +102,12 @@
     },
     "metric_badge": {
       "description": "Capsule/pilule coloree affichant un KPI ou une metrique cle",
-      "style": "rounded capsule shape, tinted fill matching semantic color, centered handwritten number and label",
+      "style": "rounded capsule shape, tinted fill matching semantic color, centered Arial-like number and label",
       "usage": "highlight a key metric, count, score, or measurement"
     },
     "conclusion_banner": {
       "description": "Rectangle arrondi large en bas du diagramme -- le takeaway principal",
-      "style": "wide rounded rectangle, blue tinted fill, centered handwritten synthesis text",
+      "style": "wide rounded rectangle, blue tinted fill, centered Arial-like synthesis text",
       "usage": "key insight, final takeaway, summary statement -- always at bottom of diagram"
     },
     "decision_node": {
@@ -117,7 +117,7 @@
     },
     "flow_arrow": {
       "description": "Fleche verticale ou horizontale simple avec annotation optionnelle",
-      "style": "hand-drawn arrow with slight curve, dark gray, annotation text in smaller handwriting alongside",
+      "style": "hand-drawn arrow with slight curve, dark gray, annotation text in smaller Arial-like typography alongside",
       "usage": "causal relationship, data flow, process direction"
     },
     "section_separator": {
@@ -286,9 +286,9 @@
     "pure black (#000) or pure white (#FFF) -- always off-tones"
   ],
 
-  "prompt_core": "Hand-drawn whiteboard sketch technical diagram, controlled marker-pen aesthetic with deliberate slight imperfection, warm off-white textured paper background, soft rounded shapes with dark gray contours, muted gray containers, semantic pastel color accents (coral red for problems, mint green for solutions, sky blue for conclusions, lavender for mechanisms), handwritten casual typography, generous pedagogical whitespace, clean argumentative visual hierarchy, 4:3.",
+  "prompt_core": "Hand-drawn whiteboard sketch technical diagram, controlled marker-pen aesthetic with deliberate slight imperfection, warm off-white textured paper background, soft rounded shapes with dark gray contours, muted gray containers, semantic pastel color accents (coral red for problems, mint green for solutions, sky blue for conclusions, lavender for mechanisms), clean Arial-like sans-serif typography, generous pedagogical whitespace, clean argumentative visual hierarchy, 4:3.",
 
-  "compressed_inference_prompt": "Whiteboard sketch diagram, hand-drawn marker style, off-white paper, rounded gray containers, semantic color accents red green blue purple, handwritten labels, generous whitespace, 4:3.",
+  "compressed_inference_prompt": "Whiteboard sketch diagram, hand-drawn marker style, off-white paper, rounded gray containers, semantic color accents red green blue purple, Arial-like labels, generous whitespace, 4:3.",
 
   "negative_short": "photorealism, 3D rendering, corporate infographic, dark background, neon colors, sharp vector, polished digital, gradient, drop shadow, anime",
 
@@ -308,7 +308,7 @@
     "controlled hand-drawn imperfection -- faux-handmade, never sloppy",
     "warm off-white paper texture background",
     "semantic color coding where every hue carries functional meaning",
-    "handwritten casual rounded typography (Virgil/Caveat family)",
+    "clean Arial-like sans-serif typography",
     "extremely generous pedagogical whitespace"
   ],
 
@@ -328,7 +328,7 @@
       "warm off-white background with paper grain",
       "hand-drawn rounded shapes with controlled imperfection",
       "semantic color coding (red/green/blue/purple/gray)",
-      "handwritten typography throughout",
+      "Arial-like sans-serif typography throughout",
       "generous whitespace and breathing room",
       "conclusion banner at bottom when applicable"
     ],
@@ -364,17 +364,17 @@
   },
 
   "example_prompts": {
-    "token_optimization_comparison": "Token optimization comparison diagram, two columns on warm off-white paper: left column 'Without Graph' showing Claude Code system card with arrow labeled 'reads everything' to large gray container filled with many small file blocks labeled 'Entire Codebase' and red metric badge '13,205 tokens' below, right column 'With Graph' showing Claude Code card with arrow labeled 'queries graph' to a small purple network of five connected nodes with thin lines between them labeled 'Graph' then arrow labeled 'blast radius' to small green container with only five blocks inside labeled 'Minimal Review Set' and green metric badge '1,928 tokens' below, columns separated by dashed gray vertical line, wide blue conclusion banner anchored at bottom reading '6.8x fewer tokens + higher review quality', hand-drawn whiteboard sketch style with controlled marker-pen imperfection, rounded shapes, handwritten casual typography, generous whitespace, 4:3.",
-    "ci_cd_pipeline_flow": "CI/CD deployment pipeline vertical flow diagram on warm off-white paper, system cards for 'Developer', 'Git Push', 'CI Server' connected by annotated hand-drawn arrows, purple diamond decision node 'Tests Pass?' with green arrow to 'Deploy' and red arrow to 'Fix', green metric badge '99.2% uptime' at bottom, blue conclusion banner 'Automated deploys reduce errors by 4x', hand-drawn whiteboard sketch style, rounded shapes, semantic color accents, handwritten labels, generous whitespace, 4:3.",
+    "token_optimization_comparison": "Token optimization comparison diagram, two columns on warm off-white paper: left column 'Without Graph' showing Claude Code system card with arrow labeled 'reads everything' to large gray container filled with many small file blocks labeled 'Entire Codebase' and red metric badge '13,205 tokens' below, right column 'With Graph' showing Claude Code card with arrow labeled 'queries graph' to a small purple network of five connected nodes with thin lines between them labeled 'Graph' then arrow labeled 'blast radius' to small green container with only five blocks inside labeled 'Minimal Review Set' and green metric badge '1,928 tokens' below, columns separated by dashed gray vertical line, wide blue conclusion banner anchored at bottom reading '6.8x fewer tokens + higher review quality', hand-drawn whiteboard sketch style with controlled marker-pen imperfection, rounded shapes, clean Arial-like sans-serif typography, generous whitespace, 4:3.",
+    "ci_cd_pipeline_flow": "CI/CD deployment pipeline vertical flow diagram on warm off-white paper, system cards for 'Developer', 'Git Push', 'CI Server' connected by annotated hand-drawn arrows, purple diamond decision node 'Tests Pass?' with green arrow to 'Deploy' and red arrow to 'Fix', green metric badge '99.2% uptime' at bottom, blue conclusion banner 'Automated deploys reduce errors by 4x', hand-drawn whiteboard sketch style, rounded shapes, semantic color accents, Arial-like labels, generous whitespace, 4:3.",
     "microservices_architecture": "Microservices architecture diagram on warm off-white paper, five gray system cards (Auth, API Gateway, Users, Orders, Payments) connected by labeled hand-drawn arrows showing request flow, large dashed data container 'Database Cluster' at bottom with three small internal blocks, purple diamond 'Load Balancer' at top distributing traffic, green metric badges for response times, hand-drawn whiteboard sketch style, controlled imperfection, semantic colors, generous whitespace, 16:9.",
-    "before_after_refactoring": "Code refactoring comparison diagram on warm off-white paper, left column 'Before' with tangled arrows between six gray system cards showing spaghetti dependencies and red metric badge 'Coupling: 87%', right column 'After' with clean layered architecture three cards with clear arrows and green metric badge 'Coupling: 23%', dashed vertical separator, blue conclusion banner 'Clean architecture reduces bug rate by 60%', hand-drawn whiteboard sketch style, rounded shapes, handwritten typography, 4:3."
+    "before_after_refactoring": "Code refactoring comparison diagram on warm off-white paper, left column 'Before' with tangled arrows between six gray system cards showing spaghetti dependencies and red metric badge 'Coupling: 87%', right column 'After' with clean layered architecture three cards with clear arrows and green metric badge 'Coupling: 23%', dashed vertical separator, blue conclusion banner 'Clean architecture reduces bug rate by 60%', hand-drawn whiteboard sketch style, rounded shapes, Arial-like sans-serif typography, 4:3."
   },
 
   "model_adaptation": {
     "nano_banana_2": {
       "strategy": "5-bloc, insister sur sketch et hand-drawn, formulations positives pour exclure le corporate polish",
-      "risks": "texte: eleve (handwritten text lisible tres difficile a obtenir) | contour: modere (imperfection controlee difficile a doser) | layout: modere (structure spatiale peut etre ignoree)",
-      "tip": "prompt_core en bloc 3. Ne PAS demander de texte lisible dans l'image -- utiliser des blocs placeholder avec des formes suggerant du texte. Insister sur 'warm off-white background' pour eviter le fond blanc pur. Decrire les formes plutot que les labels."
+      "risks": "texte: modere a eleve (Arial-like lisible plus simple que manuscrit, mais texte exact encore fragile) | contour: modere (imperfection controlee difficile a doser) | layout: modere (structure spatiale peut etre ignoree)",
+      "tip": "prompt_core en bloc 3. Pour du texte exact, demander des libelles courts en Arial-like sans-serif. Sinon, utiliser des blocs placeholder avec des formes suggerant du texte. Insister sur 'warm off-white background' pour eviter le fond blanc pur. Decrire les formes plutot que les labels longs."
     },
     "qwen_image_2": {
       "strategy": "7 regles, sujet en tete, negative prompt explicite, meilleur support texte",
