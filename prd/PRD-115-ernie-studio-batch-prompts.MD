@@ -1,6 +1,6 @@
 # PRD-115 : Ernie Studio - batch de prompts séquentiels
 
-**Statut** : Brouillon de cadrage
+**Statut** : Abandonné — décision Alex (2026-06-29)
 **Date** : 2026-04-27
 **Auteur** : Alex
 **Source** : besoin d'exécuter plusieurs prompts les uns à la suite des autres dans Ernie Studio
@@ -446,3 +446,4 @@ La v1 reste volontairement simple :
 | 2026-04-27 | Alex + Codex | Création du PRD batch prompts séquentiels |
 | 2026-04-27 | Alex + Codex | Ajout import CSV optionnel, le copier-coller restant le chemin principal |
 | 2026-04-27 | Alex + Codex | Mise à jour après PRD-114 V1 : compatibilité attendue avec les blocs `Visual anchor:` existants |
+| 2026-06-29 | Alex + Codex | Passage en abandonné ; hors RAF Ernie |

@@ -17,7 +17,7 @@ Version stable de retour : tag Git `MVP-V1`.
 
 - Garder MLX comme backend par défaut pour les prochaines étapes.
 - PRD-111 à PRD-114 sont implémentés dans le périmètre actuel.
-- PRD-115 batch prompts est un brouillon non démarré.
+- PRD-115 batch prompts est abandonné par décision Alex du 2026-06-29.
 - PRD-114 V1 compacte est implémenté côté frontend, sans changer le moteur.
 - Ne pas remplacer `pipeline_mlx.py` par Diffusers dans ce cycle.
 - Diffusers est une piste valide mais à traiter comme spike séparé après retour : `ERNIE_BACKEND=mlx|diffusers`, benchmark temps/RAM/stabilité/qualité, puis décision.
@@ -89,7 +89,7 @@ git clone --depth 1 https://github.com/treadon/mlx-ernie-image.git vendor/mlx-er
 | POST | `/api/generate` | SSE : `started` → `progress` → `done`\|`error` |
 | GET | `/api/outputs` | liste JSON des PNG, pagination optionnelle `page`/`page_size` |
 | GET | `/api/outputs/{filename}` | sert le PNG, Bearer ou `?token=...` |
-| DELETE | `/api/outputs/{filename}` | supprime le PNG et le sidecar JSON |
+| DELETE | `/api/outputs/{filename}` | efface le PNG et le sidecar JSON |
 
 Routes protégées par auth : `/api/generate`, `/api/outputs`, `/api/outputs/{filename}` en `GET`/`DELETE`.
 Routes non protégées : auth, `/api/health`, `/api/status`, `/api/presets`.
@@ -145,4 +145,4 @@ Routes non protégées : auth, `/api/health`, `/api/status`, `/api/presets`.
 - `prd/PRD-112-ernie-api-enrichissement-contrat.MD` - contrat API enrichi, implémenté
 - `prd/PRD-113-ernie-studio-ux-prompting.MD` - UX prompting guidé, implémenté
 - `prd/PRD-114-ernie-studio-controle-representation-portraits.MD` - V1 compacte implémentée
-- `prd/PRD-115-ernie-studio-batch-prompts.MD` - brouillon batch prompts
+- `prd/PRD-115-ernie-studio-batch-prompts.MD` - batch prompts abandonné
